@@ -13,6 +13,7 @@
 		0C1E45DF296795F200936E52 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C1E45DE296795F200936E52 /* RealmSwift */; };
 		0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E029679E8000936E52 /* LoginStore.swift */; };
 		0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E22967A1C300936E52 /* ContentStore.swift */; };
+		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
 		0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */; };
 		0CF2120629673747001BBC8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120529673747001BBC8D /* ContentView.swift */; };
 		0CF2120829673748001BBC8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2120729673748001BBC8D /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		0C1E45D92967927900936E52 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0C1E45E029679E8000936E52 /* LoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStore.swift; sourceTree = "<group>"; };
 		0C1E45E22967A1C300936E52 /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
+		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
 		0CF2120029673747001BBC8D /* DiscoverBrno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscoverBrno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverBrnoApp.swift; sourceTree = "<group>"; };
 		0CF2120529673747001BBC8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		0CF2122F29673DC6001BBC8D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */,
 				0CF2120729673748001BBC8D /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -382,6 +385,7 @@
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
 				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,
 				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,
+				0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

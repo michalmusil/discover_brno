@@ -20,7 +20,8 @@ final class LoginStore: ObservableObject{
     @Published var email: String = ""
     @Published var password: String = ""
     
-    @Published var errorText: String = ""
+    @Published var emailError: String = ""
+    @Published var passwordError: String = ""
     
     @Injected var realmManager: RealmManager
     
@@ -37,12 +38,15 @@ final class LoginStore: ObservableObject{
             .sink(receiveValue: { [weak self] value in
                 let wrongEmail = "Not a valid email address."
                 if value == nil{
-                    self?.errorText = wrongEmail
+                    self?.emailError = wrongEmail
+                    return
                 }
                 if let result = value,
                    !result{
-                    self?.errorText = wrongEmail
+                    self?.emailError = wrongEmail
+                    return
                 }
+                self?.emailError = ""
             })
             .store(in: &subscribtions)
         
@@ -53,8 +57,10 @@ final class LoginStore: ObservableObject{
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] value in
                 if !value{
-                    self?.errorText = "Password must be at least 6 characters"
+                    self?.passwordError = "Password must be at least 6 characters"
+                    return
                 }
+                self?.passwordError = ""
             })
             .store(in: &subscribtions)
     }

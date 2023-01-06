@@ -40,20 +40,23 @@ struct LoginScreen: View {
                 .keyboardType(.emailAddress)
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal, 30)
+            if !store.emailError.isEmpty && store.state != .start{
+                Text(store.emailError)
+                    .foregroundColor(.red)
+                    .font(.caption)
+            }
             SecureField("Password", text: $store.password)
                 .autocorrectionDisabled(true)
                 .keyboardType(.emailAddress)
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal, 30)
-            
-            if !store.errorText.isEmpty && store.state != .start{
-                Text(store.errorText)
+            if !store.passwordError.isEmpty && store.state != .start{
+                Text(store.passwordError)
                     .foregroundColor(.red)
                     .font(.caption)
             }
             
             Button{
-                store.errorText = ""
                 Task{
                     do{
                         try await store.loginUser()
