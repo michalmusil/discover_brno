@@ -36,6 +36,7 @@ struct LoginScreen: View {
         VStack{
             TextField("E-mail", text: $store.email)
                 .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
                 .keyboardType(.emailAddress)
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal, 30)
@@ -45,7 +46,7 @@ struct LoginScreen: View {
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal, 30)
             
-            if !store.errorText.isEmpty{
+            if !store.errorText.isEmpty && store.state != .start{
                 Text(store.errorText)
                     .foregroundColor(.red)
                     .font(.caption)
@@ -53,7 +54,13 @@ struct LoginScreen: View {
             
             Button{
                 store.errorText = ""
-                store.loginUser()
+                Task{
+                    do{
+                        try await store.loginUser()
+                    } catch{
+                        store.state = .idle
+                    }
+                }
             } label: {
                 Text("Log in")
                     .font(.title3)
