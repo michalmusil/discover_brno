@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45D6296790A900936E52 /* LoginScreen.swift */; };
+		0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45D92967927900936E52 /* RealmManager.swift */; };
+		0C1E45DD296795F200936E52 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0C1E45DC296795F200936E52 /* Realm */; };
+		0C1E45DF296795F200936E52 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C1E45DE296795F200936E52 /* RealmSwift */; };
+		0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E029679E8000936E52 /* LoginStore.swift */; };
+		0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E22967A1C300936E52 /* ContentStore.swift */; };
 		0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */; };
 		0CF2120629673747001BBC8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120529673747001BBC8D /* ContentView.swift */; };
 		0CF2120829673748001BBC8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2120729673748001BBC8D /* Assets.xcassets */; };
@@ -36,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C1E45D6296790A900936E52 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		0C1E45D92967927900936E52 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		0C1E45E029679E8000936E52 /* LoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStore.swift; sourceTree = "<group>"; };
+		0C1E45E22967A1C300936E52 /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
 		0CF2120029673747001BBC8D /* DiscoverBrno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscoverBrno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverBrnoApp.swift; sourceTree = "<group>"; };
 		0CF2120529673747001BBC8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C1E45DF296795F200936E52 /* RealmSwift in Frameworks */,
+				0C1E45DD296795F200936E52 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +87,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C1E45D52967908F00936E52 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				0C1E45D6296790A900936E52 /* LoginScreen.swift */,
+				0C1E45E029679E8000936E52 /* LoginStore.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		0C1E45D82967926C00936E52 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0C1E45D92967927900936E52 /* RealmManager.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		0CF211F729673747001BBC8D = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				0CF2120529673747001BBC8D /* ContentView.swift */,
+				0C1E45E22967A1C300936E52 /* ContentStore.swift */,
+				0C1E45D52967908F00936E52 /* Authentication */,
 				0CF2123729674215001BBC8D /* Home */,
 				0CF212352967417B001BBC8D /* DiscoveredList */,
 				0CF21236296741E4001BBC8D /* Map */,
@@ -148,6 +179,7 @@
 		0CF2122E29673DB4001BBC8D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0C1E45D82967926C00936E52 /* Realm */,
 				0CF2123029674090001BBC8D /* DI */,
 			);
 			path = Common;
@@ -221,6 +253,10 @@
 			dependencies = (
 			);
 			name = DiscoverBrno;
+			packageProductDependencies = (
+				0C1E45DC296795F200936E52 /* Realm */,
+				0C1E45DE296795F200936E52 /* RealmSwift */,
+			);
 			productName = DiscoverBrno;
 			productReference = 0CF2120029673747001BBC8D /* DiscoverBrno.app */;
 			productType = "com.apple.product-type.application";
@@ -293,6 +329,9 @@
 				Base,
 			);
 			mainGroup = 0CF211F729673747001BBC8D;
+			packageReferences = (
+				0C1E45DB296795F200936E52 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 0CF2120129673747001BBC8D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -335,10 +374,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */,
 				0CF212322967409A001BBC8D /* DiContainer.swift in Sources */,
 				0CF2120629673747001BBC8D /* ContentView.swift in Sources */,
 				0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */,
 				0CF212342967413D001BBC8D /* InjectedWrapper.swift in Sources */,
+				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
+				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,
+				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,6 +706,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0C1E45DB296795F200936E52 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0C1E45DC296795F200936E52 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C1E45DB296795F200936E52 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0C1E45DE296795F200936E52 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C1E45DB296795F200936E52 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0CF211F829673747001BBC8D /* Project object */;
 }

@@ -47,6 +47,10 @@ final class DIContainer {
 extension DIContainer {
     func registerDependencies() {
         
+        register(RealmManager.self, cached: true){
+            RealmManager.shared
+        }
+        
         /*
         register(APIManaging.self, cached: true) {
             APIManager()
