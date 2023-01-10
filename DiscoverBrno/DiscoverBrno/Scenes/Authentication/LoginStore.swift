@@ -65,14 +65,16 @@ final class LoginStore: ObservableObject{
             .store(in: &subscribtions)
     }
     
-    func validateEmailAddress(email: String) -> Bool {
+    private func validateEmailAddress(email: String) -> Bool {
         let regex = "^[\\p{L}0-9!#$%&'*+\\/=?^_`{|}~-][\\p{L}0-9.!#$%&'*+\\/=?^_`{|}~-]{0,63}@[\\p{L}0-9-]+(?:\\.[\\p{L}0-9-]{2,7})*$"
         let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
         return predicate.evaluate(with: email)
     }
     
+    @MainActor
     func loginUser() async throws{
-        state = .loading
+        self.state = .loading
         try await realmManager.loginEmailPassword(email: email, password: password)
+        print("aaa")
     }
 }

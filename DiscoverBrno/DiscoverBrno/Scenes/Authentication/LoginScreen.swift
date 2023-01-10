@@ -82,6 +82,12 @@ struct LoginScreen: View {
             
         }
     }
+    
+    
+    private func goBack(){
+        
+    }
+    
 }
 
 struct LoginScreen_Previews: PreviewProvider {

@@ -7,19 +7,27 @@
 
 import Foundation
 import RealmSwift
+import Combine
 
 class RealmManager: ObservableObject{
     static let shared = RealmManager()
 
     let app: App
     @Published var realm: Realm?
-    
     @Published var user: User?
     @Published var configuration: Realm.Configuration?
     
+    
+    private var subscribtions = Set<AnyCancellable>()
+    @Published var userLoggedIn: Bool = false
+    
+    
     private init(){
         self.app = App(id: "discoverbrno-zrxgr")
+        initializeSubs()
     }
+    
+    
     
     @MainActor
     func loginEmailPassword(email: String, password: String) async throws{
@@ -29,26 +37,24 @@ class RealmManager: ObservableObject{
         
         let userId = self.user?.id
         
-        /*
         self.configuration = user?.flexibleSyncConfiguration(initialSubscriptions: {subs in
-            if subs.first(named: "all_todos") != nil{
-                return
-            } else {
-                subs.append(QuerySubscription<Todo>(name: "all_todos") {
+            if subs.first(named: "discoverable_landmarks") == nil{
+                subs.append(QuerySubscription<DiscoverableLandmark>(name: "discoverable_landmarks"))
+            }
+            if subs.first(named: "discovered_landmarks") == nil{
+                subs.append(QuerySubscription<DiscoveredLandmark>(name: "discovered_landmarks"){
                     $0.ownerId == userId!
                 })
             }
         }, rerunOnOpen: true)
         
         self.realm = try await Realm(configuration: self.configuration!, downloadBeforeOpen: .always)
-         */
     }
     
     @MainActor
-    func registerEmailPassword(email: String, password: String) async throws{
-        let credentials = Credentials.emailPassword(email: email, password: password)
-        
+    func registerEmailPassword(email: String, password: String) async throws -> (email: String, password: String){
         try await app.emailPasswordAuth.registerUser(email: email, password: password)
+        return (email, password)
     }
     
     @MainActor
@@ -57,5 +63,22 @@ class RealmManager: ObservableObject{
         self.user = nil
         self.configuration = nil
         self.realm = nil
+    }
+}
+
+// MARK: Subs
+extension RealmManager{
+    
+    private func initializeSubs(){
+        // Publishing to user logged in variable
+        $realm
+            .combineLatest($user, $configuration){ realm, user, config in
+                realm != nil && user != nil && config != nil
+            }
+            .receive(on: DispatchQueue.main)
+            .sink{[weak self] receivedValue in
+                self?.userLoggedIn = receivedValue
+            }
+            .store(in: &subscribtions)
     }
 }

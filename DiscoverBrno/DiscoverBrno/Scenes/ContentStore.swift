@@ -11,6 +11,14 @@ class ContentStore: ObservableObject{
     enum State: Equatable{
         case login
         case registration
+        case loggedIn
     }
     @Published var state: State = .login
+    @Injected var realmManager: RealmManager
+    
+    init() {
+        
+    }
 }
+
+

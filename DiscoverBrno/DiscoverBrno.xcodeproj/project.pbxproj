@@ -14,6 +14,8 @@
 		0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E029679E8000936E52 /* LoginStore.swift */; };
 		0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E22967A1C300936E52 /* ContentStore.swift */; };
 		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
+		0CBA39A7296DC3300087F023 /* DiscoverableLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39A6296DC3300087F023 /* DiscoverableLandmark.swift */; };
+		0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */; };
 		0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */; };
 		0CF2120629673747001BBC8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120529673747001BBC8D /* ContentView.swift */; };
 		0CF2120829673748001BBC8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2120729673748001BBC8D /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 		0C1E45E029679E8000936E52 /* LoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStore.swift; sourceTree = "<group>"; };
 		0C1E45E22967A1C300936E52 /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
 		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
+		0CBA39A6296DC3300087F023 /* DiscoverableLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverableLandmark.swift; sourceTree = "<group>"; };
+		0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredLandmark.swift; sourceTree = "<group>"; };
 		0CF2120029673747001BBC8D /* DiscoverBrno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscoverBrno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverBrnoApp.swift; sourceTree = "<group>"; };
 		0CF2120529673747001BBC8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +110,15 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		0CBA39A5296DC31A0087F023 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0CBA39A6296DC3300087F023 /* DiscoverableLandmark.swift */,
+				0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0CF211F729673747001BBC8D = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */,
-				0CF2122E29673DB4001BBC8D /* Common */,
+				0C1E45D82967926C00936E52 /* Realm */,
+				0CF2123029674090001BBC8D /* DI */,
+				0CBA39A5296DC31A0087F023 /* Model */,
 				0CF2122D29673DB0001BBC8D /* Scenes */,
 				0CF2122F29673DC6001BBC8D /* Assets */,
 				0CF2120929673748001BBC8D /* Preview Content */,
@@ -176,15 +191,6 @@
 				0CF212392967422A001BBC8D /* Settings */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		0CF2122E29673DB4001BBC8D /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				0C1E45D82967926C00936E52 /* Realm */,
-				0CF2123029674090001BBC8D /* DI */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		0CF2122F29673DC6001BBC8D /* Assets */ = {
@@ -381,7 +387,9 @@
 				0CF212322967409A001BBC8D /* DiContainer.swift in Sources */,
 				0CF2120629673747001BBC8D /* ContentView.swift in Sources */,
 				0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */,
+				0CBA39A7296DC3300087F023 /* DiscoverableLandmark.swift in Sources */,
 				0CF212342967413D001BBC8D /* InjectedWrapper.swift in Sources */,
+				0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */,
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
 				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,
 				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,

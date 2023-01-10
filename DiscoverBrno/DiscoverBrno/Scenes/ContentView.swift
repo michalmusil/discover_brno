@@ -11,15 +11,26 @@ struct ContentView: View {
     @StateObject var store = ContentStore()
     
     var body: some View {
-        Group{
+        if store.realmManager.userLoggedIn {
+            appNavigation
+        }
+        else {
+            
             switch store.state{
             case .login:
                 LoginScreen(parentState: $store.state)
             case .registration:
                 Text("Registration")
             }
+            
         }
     }
+    
+    @ViewBuilder
+    var appNavigation: some View{
+        Text("smrdim")
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
