@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct DiscoverBrnoApp: App {
+    private let diContainer = DiContainer()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(di: diContainer)
         }
     }
 }

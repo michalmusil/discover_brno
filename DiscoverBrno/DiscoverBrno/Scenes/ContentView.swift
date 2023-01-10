@@ -8,17 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var store = ContentStore()
+    private let di: DiContainer
+    
+    @StateObject var store: ContentStore
+    
+    init(di: DiContainer){
+        self.di = di
+        self._store = StateObject(wrappedValue: di.contentStore)
+    }
     
     var body: some View {
-        if store.realmManager.userLoggedIn {
+        if store.userLoggedIn {
             appNavigation
         }
         else {
             
             switch store.state{
             case .login:
-                LoginScreen(parentState: $store.state)
+                LoginScreen(di: di, parentState: $store.state)
             case .registration:
                 Text("Registration")
             }
@@ -35,6 +42,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(di: DiContainer())
     }
 }

@@ -9,9 +9,13 @@ import SwiftUI
 
 struct LoginScreen: View {
     
-    @StateObject var store: LoginStore = LoginStore()
-    
+    @StateObject var store: LoginStore
     @Binding var parentState: ContentStore.State
+    
+    init(di: DiContainer, parentState: Binding<ContentStore.State>) {
+        self._store = StateObject(wrappedValue: di.loginStore)
+        self._parentState = parentState
+    }
     
     var body: some View {
         Group{
@@ -92,6 +96,6 @@ struct LoginScreen: View {
 
 struct LoginScreen_Previews: PreviewProvider {
     static var previews: some View {
-        LoginScreen(parentState: .constant(.login))
+        LoginScreen(di: DiContainer(), parentState: .constant(.login))
     }
 }

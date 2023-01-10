@@ -15,17 +15,19 @@ final class LoginStore: ObservableObject{
         case loading
     }
     @Published var state: State = .start
-    private var subscribtions = Set<AnyCancellable>()
     
     @Published var email: String = ""
     @Published var password: String = ""
-    
     @Published var emailError: String = ""
     @Published var passwordError: String = ""
     
-    @Injected var realmManager: RealmManager
+
+    @Published var realmManager: RealmManager
+    private var subscribtions = Set<AnyCancellable>()
     
-    init(){
+    
+    init(realmManager: RealmManager){
+        self.realmManager = realmManager
         initializeSubs()
     }
     
