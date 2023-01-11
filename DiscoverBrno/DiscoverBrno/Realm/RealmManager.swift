@@ -26,13 +26,37 @@ class RealmManager: ObservableObject{
         self.app = App(id: "discoverbrno-zrxgr")
         initializeSubs()
     }
-    
-    
+
     
     
 }
 
-// MARK: Methods
+
+// MARK: CRUD methods
+extension RealmManager{
+    
+    func addDiscoveredLandmark(discovered: DiscoveredLandmark, parent: DiscoverableLandmark) -> Bool{
+        guard let realm = self.realm,
+              let observed = realm.object(ofType: DiscoverableLandmark.self, forPrimaryKey: parent._id) else {
+            return false
+        }
+        do{
+            try realm.write{
+                    realm.add(discovered)
+                    discovered.landmark = observed
+                    return true
+                }
+        }
+        catch{
+            return false
+        }
+        return false
+    }
+    
+}
+
+
+// MARK: Authentication methods
 extension RealmManager{
     @MainActor
     func loginEmailPassword(email: String, password: String) async throws{

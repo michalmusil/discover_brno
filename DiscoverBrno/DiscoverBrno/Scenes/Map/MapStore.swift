@@ -21,12 +21,13 @@ final class MapStore: ObservableObject{
     @Published var currentLocationString: String = ""
     @Published var coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45, longitude: 16), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
     
-    @Published var brnoLocations: [BrnoLocation] = []
+    @Published var discoverableLandmarks: Results<DiscoverableLandmark>?
     
     
     init(realmManager: RealmManager, locationManager: CustomLocationManager){
         self.realmManager = realmManager
         self._locationManager = ObservedObject(wrappedValue: locationManager)
+        
         initializeSubs()
     }
     
@@ -34,6 +35,11 @@ final class MapStore: ObservableObject{
         if let loc = locationManager.currentLocation{
             self.coordinateRegion = MKCoordinateRegion(center: loc.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         }
+    }
+    
+    func trySaveNewDiscoveredLandmark(discoverable: DiscoverableLandmark){
+        let newDiscovered = DiscoveredLandmark(ownerId: realmManager.user?.id ?? "")
+        let success = realmManager.addDiscoveredLandmark(discovered: newDiscovered, parent: discoverable)
     }
     
 }

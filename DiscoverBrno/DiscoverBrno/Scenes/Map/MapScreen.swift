@@ -10,13 +10,8 @@ import MapKit
 import RealmSwift
 
 struct MapScreen: View {
-    private let di: DiContainer
-    
-    @StateObject private var store: MapStore
-
     @ObservedResults(DiscoverableLandmark.self)
     var discoverableLandmarks
-    
     @ObservedResults(DiscoveredLandmark.self)
     var discoveredLandmarks
     
@@ -26,13 +21,29 @@ struct MapScreen: View {
         self._store = StateObject(wrappedValue: di.mapStore)
     }
     
+    private let di: DiContainer
+    @StateObject private var store: MapStore
+    
     var body: some View {
         Map(
             coordinateRegion: $store.coordinateRegion,
             showsUserLocation: true,
             annotationItems: discoverableLandmarks,
             annotationContent: { landmark in
-                MapMarker(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), tint: .blue)
+                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), content: {
+                    if let _ = getDiscoveredIfExists(discoverable: landmark){
+                        Text(landmark.name)
+                            .onTapGesture {
+                                print(landmark.name)
+                            }
+                    }
+                    else{
+                        Text("???")
+                            .onTapGesture {
+                                store.trySaveNewDiscoveredLandmark(discoverable: landmark)
+                            }
+                    }
+                })
             })
         .ignoresSafeArea(edges: .top)
         .onAppear{

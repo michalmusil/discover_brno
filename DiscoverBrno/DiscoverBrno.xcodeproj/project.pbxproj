@@ -164,6 +164,13 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		0CB5A671296F417500D5A6CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0CBA39A5296DC31A0087F023 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +209,7 @@
 				0CB5A668296ED50B00D5A6CC /* Map */,
 				0CBA39A5296DC31A0087F023 /* Model */,
 				0CF2122D29673DB0001BBC8D /* Scenes */,
+				0CB5A671296F417500D5A6CC /* Views */,
 				0CB5A65D296EC20E00D5A6CC /* Utils */,
 				0CF2122F29673DC6001BBC8D /* Assets */,
 				0CF2120929673748001BBC8D /* Preview Content */,
