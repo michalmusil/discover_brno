@@ -13,6 +13,7 @@
 		0C1E45DF296795F200936E52 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C1E45DE296795F200936E52 /* RealmSwift */; };
 		0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E029679E8000936E52 /* LoginStore.swift */; };
 		0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E22967A1C300936E52 /* ContentStore.swift */; };
+		0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C41F493296F548200ED2D83 /* LandmarkMarker.swift */; };
 		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
 		0CB5A65A296EBE7F00D5A6CC /* RegistrationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A659296EBE7F00D5A6CC /* RegistrationScreen.swift */; };
 		0CB5A65C296EBE8700D5A6CC /* RegistrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A65B296EBE8700D5A6CC /* RegistrationStore.swift */; };
@@ -58,6 +59,7 @@
 		0C1E45D92967927900936E52 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0C1E45E029679E8000936E52 /* LoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStore.swift; sourceTree = "<group>"; };
 		0C1E45E22967A1C300936E52 /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
+		0C41F493296F548200ED2D83 /* LandmarkMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMarker.swift; sourceTree = "<group>"; };
 		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
 		0CB5A659296EBE7F00D5A6CC /* RegistrationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreen.swift; sourceTree = "<group>"; };
 		0CB5A65B296EBE8700D5A6CC /* RegistrationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStore.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		0CB5A671296F417500D5A6CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0C41F493296F548200ED2D83 /* LandmarkMarker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				0CB5A665296ED33900D5A6CC /* DiscoveredListScreen.swift in Sources */,
 				0CB5A65A296EBE7F00D5A6CC /* RegistrationScreen.swift in Sources */,
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
+				0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */,
 				0CB5A667296ED36900D5A6CC /* MapScreen.swift in Sources */,
 				0CB5A663296ED31100D5A6CC /* HomeScreen.swift in Sources */,
 				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,

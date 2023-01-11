@@ -31,18 +31,7 @@ struct MapScreen: View {
             annotationItems: discoverableLandmarks,
             annotationContent: { landmark in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), content: {
-                    if let _ = getDiscoveredIfExists(discoverable: landmark){
-                        Text(landmark.name)
-                            .onTapGesture {
-                                print(landmark.name)
-                            }
-                    }
-                    else{
-                        Text("???")
-                            .onTapGesture {
-                                store.trySaveNewDiscoveredLandmark(discoverable: landmark)
-                            }
-                    }
+                    LandmarkMarker(discoverableLandmark: landmark)
                 })
             })
         .ignoresSafeArea(edges: .top)
