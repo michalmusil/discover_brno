@@ -7,11 +7,19 @@
 
 import SwiftUI
 import MapKit
+import RealmSwift
 
 struct MapScreen: View {
     private let di: DiContainer
     
     @StateObject private var store: MapStore
+
+    @ObservedResults(DiscoverableLandmark.self)
+    var discoverableLandmarks
+    
+    @ObservedResults(DiscoveredLandmark.self)
+    var discoveredLandmarks
+    
     
     init(di: DiContainer) {
         self.di = di
@@ -22,15 +30,24 @@ struct MapScreen: View {
         Map(
             coordinateRegion: $store.coordinateRegion,
             showsUserLocation: true,
-            annotationItems: store.discoverableLandmarks,
+            annotationItems: discoverableLandmarks,
             annotationContent: { landmark in
-                MapMarker(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), tint: .red)
+                MapMarker(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), tint: .blue)
             })
-            .ignoresSafeArea(edges: .top)
-            .onAppear{
-                store.centerMapOnUserLocation()
-            }
+        .ignoresSafeArea(edges: .top)
+        .onAppear{
+            store.centerMapOnUserLocation()
+        }
     }
+}
+
+// MARK: Util functions
+extension MapScreen{
+    
+    private func getDiscoveredIfExists(discoverable: DiscoverableLandmark) -> DiscoveredLandmark?{
+        return discoveredLandmarks.first(where: { $0.landmark?._id.stringValue == discoverable._id.stringValue })
+    }
+    
 }
 
 struct MapScreen_Previews: PreviewProvider {

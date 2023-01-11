@@ -21,13 +21,6 @@ final class MapStore: ObservableObject{
     @Published var currentLocationString: String = ""
     @Published var coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45, longitude: 16), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
     
-    
-    @ObservedResults(DiscoverableLandmark.self)
-    var discoverableLandmarks
-    
-    @ObservedResults(DiscoveredLandmark.self)
-    var discoveredLandmarks
-    
     @Published var brnoLocations: [BrnoLocation] = []
     
     
@@ -61,7 +54,7 @@ extension MapStore{
         
         /*
         discoverableLandmarks
-            .publisher
+            .collectionPublisher
                 .combineLatest(discoveredLandmarks.collectionPublisher){ discoverable, discovered in
                     var locations: [BrnoLocation] = []
                     // First adding discovered landmarks
@@ -78,8 +71,8 @@ extension MapStore{
                     }
                     return locations
                 }
-                .sink{ location in
-                    
+                .map{[weak self] locations in
+                    return location
                 }
          */
     }

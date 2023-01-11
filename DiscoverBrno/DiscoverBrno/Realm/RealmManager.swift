@@ -86,9 +86,6 @@ extension RealmManager{
     }
 }
 
-
-
-
 // MARK: Subs
 extension RealmManager{
     

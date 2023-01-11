@@ -19,8 +19,12 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView{
-            if store.userLoggedIn {
+            if let configuration = store.realmManager.configuration,
+               let realm = store.realmManager.realm,
+               let user = store.realmManager.user{
                 appNavigation
+                    .environment(\.realmConfiguration, configuration)
+                    .environment(\.realm, realm)
             }
             else {
                 Group{
