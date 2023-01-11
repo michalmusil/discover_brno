@@ -31,7 +31,13 @@ struct MapScreen: View {
             annotationItems: discoverableLandmarks,
             annotationContent: { landmark in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), content: {
-                    LandmarkMarker(discoverableLandmark: landmark)
+                    LandmarkMarker(discoverableLandmark: landmark, onTapDiscovered: { discoveredLandmark in
+                        // NAVIGATE TO LANDMARK DETAIL
+                        print(discoveredLandmark.landmark?.name ?? "ERROR")
+                    }, onTapDiscoverable: { discoverableLandmark in
+                        // DISPLAY HINT
+                        print("NOT YET DISCOVERED: \(discoverableLandmark.name)")
+                    })
                 })
             })
         .ignoresSafeArea(edges: .top)

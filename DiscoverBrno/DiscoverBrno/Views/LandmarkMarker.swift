@@ -16,18 +16,21 @@ struct LandmarkMarker: View {
     @ObservedResults(DiscoveredLandmark.self)
     var alreadyDiscovered
     
+    var onTapDiscovered: (DiscoveredLandmark) -> Void
+    var onTapDiscoverable: (DiscoverableLandmark) -> Void
+    
     var body: some View {
-        if alreadyDiscovered.first(where: {$0.landmark?._id == discoverableLandmark._id}) != nil{
-            discovered
+        if let landmark = alreadyDiscovered.first(where: {$0.landmark?._id == discoverableLandmark._id}) {
+            discovered(discoveredLandmark: landmark)
         }
         else{
-            undiscovered
+            undiscovered(discoverableLandmark: discoverableLandmark)
         }
     }
     
-    @ViewBuilder
-    var discovered: some View{
-        VStack(spacing: 0){
+    
+    func discovered(discoveredLandmark: DiscoveredLandmark) -> some View {
+        return VStack(spacing: 0){
             ZStack{
                 Circle()
                     .frame(width: 45, height: 45)
@@ -49,11 +52,14 @@ struct LandmarkMarker: View {
                 .padding(.bottom, 33)
             
         }
+        .onTapGesture {
+            onTapDiscovered(discoveredLandmark)
+        }
     }
     
-    @ViewBuilder
-    var undiscovered: some View{
-        VStack(spacing: 0){
+    
+    func undiscovered(discoverableLandmark: DiscoverableLandmark) -> some View{
+        return VStack(spacing: 0){
             ZStack{
                 Circle()
                     .frame(width: 45, height: 45)
@@ -73,7 +79,9 @@ struct LandmarkMarker: View {
                 .rotationEffect(Angle(degrees: 180))
                 .offset(y: -6)
                 .padding(.bottom, 33)
-            
+        }
+        .onTapGesture {
+            onTapDiscoverable(discoverableLandmark)
         }
     }
 }
@@ -84,6 +92,6 @@ struct LandmarkMarker_Previews: PreviewProvider {
     
     
     static var previews: some View {
-        LandmarkMarker(discoverableLandmark: sampleDiscoverable)
+        LandmarkMarker(discoverableLandmark: sampleDiscoverable, onTapDiscovered: {_ in }, onTapDiscoverable: {_ in })
     }
 }
