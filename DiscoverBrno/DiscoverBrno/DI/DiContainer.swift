@@ -11,14 +11,21 @@ final class DiContainer{
     // Realm
     let realmManager: RealmManager
     
+    // Utils
+    let emailValidator: EmailValidator
+    
     // Stores
     let contentStore: ContentStore
     let loginStore: LoginStore
+    let registrationStore: RegistrationStore
     
     init(){
         self.realmManager = RealmManager.shared
         
-        self.contentStore = ContentStore(realmManager: self.realmManager)
-        self.loginStore = LoginStore(realmManager: self.realmManager)
+        self.emailValidator = EmailValidator()
+        
+        self.contentStore = ContentStore(realmManager: realmManager)
+        self.loginStore = LoginStore(realmManager: realmManager, emailValidator: emailValidator)
+        self.registrationStore = RegistrationStore(realmManager: realmManager, emailValidator: emailValidator)
     }
 }

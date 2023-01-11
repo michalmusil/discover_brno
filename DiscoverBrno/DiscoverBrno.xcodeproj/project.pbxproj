@@ -14,6 +14,9 @@
 		0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E029679E8000936E52 /* LoginStore.swift */; };
 		0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E22967A1C300936E52 /* ContentStore.swift */; };
 		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
+		0CB5A65A296EBE7F00D5A6CC /* RegistrationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A659296EBE7F00D5A6CC /* RegistrationScreen.swift */; };
+		0CB5A65C296EBE8700D5A6CC /* RegistrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A65B296EBE8700D5A6CC /* RegistrationStore.swift */; };
+		0CB5A65F296EC22900D5A6CC /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */; };
 		0CBA39A7296DC3300087F023 /* DiscoverableLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39A6296DC3300087F023 /* DiscoverableLandmark.swift */; };
 		0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */; };
 		0CBA39AD296DD0B00087F023 /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39AC296DD0B00087F023 /* DiContainer.swift */; };
@@ -49,6 +52,9 @@
 		0C1E45E029679E8000936E52 /* LoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStore.swift; sourceTree = "<group>"; };
 		0C1E45E22967A1C300936E52 /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
 		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
+		0CB5A659296EBE7F00D5A6CC /* RegistrationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreen.swift; sourceTree = "<group>"; };
+		0CB5A65B296EBE8700D5A6CC /* RegistrationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStore.swift; sourceTree = "<group>"; };
+		0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		0CBA39A6296DC3300087F023 /* DiscoverableLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverableLandmark.swift; sourceTree = "<group>"; };
 		0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredLandmark.swift; sourceTree = "<group>"; };
 		0CBA39AC296DD0B00087F023 /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
@@ -96,6 +102,8 @@
 			children = (
 				0C1E45D6296790A900936E52 /* LoginScreen.swift */,
 				0C1E45E029679E8000936E52 /* LoginStore.swift */,
+				0CB5A659296EBE7F00D5A6CC /* RegistrationScreen.swift */,
+				0CB5A65B296EBE8700D5A6CC /* RegistrationStore.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -106,6 +114,14 @@
 				0C1E45D92967927900936E52 /* RealmManager.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		0CB5A65D296EC20E00D5A6CC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		0CBA39A5296DC31A0087F023 /* Model */ = {
@@ -141,10 +157,11 @@
 			isa = PBXGroup;
 			children = (
 				0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */,
+				0CF2122D29673DB0001BBC8D /* Scenes */,
 				0C1E45D82967926C00936E52 /* Realm */,
 				0CF2123029674090001BBC8D /* DI */,
 				0CBA39A5296DC31A0087F023 /* Model */,
-				0CF2122D29673DB0001BBC8D /* Scenes */,
+				0CB5A65D296EC20E00D5A6CC /* Utils */,
 				0CF2122F29673DC6001BBC8D /* Assets */,
 				0CF2120929673748001BBC8D /* Preview Content */,
 			);
@@ -382,10 +399,13 @@
 			files = (
 				0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */,
 				0CF2120629673747001BBC8D /* ContentView.swift in Sources */,
+				0CB5A65C296EBE8700D5A6CC /* RegistrationStore.swift in Sources */,
 				0CBA39AD296DD0B00087F023 /* DiContainer.swift in Sources */,
 				0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */,
+				0CB5A65F296EC22900D5A6CC /* EmailValidator.swift in Sources */,
 				0CBA39A7296DC3300087F023 /* DiscoverableLandmark.swift in Sources */,
 				0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */,
+				0CB5A65A296EBE7F00D5A6CC /* RegistrationScreen.swift in Sources */,
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
 				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,
 				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,

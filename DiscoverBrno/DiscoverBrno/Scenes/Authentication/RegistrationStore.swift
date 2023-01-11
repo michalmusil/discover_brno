@@ -1,42 +1,34 @@
 //
-//  LoginStore.swift
+//  RegistrationStore.swift
 //  DiscoverBrno
 //
-//  Created by Michal Musil on 06.01.2023.
+//  Created by Michal Musil on 11.01.2023.
 //
 
 import Foundation
 import Combine
 
-final class LoginStore: ObservableObject{
+final class RegistrationStore: ObservableObject{
     @Published var state: State = .start
-    
-    @Published var email: String = ""
-    @Published var password: String = ""
-    @Published var errorMessage: String = ""
     
     @Published var realmManager: RealmManager
     private let emailValidator: EmailValidator
     private var subscribtions = Set<AnyCancellable>()
     
+    @Published var email: String = ""
+    @Published var password: String = ""
+    @Published var errorMessage: String = ""
     
-    init(realmManager: RealmManager, emailValidator: EmailValidator){
+    init(realmManager: RealmManager, emailValidator: EmailValidator) {
         self.realmManager = realmManager
         self.emailValidator = emailValidator
-        initializeSubs()
+        
     }
     
-    
-    @MainActor
-    func loginUser() async throws{
-        self.state = .loading
-        try await realmManager.loginEmailPassword(email: email, password: password)
-        print("aaa")
-    }
 }
 
 // MARK: State
-extension LoginStore{
+extension RegistrationStore{
     enum State: Equatable{
         case start
         case idle
@@ -44,9 +36,11 @@ extension LoginStore{
     }
 }
 
+
+
 // MARK: Subs
-extension LoginStore{
-    private func initializeSubs(){
+extension RegistrationStore{
+    func initializeSubs(){
         $email
             .combineLatest($password){ [weak self] email, password in
                 let emailValid = self?.emailValidator.validateEmailAddress(email: email)

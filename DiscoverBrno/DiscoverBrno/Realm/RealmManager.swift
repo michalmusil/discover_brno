@@ -29,6 +29,11 @@ class RealmManager: ObservableObject{
     
     
     
+    
+}
+
+// MARK: Methods
+extension RealmManager{
     @MainActor
     func loginEmailPassword(email: String, password: String) async throws{
         let credentials = Credentials.emailPassword(email: email, password: password)
@@ -65,6 +70,9 @@ class RealmManager: ObservableObject{
         self.realm = nil
     }
 }
+
+
+
 
 // MARK: Subs
 extension RealmManager{

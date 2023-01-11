@@ -1,19 +1,18 @@
 //
-//  LoginScreen.swift
+//  RegistrationScreen.swift
 //  DiscoverBrno
 //
-//  Created by Michal Musil on 06.01.2023.
+//  Created by Michal Musil on 11.01.2023.
 //
 
 import SwiftUI
 
-struct LoginScreen: View {
-    
-    @StateObject var store: LoginStore
+struct RegistrationScreen: View {
+    @StateObject var store: RegistrationStore
     @Binding var parentState: ContentStore.State
     
     init(di: DiContainer, parentState: Binding<ContentStore.State>) {
-        self._store = StateObject(wrappedValue: di.loginStore)
+        self._store = StateObject(wrappedValue: di.registrationStore)
         self._parentState = parentState
     }
     
@@ -21,22 +20,22 @@ struct LoginScreen: View {
         Group{
             switch store.state{
             case .start:
-                loginForm
+                registrationForm
             case .idle:
-                loginForm
+                registrationForm
             case .loading:
                 ProgressView()
             }
         }
         .padding()
-        .navigationTitle("Log in")
+        .navigationTitle("Register")
         .navigationBarTitleDisplayMode(.large)
         
     }
     
     
     @ViewBuilder
-    var loginForm: some View{
+    var registrationForm: some View{
         VStack{
             TextField("E-mail", text: $store.email)
                 .autocorrectionDisabled(true)
@@ -66,7 +65,7 @@ struct LoginScreen: View {
                     }
                 }
             } label: {
-                Text("Log in")
+                Text("Register")
                     .font(.title3)
                     .frame(minWidth: 200)
                     .padding(.vertical, 10)
@@ -76,7 +75,7 @@ struct LoginScreen: View {
                     .padding(.top, 12)
             }
             
-            Button("New user"){
+            Button("Log in"){
                 parentState = .registration
             }
             .padding(.top, 5)
@@ -85,8 +84,8 @@ struct LoginScreen: View {
     }
 }
 
-struct LoginScreen_Previews: PreviewProvider {
+struct RegistrationScreen_Previews: PreviewProvider {
     static var previews: some View {
-        LoginScreen(di: DiContainer(), parentState: .constant(.login))
+        RegistrationScreen(di: DiContainer(), parentState: .constant(.registration))
     }
 }
