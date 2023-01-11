@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     private let di: DiContainer
     
-    @StateObject var store: ContentStore
+    @StateObject private var store: ContentStore
     
     init(di: DiContainer){
         self.di = di
@@ -40,7 +40,25 @@ struct ContentView: View {
     
     @ViewBuilder
     var appNavigation: some View{
-        Text("smrdim")
+        TabView{
+            HomeScreen(di: di)
+                .tabItem{
+                    Image(systemName: "house.circle")
+                    Text("Home")
+                }
+            
+            MapScreen(di: di)
+                .tabItem{
+                    Image(systemName: "map.circle")
+                    Text("Map")
+                }
+            
+            DiscoveredListScreen(di: di)
+                .tabItem{
+                    Image(systemName: "checkmark.circle")
+                    Text("Discovered")
+                }
+        }
     }
     
 }

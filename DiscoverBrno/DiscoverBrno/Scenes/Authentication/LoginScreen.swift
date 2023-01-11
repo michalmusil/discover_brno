@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LoginScreen: View {
     
-    @StateObject var store: LoginStore
-    @Binding var parentState: ContentStore.State
+    @StateObject private var store: LoginStore
+    @Binding private var parentState: ContentStore.State
     
     init(di: DiContainer, parentState: Binding<ContentStore.State>) {
         self._store = StateObject(wrappedValue: di.loginStore)

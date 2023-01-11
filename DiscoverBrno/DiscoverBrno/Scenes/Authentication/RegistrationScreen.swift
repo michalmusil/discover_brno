@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct RegistrationScreen: View {
-    @StateObject var store: RegistrationStore
-    @Binding var parentState: ContentStore.State
+    @StateObject private var store: RegistrationStore
+    @Binding private var parentState: ContentStore.State
     
     init(di: DiContainer, parentState: Binding<ContentStore.State>) {
         self._store = StateObject(wrappedValue: di.registrationStore)

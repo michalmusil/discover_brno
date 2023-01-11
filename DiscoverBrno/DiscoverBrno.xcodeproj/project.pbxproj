@@ -18,6 +18,11 @@
 		0CB5A65C296EBE8700D5A6CC /* RegistrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A65B296EBE8700D5A6CC /* RegistrationStore.swift */; };
 		0CB5A65F296EC22900D5A6CC /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */; };
 		0CB5A661296EC6B800D5A6CC /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A660296EC6B800D5A6CC /* AuthenticationError.swift */; };
+		0CB5A663296ED31100D5A6CC /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A662296ED31100D5A6CC /* HomeScreen.swift */; };
+		0CB5A665296ED33900D5A6CC /* DiscoveredListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A664296ED33900D5A6CC /* DiscoveredListScreen.swift */; };
+		0CB5A667296ED36900D5A6CC /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A666296ED36900D5A6CC /* MapScreen.swift */; };
+		0CB5A66A296ED51D00D5A6CC /* CustomLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A669296ED51D00D5A6CC /* CustomLocationManager.swift */; };
+		0CB5A66C296ED5A100D5A6CC /* MapStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A66B296ED5A100D5A6CC /* MapStore.swift */; };
 		0CBA39A7296DC3300087F023 /* DiscoverableLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39A6296DC3300087F023 /* DiscoverableLandmark.swift */; };
 		0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */; };
 		0CBA39AD296DD0B00087F023 /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39AC296DD0B00087F023 /* DiContainer.swift */; };
@@ -57,6 +62,11 @@
 		0CB5A65B296EBE8700D5A6CC /* RegistrationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStore.swift; sourceTree = "<group>"; };
 		0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		0CB5A660296EC6B800D5A6CC /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
+		0CB5A662296ED31100D5A6CC /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		0CB5A664296ED33900D5A6CC /* DiscoveredListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredListScreen.swift; sourceTree = "<group>"; };
+		0CB5A666296ED36900D5A6CC /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
+		0CB5A669296ED51D00D5A6CC /* CustomLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLocationManager.swift; sourceTree = "<group>"; };
+		0CB5A66B296ED5A100D5A6CC /* MapStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStore.swift; sourceTree = "<group>"; };
 		0CBA39A6296DC3300087F023 /* DiscoverableLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverableLandmark.swift; sourceTree = "<group>"; };
 		0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredLandmark.swift; sourceTree = "<group>"; };
 		0CBA39AC296DD0B00087F023 /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
@@ -127,6 +137,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		0CB5A668296ED50B00D5A6CC /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				0CB5A669296ED51D00D5A6CC /* CustomLocationManager.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		0CBA39A5296DC31A0087F023 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,10 +178,11 @@
 			isa = PBXGroup;
 			children = (
 				0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */,
-				0CF2122D29673DB0001BBC8D /* Scenes */,
-				0C1E45D82967926C00936E52 /* Realm */,
 				0CF2123029674090001BBC8D /* DI */,
+				0C1E45D82967926C00936E52 /* Realm */,
+				0CB5A668296ED50B00D5A6CC /* Map */,
 				0CBA39A5296DC31A0087F023 /* Model */,
+				0CF2122D29673DB0001BBC8D /* Scenes */,
 				0CB5A65D296EC20E00D5A6CC /* Utils */,
 				0CF2122F29673DC6001BBC8D /* Assets */,
 				0CF2120929673748001BBC8D /* Preview Content */,
@@ -231,6 +250,7 @@
 		0CF212352967417B001BBC8D /* DiscoveredList */ = {
 			isa = PBXGroup;
 			children = (
+				0CB5A664296ED33900D5A6CC /* DiscoveredListScreen.swift */,
 			);
 			path = DiscoveredList;
 			sourceTree = "<group>";
@@ -238,6 +258,8 @@
 		0CF21236296741E4001BBC8D /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				0CB5A666296ED36900D5A6CC /* MapScreen.swift */,
+				0CB5A66B296ED5A100D5A6CC /* MapStore.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -245,6 +267,7 @@
 		0CF2123729674215001BBC8D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0CB5A662296ED31100D5A6CC /* HomeScreen.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -402,6 +425,7 @@
 			files = (
 				0CB5A661296EC6B800D5A6CC /* AuthenticationError.swift in Sources */,
 				0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */,
+				0CB5A66C296ED5A100D5A6CC /* MapStore.swift in Sources */,
 				0CF2120629673747001BBC8D /* ContentView.swift in Sources */,
 				0CB5A65C296EBE8700D5A6CC /* RegistrationStore.swift in Sources */,
 				0CBA39AD296DD0B00087F023 /* DiContainer.swift in Sources */,
@@ -409,8 +433,12 @@
 				0CB5A65F296EC22900D5A6CC /* EmailValidator.swift in Sources */,
 				0CBA39A7296DC3300087F023 /* DiscoverableLandmark.swift in Sources */,
 				0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */,
+				0CB5A66A296ED51D00D5A6CC /* CustomLocationManager.swift in Sources */,
+				0CB5A665296ED33900D5A6CC /* DiscoveredListScreen.swift in Sources */,
 				0CB5A65A296EBE7F00D5A6CC /* RegistrationScreen.swift in Sources */,
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
+				0CB5A667296ED36900D5A6CC /* MapScreen.swift in Sources */,
+				0CB5A663296ED31100D5A6CC /* HomeScreen.swift in Sources */,
 				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,
 				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,
 				0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */,
@@ -575,6 +603,7 @@
 				DEVELOPMENT_TEAM = T2932BL6Z3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Discover Brno needs location permissions to work properly";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -604,6 +633,7 @@
 				DEVELOPMENT_TEAM = T2932BL6Z3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Discover Brno needs location permissions to work properly";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
