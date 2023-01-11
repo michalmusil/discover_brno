@@ -49,7 +49,7 @@ struct RegistrationScreen: View {
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal, 30)
         
-            if !store.errorMessage.isEmpty && store.state != .start{
+            if !store.errorMessage.isEmpty{
                 Text(store.errorMessage)
                     .foregroundColor(.red)
                     .font(.caption)
@@ -58,9 +58,15 @@ struct RegistrationScreen: View {
             Button{
                 Task{
                     do{
-                        try await store.loginUser()
-                    } catch{
-                        store.errorMessage = "Logging in failed"
+                        let credentials = try await store.registerUser()
+                        try await store.loginUser(email: credentials.email, password: credentials.password)
+                    }
+                    catch AuthenticationError.registrationFailed {
+                        store.errorMessage = "Registration failed"
+                        store.state = .idle
+                    }
+                    catch AuthenticationError.loginFailed {
+                        store.errorMessage = "Registration was successful, but logging you in failed"
                         store.state = .idle
                     }
                 }
@@ -70,13 +76,14 @@ struct RegistrationScreen: View {
                     .frame(minWidth: 200)
                     .padding(.vertical, 10)
                     .foregroundColor(.white)
-                    .background(.blue)
+                    .background(store.credentialsValid ? .blue : .gray)
                     .cornerRadius(10)
                     .padding(.top, 12)
             }
+            .disabled(!store.credentialsValid)
             
             Button("Log in"){
-                parentState = .registration
+                parentState = .login
             }
             .padding(.top, 5)
             

@@ -50,7 +50,7 @@ struct LoginScreen: View {
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal, 30)
         
-            if !store.errorMessage.isEmpty && store.state != .start{
+            if !store.errorMessage.isEmpty{
                 Text(store.errorMessage)
                     .foregroundColor(.red)
                     .font(.caption)
@@ -60,7 +60,8 @@ struct LoginScreen: View {
                 Task{
                     do{
                         try await store.loginUser()
-                    } catch{
+                    }
+                    catch AuthenticationError.loginFailed {
                         store.errorMessage = "Logging in failed"
                         store.state = .idle
                     }
@@ -71,10 +72,11 @@ struct LoginScreen: View {
                     .frame(minWidth: 200)
                     .padding(.vertical, 10)
                     .foregroundColor(.white)
-                    .background(.blue)
+                    .background(store.credentialsValid ? .blue : .gray)
                     .cornerRadius(10)
                     .padding(.top, 12)
             }
+            .disabled(!store.credentialsValid)
             
             Button("New user"){
                 parentState = .registration

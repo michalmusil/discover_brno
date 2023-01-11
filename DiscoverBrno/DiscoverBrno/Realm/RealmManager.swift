@@ -36,38 +36,53 @@ class RealmManager: ObservableObject{
 extension RealmManager{
     @MainActor
     func loginEmailPassword(email: String, password: String) async throws{
-        let credentials = Credentials.emailPassword(email: email, password: password)
-        
-        self.user = try await app.login(credentials: credentials)
-        
-        let userId = self.user?.id
-        
-        self.configuration = user?.flexibleSyncConfiguration(initialSubscriptions: {subs in
-            if subs.first(named: "discoverable_landmarks") == nil{
-                subs.append(QuerySubscription<DiscoverableLandmark>(name: "discoverable_landmarks"))
-            }
-            if subs.first(named: "discovered_landmarks") == nil{
-                subs.append(QuerySubscription<DiscoveredLandmark>(name: "discovered_landmarks"){
-                    $0.ownerId == userId!
-                })
-            }
-        }, rerunOnOpen: true)
-        
-        self.realm = try await Realm(configuration: self.configuration!, downloadBeforeOpen: .always)
+        do{
+            let credentials = Credentials.emailPassword(email: email, password: password)
+            
+            self.user = try await app.login(credentials: credentials)
+            
+            let userId = self.user?.id
+            
+            self.configuration = user?.flexibleSyncConfiguration(initialSubscriptions: {subs in
+                if subs.first(named: "discoverable_landmarks") == nil{
+                    subs.append(QuerySubscription<DiscoverableLandmark>(name: "discoverable_landmarks"))
+                }
+                if subs.first(named: "discovered_landmarks") == nil{
+                    subs.append(QuerySubscription<DiscoveredLandmark>(name: "discovered_landmarks"){
+                        $0.ownerId == userId!
+                    })
+                }
+            }, rerunOnOpen: true)
+            
+            self.realm = try await Realm(configuration: self.configuration!, downloadBeforeOpen: .always)
+        }
+        catch{
+            throw AuthenticationError.loginFailed
+        }
     }
     
     @MainActor
     func registerEmailPassword(email: String, password: String) async throws -> (email: String, password: String){
-        try await app.emailPasswordAuth.registerUser(email: email, password: password)
-        return (email, password)
+        do{
+            try await app.emailPasswordAuth.registerUser(email: email, password: password)
+            return (email, password)
+        }
+        catch{
+            throw AuthenticationError.registrationFailed
+        }
     }
     
     @MainActor
     func logOut() async throws {
-        try await self.user?.logOut()
-        self.user = nil
-        self.configuration = nil
-        self.realm = nil
+        do{
+            try await self.user?.logOut()
+            self.user = nil
+            self.configuration = nil
+            self.realm = nil
+        }
+        catch{
+            throw AuthenticationError.logoutFailed
+        }
     }
 }
 

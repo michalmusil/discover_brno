@@ -14,6 +14,7 @@ final class LoginStore: ObservableObject{
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var errorMessage: String = ""
+    @Published var credentialsValid: Bool = false
     
     @Published var realmManager: RealmManager
     private let emailValidator: EmailValidator
@@ -31,7 +32,6 @@ final class LoginStore: ObservableObject{
     func loginUser() async throws{
         self.state = .loading
         try await realmManager.loginEmailPassword(email: email, password: password)
-        print("aaa")
     }
 }
 
@@ -52,11 +52,14 @@ extension LoginStore{
                 let emailValid = self?.emailValidator.validateEmailAddress(email: email)
                 if let valid = emailValid,
                    valid == false {
+                    self?.credentialsValid = false
                     return "Not a valid email address."
                 }
                 if password.count < 6{
+                    self?.credentialsValid = false
                     return "Password must be at least 6 characters"
                 }
+                self?.credentialsValid = true
                 return ""
             }
             .receive(on: DispatchQueue.main)

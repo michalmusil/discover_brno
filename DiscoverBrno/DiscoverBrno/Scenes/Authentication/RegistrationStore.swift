@@ -18,13 +18,27 @@ final class RegistrationStore: ObservableObject{
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var errorMessage: String = ""
+    @Published var credentialsValid: Bool = false
     
     init(realmManager: RealmManager, emailValidator: EmailValidator) {
         self.realmManager = realmManager
         self.emailValidator = emailValidator
+        initializeSubs()
         
     }
     
+    @MainActor
+    func registerUser() async throws -> (email: String, password: String){
+        self.state = .loading
+        return try await realmManager.registerEmailPassword(email: email, password: password)
+    }
+    
+    @MainActor
+    func loginUser(email: String, password: String) async throws{
+        self.state = .loading
+        try await realmManager.loginEmailPassword(email: email, password: password)
+        print("aaa")
+    }
 }
 
 // MARK: State
@@ -46,11 +60,14 @@ extension RegistrationStore{
                 let emailValid = self?.emailValidator.validateEmailAddress(email: email)
                 if let valid = emailValid,
                    valid == false {
+                    self?.credentialsValid = false
                     return "Not a valid email address."
                 }
                 if password.count < 6{
+                    self?.credentialsValid = false
                     return "Password must be at least 6 characters"
                 }
+                self?.credentialsValid = true
                 return ""
             }
             .receive(on: DispatchQueue.main)

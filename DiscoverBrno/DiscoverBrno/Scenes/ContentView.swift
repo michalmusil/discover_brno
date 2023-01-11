@@ -18,18 +18,23 @@ struct ContentView: View {
     }
     
     var body: some View {
-        if store.userLoggedIn {
-            appNavigation
-        }
-        else {
-            
-            switch store.state{
-            case .login:
-                LoginScreen(di: di, parentState: $store.state)
-            case .registration:
-                Text("Registration")
+        NavigationView{
+            if store.userLoggedIn {
+                appNavigation
             }
-            
+            else {
+                Group{
+                    switch store.state{
+                    case .login:
+                        LoginScreen(di: di, parentState: $store.state)
+                            .transition(AnyTransition.scale.animation(.easeInOut(duration: 0.2)))
+                    case .registration:
+                        RegistrationScreen(di: di, parentState: $store.state)
+                            .transition(AnyTransition.scale.animation(.easeInOut(duration: 0.2)))
+                    }
+                }
+                
+            }
         }
     }
     
