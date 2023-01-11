@@ -19,7 +19,17 @@ struct MapScreen: View {
     }
     
     var body: some View {
-        Map(coordinateRegion: $store.coordinateRegion)
+        Map(
+            coordinateRegion: $store.coordinateRegion,
+            showsUserLocation: true,
+            annotationItems: store.discoverableLandmarks,
+            annotationContent: { landmark in
+                MapMarker(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), tint: .red)
+            })
+            .ignoresSafeArea(edges: .top)
+            .onAppear{
+                store.centerMapOnUserLocation()
+            }
     }
 }
 

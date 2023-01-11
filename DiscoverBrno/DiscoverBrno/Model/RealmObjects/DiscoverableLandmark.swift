@@ -20,4 +20,15 @@ class DiscoverableLandmark: Object, ObjectKeyIdentifiable{
     @Persisted var longitude: Double
     @Persisted var latitude: Double
     
+    convenience init(name: String, hint: String, titleImageUrl: String, landmarkDescription: String, rewardKey: String, longitude: Double, latitude: Double) {
+        self.init()
+        self.name = name
+        self.hint = hint
+        self.titleImageUrl = titleImageUrl
+        self.landmarkDescription = landmarkDescription
+        self.rewardKey = rewardKey
+        self.longitude = longitude
+        self.latitude = latitude
+    }
+    
 }

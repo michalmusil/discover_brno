@@ -65,5 +65,9 @@ class CustomLocationManager: NSObject, ObservableObject, CLLocationManagerDelega
         checkAppLocationAuthorization()
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.first
+    }
+    
 }
 

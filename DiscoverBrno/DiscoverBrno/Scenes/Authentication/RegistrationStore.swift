@@ -56,6 +56,7 @@ extension RegistrationStore{
 extension RegistrationStore{
     func initializeSubs(){
         $email
+            .receive(on: DispatchQueue.main)
             .combineLatest($password){ [weak self] email, password in
                 let emailValid = self?.emailValidator.validateEmailAddress(email: email)
                 if let valid = emailValid,
@@ -70,7 +71,6 @@ extension RegistrationStore{
                 self?.credentialsValid = true
                 return ""
             }
-            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] value in
                 self?.errorMessage = value
             })
