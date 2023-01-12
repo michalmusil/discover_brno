@@ -22,6 +22,7 @@ final class DiContainer{
     let loginStore: LoginStore
     let registrationStore: RegistrationStore
     let mapStore: MapStore
+    let imageRecognitionStore: ImageRecognitionStore
     
     init(){
         self.realmManager = RealmManager.shared
@@ -34,5 +35,6 @@ final class DiContainer{
         self.loginStore = LoginStore(realmManager: realmManager, emailValidator: emailValidator)
         self.registrationStore = RegistrationStore(realmManager: realmManager, emailValidator: emailValidator)
         self.mapStore = MapStore(realmManager: realmManager, locationManager: locationManager)
+        self.imageRecognitionStore = ImageRecognitionStore(realmManager: realmManager)
     }
 }

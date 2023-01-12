@@ -30,44 +30,63 @@ struct MapScreen: View {
     @StateObject private var store: MapStore
     
     var body: some View {
-        ZStack(alignment: .bottom){
-            Map(
-                coordinateRegion: $store.coordinateRegion,
-                interactionModes: [.all],
-                showsUserLocation: true,
-                annotationItems: getBrnoLocations(discoverableLandmarks: discoverableLandmarks.reversed()),
-                annotationContent: { location in
-                    MapAnnotation(coordinate: location.coordinate, content: {
-                        LandmarkMarker(location: location, onTapDiscovered: { discoveredLandmark in
-                            // NAVIGATE TO LANDMARK DETAIL
-                            lastSelected = discoveredLandmark
-                            lastSelectedDiscovered = true
-                            withAnimation{
-                                showPopup = true
-                            }
-                            //print(discoveredLandmark.landmark?.name ?? "ERROR")
-                        }, onTapDiscoverable: { discoverableLandmark in
-                            // DISPLAY HINT
-                            lastSelected = discoverableLandmark
-                            lastSelectedDiscovered = false
-                            withAnimation{
-                                showPopup = true
-                            }
-                            //print("NOT YET DISCOVERED: \(discoverableLandmark.name)")
+        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
+            ZStack(alignment: .bottom){
+                Map(
+                    coordinateRegion: $store.coordinateRegion,
+                    interactionModes: [.all],
+                    showsUserLocation: true,
+                    annotationItems: getBrnoLocations(discoverableLandmarks: discoverableLandmarks.reversed()),
+                    annotationContent: { location in
+                        MapAnnotation(coordinate: location.coordinate, content: {
+                            LandmarkMarker(location: location, onTapDiscovered: { discoveredLandmark in
+                                // NAVIGATE TO LANDMARK DETAIL
+                                lastSelected = discoveredLandmark
+                                lastSelectedDiscovered = true
+                                withAnimation{
+                                    showPopup = true
+                                }
+                                //print(discoveredLandmark.landmark?.name ?? "ERROR")
+                            }, onTapDiscoverable: { discoverableLandmark in
+                                // DISPLAY HINT
+                                lastSelected = discoverableLandmark
+                                lastSelectedDiscovered = false
+                                withAnimation{
+                                    showPopup = true
+                                }
+                                //print("NOT YET DISCOVERED: \(discoverableLandmark.name)")
+                            })
                         })
                     })
-                })
-            .ignoresSafeArea(edges: .top)
-            .onAppear{
-                store.centerMapOnUserLocation()
+                .onTapGesture {
+                        lastSelected = nil
+                        showPopup = false
+                }
+                .ignoresSafeArea(edges: .top)
+                .onAppear{
+                    store.centerMapOnUserLocation()
+                }
+            
+                if let discoverable = self.lastSelected,
+                   showPopup == true{
+                    MapPopupView(showPopup: $showPopup, landmark: discoverable, hasBeenDiscovered: $lastSelectedDiscovered)
+                        .frame(height: 210)
+                        .frame(maxWidth: .infinity)
+                        .padding(.bottom, 5)
+                }
             }
             
-            if let discoverable = self.lastSelected,
-                showPopup == true{
-                MapPopupView(showPopup: $showPopup, landmark: discoverable, hasBeenDiscovered: $lastSelectedDiscovered)
-                    .frame(height: 210)
-                    .frame(maxWidth: .infinity)
-                    .padding(.bottom, 5)
+            NavigationLink{
+                ImageRecognitionScreen(di: di)
+            } label: {
+                Image(systemName: "camera.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.accentColor)
+                    .frame(width: 50, height: 50)
+                    .background(.background)
+                    .clipShape(Circle())
+                    .padding(.trailing, 15)
             }
         }
     }
