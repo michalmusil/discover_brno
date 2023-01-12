@@ -15,6 +15,11 @@ struct MapScreen: View {
     @ObservedResults(DiscoveredLandmark.self)
     var discoveredLandmarks
     
+
+    @State var lastSelected: DiscoverableLandmark? = nil
+    @State var lastSelectedDiscovered: Bool = false
+    @State var showPopup: Bool = false
+    
     
     init(di: DiContainer) {
         self.di = di
@@ -25,24 +30,41 @@ struct MapScreen: View {
     @StateObject private var store: MapStore
     
     var body: some View {
-        Map(
-            coordinateRegion: $store.coordinateRegion,
-            showsUserLocation: true,
-            annotationItems: discoverableLandmarks,
-            annotationContent: { landmark in
-                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), content: {
-                    LandmarkMarker(discoverableLandmark: landmark, onTapDiscovered: { discoveredLandmark in
-                        // NAVIGATE TO LANDMARK DETAIL
-                        print(discoveredLandmark.landmark?.name ?? "ERROR")
-                    }, onTapDiscoverable: { discoverableLandmark in
-                        // DISPLAY HINT
-                        print("NOT YET DISCOVERED: \(discoverableLandmark.name)")
+        ZStack(alignment: .bottom){
+            Map(
+                coordinateRegion: $store.coordinateRegion,
+                showsUserLocation: true,
+                annotationItems: discoverableLandmarks,
+                annotationContent: { landmark in
+                    MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), content: {
+                        LandmarkMarker(discoverableLandmark: landmark, onTapDiscovered: { discoveredLandmark in
+                            // NAVIGATE TO LANDMARK DETAIL
+                            lastSelected = discoveredLandmark.landmark
+                            lastSelectedDiscovered = true
+                            withAnimation{
+                                showPopup = true
+                            }
+                            //print(discoveredLandmark.landmark?.name ?? "ERROR")
+                        }, onTapDiscoverable: { discoverableLandmark in
+                            // DISPLAY HINT
+                            lastSelected = discoverableLandmark
+                            lastSelectedDiscovered = false
+                            withAnimation{
+                                showPopup = true
+                            }
+                            //print("NOT YET DISCOVERED: \(discoverableLandmark.name)")
+                        })
                     })
                 })
-            })
-        .ignoresSafeArea(edges: .top)
-        .onAppear{
-            store.centerMapOnUserLocation()
+            .ignoresSafeArea(edges: .top)
+            .onAppear{
+                store.centerMapOnUserLocation()
+            }
+            if let discoverable = self.lastSelected,
+                showPopup == true{
+                MapPopupView(showPopup: $showPopup, landmark: discoverable, hasBeenDiscovered: $lastSelectedDiscovered)
+                    .frame(maxWidth: .infinity)
+            }
         }
     }
 }

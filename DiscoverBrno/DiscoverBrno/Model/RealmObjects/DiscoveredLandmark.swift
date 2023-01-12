@@ -20,4 +20,13 @@ class DiscoveredLandmark: Object, ObjectKeyIdentifiable{
         self.ownerId = ownerId
         self.discovered = Date()
     }
+    
+    static var sampleDiscovered: DiscoveredLandmark {
+        get{
+            let landmark = DiscoveredLandmark(ownerId: "adshr6521gwerg")
+            landmark.discovered = Date()
+            landmark.landmark = DiscoverableLandmark.sampleDiscoverable
+            return landmark
+        }
+    }
 }

@@ -87,11 +87,7 @@ struct LandmarkMarker: View {
 }
 
 struct LandmarkMarker_Previews: PreviewProvider {
-    static var sampleDiscoverable = DiscoverableLandmark(name: "Brno theatre", hint: "Just go with the wind", titleImageUrl: "http://www.pruvodcebrnem.cz/fotografie/historicke-stavby/morovy-sloup/morovy-sloup-2.jpg", landmarkDescription: "bla bla bla bla bla", rewardKey: "MahenTheatre", longitude: 49.3, latitude: 16.2)
-    
-    
-    
     static var previews: some View {
-        LandmarkMarker(discoverableLandmark: sampleDiscoverable, onTapDiscovered: {_ in }, onTapDiscoverable: {_ in })
+        LandmarkMarker(discoverableLandmark: DiscoverableLandmark.sampleDiscoverable, onTapDiscovered: {_ in }, onTapDiscoverable: {_ in })
     }
 }

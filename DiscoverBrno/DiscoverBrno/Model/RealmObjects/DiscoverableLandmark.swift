@@ -31,4 +31,6 @@ class DiscoverableLandmark: Object, ObjectKeyIdentifiable{
         self.latitude = latitude
     }
     
+    static var sampleDiscoverable = DiscoverableLandmark(name: "Brno theatre", hint: "Just go with the wind and you will find youself on top of the very thing you are looking for", titleImageUrl: "http://www.pruvodcebrnem.cz/fotografie/historicke-stavby/morovy-sloup/morovy-sloup-2.jpg", landmarkDescription: "bla bla bla bla bla qaqlikuj halikjrg hapior fghaiowr fghoaq hiuhaqweori fuhasoifl ehasdloif jhasdl fkjbnelwrkjgbnalskdj fnhalksjdfh nalkjsdhfnb laksjd gbhnflakjsrh gliasjd hfnlaksjdhg nflaikfsdgbhnliasurehf ljik", rewardKey: "MahenTheatre", longitude: 49.3, latitude: 16.2)
+    
 }
