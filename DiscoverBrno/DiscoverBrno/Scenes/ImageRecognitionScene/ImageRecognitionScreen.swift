@@ -12,7 +12,7 @@ struct ImageRecognitionScreen: View {
     
     @StateObject var store: ImageRecognitionStore
     
-    @State var cameraPresented: Bool = false
+    @State var cameraPresented: Bool = true
     
     init(di: DiContainer) {
         self.di = di
@@ -51,6 +51,8 @@ struct ImageRecognitionScreen: View {
                         .aspectRatio(contentMode: .fit)
                         .clipShape(Circle())
                 }
+                
+                Text(store.landmarkName)
                 
                 Button{
                     cameraPresented = true
