@@ -33,13 +33,14 @@ struct MapScreen: View {
         ZStack(alignment: .bottom){
             Map(
                 coordinateRegion: $store.coordinateRegion,
+                interactionModes: [.all],
                 showsUserLocation: true,
-                annotationItems: discoverableLandmarks,
-                annotationContent: { landmark in
-                    MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), content: {
-                        LandmarkMarker(discoverableLandmark: landmark, onTapDiscovered: { discoveredLandmark in
+                annotationItems: getBrnoLocations(discoverableLandmarks: discoverableLandmarks.reversed()),
+                annotationContent: { location in
+                    MapAnnotation(coordinate: location.coordinate, content: {
+                        LandmarkMarker(location: location, onTapDiscovered: { discoveredLandmark in
                             // NAVIGATE TO LANDMARK DETAIL
-                            lastSelected = discoveredLandmark.landmark
+                            lastSelected = discoveredLandmark
                             lastSelectedDiscovered = true
                             withAnimation{
                                 showPopup = true
@@ -60,10 +61,13 @@ struct MapScreen: View {
             .onAppear{
                 store.centerMapOnUserLocation()
             }
+            
             if let discoverable = self.lastSelected,
                 showPopup == true{
                 MapPopupView(showPopup: $showPopup, landmark: discoverable, hasBeenDiscovered: $lastSelectedDiscovered)
+                    .frame(height: 210)
                     .frame(maxWidth: .infinity)
+                    .padding(.bottom, 5)
             }
         }
     }
@@ -76,6 +80,14 @@ extension MapScreen{
         return discoveredLandmarks.first(where: { $0.landmark?._id.stringValue == discoverable._id.stringValue })
     }
     
+    private func getBrnoLocations(discoverableLandmarks: [DiscoverableLandmark]) -> [BrnoLocation]{
+        var locationsTemp: [BrnoLocation] = []
+        for landmark in discoverableLandmarks {
+            let isDiscovered = getDiscoveredIfExists(discoverable: landmark) != nil
+            locationsTemp.append(BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), landmark: landmark, isDiscovered: isDiscovered))
+        }
+        return locationsTemp
+    }
 }
 
 struct MapScreen_Previews: PreviewProvider {

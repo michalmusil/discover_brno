@@ -11,18 +11,12 @@ import MapKit
 struct BrnoLocation: Identifiable{
     let id = UUID().uuidString
     var coordinate: CLLocationCoordinate2D
-    var discoverable: DiscoverableLandmark?
-    var discovered: DiscoveredLandmark?
+    var landmark: DiscoverableLandmark
+    var isDiscovered: Bool
     
-    init(coordinate: CLLocationCoordinate2D, discoverable: DiscoverableLandmark) {
+    init(coordinate: CLLocationCoordinate2D, landmark: DiscoverableLandmark, isDiscovered: Bool) {
         self.coordinate = coordinate
-        self.discoverable = discoverable
-        self.discovered = nil
-    }
-    
-    init(coordinate: CLLocationCoordinate2D, discovered: DiscoveredLandmark) {
-        self.coordinate = coordinate
-        self.discoverable = nil
-        self.discovered = discovered
+        self.landmark = landmark
+        self.isDiscovered = isDiscovered
     }
 }

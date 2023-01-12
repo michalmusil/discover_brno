@@ -7,29 +7,26 @@
 
 import SwiftUI
 import RealmSwift
+import CoreLocation
 
 struct LandmarkMarker: View {
     
-    @ObservedRealmObject
-    var discoverableLandmark: DiscoverableLandmark
+    var location: BrnoLocation
     
-    @ObservedResults(DiscoveredLandmark.self)
-    var alreadyDiscovered
-    
-    var onTapDiscovered: (DiscoveredLandmark) -> Void
+    var onTapDiscovered: (DiscoverableLandmark) -> Void
     var onTapDiscoverable: (DiscoverableLandmark) -> Void
     
     var body: some View {
-        if let landmark = alreadyDiscovered.first(where: {$0.landmark?._id == discoverableLandmark._id}) {
-            discovered(discoveredLandmark: landmark)
+        if location.isDiscovered {
+            discovered(discoverableLandmark: location.landmark)
         }
         else{
-            undiscovered(discoverableLandmark: discoverableLandmark)
+            undiscovered(discoverableLandmark: location.landmark)
         }
     }
     
     
-    func discovered(discoveredLandmark: DiscoveredLandmark) -> some View {
+    func discovered(discoverableLandmark: DiscoverableLandmark) -> some View {
         return VStack(spacing: 0){
             ZStack{
                 Circle()
@@ -53,7 +50,7 @@ struct LandmarkMarker: View {
             
         }
         .onTapGesture {
-            onTapDiscovered(discoveredLandmark)
+            onTapDiscovered(discoverableLandmark)
         }
     }
     
@@ -88,6 +85,6 @@ struct LandmarkMarker: View {
 
 struct LandmarkMarker_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkMarker(discoverableLandmark: DiscoverableLandmark.sampleDiscoverable, onTapDiscovered: {_ in }, onTapDiscoverable: {_ in })
+        LandmarkMarker(location: BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: 50, longitude: 50), landmark: DiscoverableLandmark.sampleDiscoverable, isDiscovered: false), onTapDiscovered: {_ in}, onTapDiscoverable: {_ in})
     }
 }

@@ -23,7 +23,6 @@ struct MapPopupView: View {
             Button{
                 withAnimation{
                     showPopup.toggle()
-                    hasBeenDiscovered = false
                 }
             } label: {
                 Image(systemName: "xmark.circle")
@@ -31,17 +30,31 @@ struct MapPopupView: View {
                     .scaledToFill()
                     .frame(width: 25, height: 25)
                     .foregroundColor(.black)
-                    .padding(.trailing, 15)
-                    .offset(y: -8)
+                    .padding(.trailing, 2)
+                    .offset(y: -23)
             }
             VStack(alignment: .leading){
                 HStack{
                     image
-                    text
+                    content
+                }
+                if hasBeenDiscovered{
+                    NavigationLink{
+                        Text("Na nan a")
+                    } label: {
+                        Text("Go to detail")
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 30)
+                            .padding(5)
+                            .background(.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                            .padding(.horizontal, 10)
+                    }
                 }
             }
         }
-        .padding(.vertical, 20)
+        .padding(.vertical, 30)
         .padding(.horizontal, 10)
         .background(.background)
         .cornerRadius(20)
@@ -54,10 +67,10 @@ struct MapPopupView: View {
         if hasBeenDiscovered{
             AsyncImage(url: URL(string: landmark.titleImageUrl), content: { image in
                 image.resizable()
-                image.scaledToFit()
             }, placeholder: {
                 ProgressView()
             })
+            .scaledToFill()
             .frame(width: 60, height: 60)
             .clipShape(Circle())
             .padding(.horizontal, 15)
@@ -73,14 +86,14 @@ struct MapPopupView: View {
     }
     
     @ViewBuilder
-    var text: some View{
+    var content: some View{
         VStack(alignment: .leading){
             if hasBeenDiscovered{
                 Text(landmark.name)
                     .font(.title3)
                     .fontWeight(.bold)
                 
-                Text(landmark.description)
+                Text(landmark.landmarkDescription)
                     .font(.body)
                     .lineLimit(3)
                     .multilineTextAlignment(.leading)
@@ -97,12 +110,12 @@ struct MapPopupView: View {
                     .multilineTextAlignment(.leading)
             }
         }
-        .frame(maxWidth: UIScreen.main.bounds.width * 0.6)
+        .frame(maxWidth: 230)
     }
 }
 
 struct MapPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        MapPopupView(showPopup: .constant(true), landmark: DiscoverableLandmark.sampleDiscoverable, hasBeenDiscovered: .constant(false))
+        MapPopupView(showPopup: .constant(true), landmark: DiscoverableLandmark.sampleDiscoverable, hasBeenDiscovered: .constant(true))
     }
 }

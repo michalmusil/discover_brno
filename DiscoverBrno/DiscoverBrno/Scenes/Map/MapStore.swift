@@ -17,11 +17,10 @@ final class MapStore: ObservableObject{
     private var subscribtions = Set<AnyCancellable>()
     
     
+    @Published var brnoLocations: [BrnoLocation] = []
     @ObservedObject var locationManager: CustomLocationManager
     @Published var currentLocationString: String = ""
     @Published var coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45, longitude: 16), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
-    
-    @Published var discoverableLandmarks: Results<DiscoverableLandmark>?
     
     
     init(realmManager: RealmManager, locationManager: CustomLocationManager){
