@@ -15,7 +15,9 @@ final class ImageRecognitionStore: ObservableObject{
     private let mlModel: DiscoverBrno
     
     @Published var image: UIImage? = nil
-    @Published var landmarkName: String = ""
+    @Published var errorMessage: String = ""
+    @Published var discoveredLandmark: (name: String, certainty: Int)? = nil
+    
     
     private var subscribtions = Set<AnyCancellable>()
     
@@ -24,25 +26,60 @@ final class ImageRecognitionStore: ObservableObject{
         self.mlModel = mlModel
         initializeSubs()
     }
+}
+
+// MARK: Methods
+extension ImageRecognitionStore{
     
-    func tryRecognizeImage(image: UIImage) throws{
+    private func tryRecognizeImage(image: UIImage) -> (name: String, certainty: Int)?{
         let resized = image.resize(size: CGSize(width: 299, height: 299))
         let pixelBuffer = resized?.toPixelBuffer()
         
         guard let buffer = pixelBuffer else {
-            return
+            return nil
         }
         
         let results = try? mlModel.prediction(image: buffer)
         
-        if let output = results?.classLabel {
-            self.landmarkName = output
+        guard let output = results?.classLabelProbs else{
+            return nil
+        }
+        
+        let best = output.max(by: { $0.value < $1.value })
+        
+        guard let bestResult = best else {
+            return nil
+        }
+        
+        // TEMPORARY - faulty model
+        if bestResult.key == "Brno dragon"{
+            return bestResult.value > 0.99 ? (bestResult.key, Int(bestResult.value*100)) : nil
         }
         else {
-            landmarkName = "Image not recognized"
+            return bestResult.value > 0.99 ? (bestResult.key, Int(bestResult.value*100)) : nil
         }
     }
+    
+    private func checkIfUserAlreadyDiscovered(landmarkName: String) -> Bool{
+        guard let _ = realmManager.getDiscoveredLandmarkByName(name: landmarkName) else {
+            return false
+        }
+        return true
+    }
+    
+    private func saveNewDiscoveredLandmark(landmarkName: String) throws{
+        let discovered = DiscoveredLandmark()
+        let discoverableParent = realmManager.getDiscoverableLandmarkByName(name: landmarkName)
+        
+        guard let discoverable = discoverableParent else {
+            throw DataError.dataProcessingFailed
+        }
+        
+        try realmManager.addDiscoveredLandmark(discovered: discovered, parent: discoverable)
+    }
 }
+
+
 
 // MARK: Combine
 extension ImageRecognitionStore{
@@ -52,9 +89,25 @@ extension ImageRecognitionStore{
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink{ [weak self] image in
-                if let img = image{
+                self?.errorMessage = ""
+                self?.discoveredLandmark = nil
+                guard let img = image else {
+                    self?.errorMessage = "Failed to process image"
+                    return
+                }
+                guard let recognized = self?.tryRecognizeImage(image: img) else {
+                    self?.errorMessage = "Landmark was not recognized"
+                    return
+                }
+                guard let alreadyDisovered = self?.checkIfUserAlreadyDiscovered(landmarkName: recognized.name) else { return }
+                
+                if alreadyDisovered{
+                    self?.errorMessage = "\(recognized.name) was already discovered"
+                }
+                else{
                     do{
-                        try self?.tryRecognizeImage(image: img)
+                        try self?.saveNewDiscoveredLandmark(landmarkName: recognized.name)
+                        self?.discoveredLandmark = recognized
                     }
                     catch{
                         print(error)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreML
 
 final class DiContainer{
     // Realm
@@ -32,7 +33,7 @@ final class DiContainer{
         
         self.locationManager = CustomLocationManager()
         
-        self.mlModel = DiscoverBrno()
+        self.mlModel = (try? DiscoverBrno(configuration: MLModelConfiguration())) ?? DiscoverBrno()
         
         self.emailValidator = EmailValidator()
         

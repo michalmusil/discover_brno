@@ -36,11 +36,6 @@ final class MapStore: ObservableObject{
         }
     }
     
-    func trySaveNewDiscoveredLandmark(discoverable: DiscoverableLandmark){
-        let newDiscovered = DiscoveredLandmark(ownerId: realmManager.user?.id ?? "")
-        let success = realmManager.addDiscoveredLandmark(discovered: newDiscovered, parent: discoverable)
-    }
-    
 }
 
 // MARK: Subs
@@ -56,30 +51,6 @@ extension MapStore{
                 }
             })
             .store(in: &subscribtions)
-        
-        /*
-        discoverableLandmarks
-            .collectionPublisher
-                .combineLatest(discoveredLandmarks.collectionPublisher){ discoverable, discovered in
-                    var locations: [BrnoLocation] = []
-                    // First adding discovered landmarks
-                    for discoveredLandmark in discovered {
-                        locations.append(BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: discoveredLandmark.landmark!.latitude, longitude: discoveredLandmark.landmark!.longitude), discovered: discoveredLandmark))
-                    }
-                    // Then adding discoverable, if they haven't been discovered already
-                    for discoverableLandmark in discoverable{
-                        if !locations.contains(where: {
-                            $0.discovered?.landmark?._id.stringValue == discoverableLandmark._id.stringValue})
-                        {
-                            locations.append(BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: discoverableLandmark.latitude, longitude: discoverableLandmark.longitude), discoverable: discoverableLandmark))
-                        }
-                    }
-                    return locations
-                }
-                .map{[weak self] locations in
-                    return location
-                }
-         */
     }
     
     

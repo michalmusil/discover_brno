@@ -6,13 +6,19 @@
 //
 
 import SwiftUI
+import Combine
+import RealmSwift
 
 struct ImageRecognitionScreen: View {
     private let di: DiContainer
+    private let subscribtions = Set<AnyCancellable>()
     
     @StateObject var store: ImageRecognitionStore
-    
     @State var cameraPresented: Bool = true
+    
+    @ObservedResults(DiscoveredLandmark.self)
+    var alreadyDiscovered
+    
     
     init(di: DiContainer) {
         self.di = di
@@ -52,7 +58,8 @@ struct ImageRecognitionScreen: View {
                         .clipShape(Circle())
                 }
                 
-                Text(store.landmarkName)
+                Text(store.discoveredLandmark?.name ?? "")
+                Text(store.errorMessage)
                 
                 Button{
                     cameraPresented = true
@@ -73,6 +80,17 @@ struct ImageRecognitionScreen: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
+
+
+// MARK: Reacting to discoveries
+extension ImageRecognitionScreen{
+    
+}
+
+
+
+
+
 
 struct ImageRecognitionScreen_Previews: PreviewProvider {
     static var previews: some View {

@@ -58,10 +58,6 @@ struct MapScreen: View {
                             })
                         })
                     })
-                .onTapGesture {
-                        lastSelected = nil
-                        showPopup = false
-                }
                 .ignoresSafeArea(edges: .top)
                 .onAppear{
                     store.centerMapOnUserLocation()

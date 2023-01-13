@@ -35,24 +35,76 @@ class RealmManager: ObservableObject{
 // MARK: CRUD methods
 extension RealmManager{
     
-    func addDiscoveredLandmark(discovered: DiscoveredLandmark, parent: DiscoverableLandmark) -> Bool{
-        guard let realm = self.realm,
-              let observed = realm.object(ofType: DiscoverableLandmark.self, forPrimaryKey: parent._id) else {
-            return false
+    func addDiscoveredLandmark(discovered: DiscoveredLandmark, parent: DiscoverableLandmark) throws{
+        guard let realm = self.realm else {
+            throw DataError.realmInstanceNil
         }
+        
+        guard let observed = realm.object(ofType: DiscoverableLandmark.self, forPrimaryKey: parent._id) else {
+            throw DataError.dataProcessingFailed
+        }
+        
+        guard let user = self.user else {
+            throw DataError.userInstanceNil
+        }
+        
         do{
+            discovered.discovered = Date()
+            discovered.ownerId = user.id
             try realm.write{
-                    realm.add(discovered)
                     discovered.landmark = observed
-                    return true
+                    realm.add(discovered)
                 }
         }
         catch{
-            return false
+            throw DataError.dataProcessingFailed
         }
-        return false
     }
     
+}
+
+// MARK: Get methods
+extension RealmManager{
+    
+    func getDiscoveredLandmarks() throws -> [DiscoveredLandmark]{
+        guard let realmInstance = self.realm else {
+            throw DataError.realmInstanceNil
+        }
+        
+        let landmarks = realmInstance.objects(DiscoveredLandmark.self)
+        
+        return landmarks.reversed()
+    }
+    
+    func getDiscoverableLandmarks() throws -> [DiscoverableLandmark]{
+        guard let realmInstance = self.realm else {
+            throw DataError.realmInstanceNil
+        }
+        
+        let landmarks = realmInstance.objects(DiscoverableLandmark.self)
+        
+        return landmarks.reversed()
+    }
+    
+    func getDiscoverableLandmarkByName(name: String) -> DiscoverableLandmark?{
+        guard let realmInstance = self.realm else {
+            return nil
+        }
+        
+        let landmarks = realmInstance.objects(DiscoverableLandmark.self)
+        
+        return landmarks.first(where: { $0.name == name })
+    }
+    
+    func getDiscoveredLandmarkByName(name: String) -> DiscoveredLandmark?{
+        guard let realmInstance = self.realm else {
+            return nil
+        }
+        
+        let landmarks = realmInstance.objects(DiscoveredLandmark.self)
+        
+        return landmarks.first(where: { $0.landmark?.name.lowercased() == name.lowercased() })
+    }
 }
 
 
