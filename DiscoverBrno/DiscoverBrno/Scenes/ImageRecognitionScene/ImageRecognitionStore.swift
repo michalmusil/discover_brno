@@ -16,7 +16,7 @@ final class ImageRecognitionStore: ObservableObject{
     
     @Published var image: UIImage? = nil
     @Published var errorMessage: String = ""
-    @Published var discoveredLandmark: (name: String, certainty: Int)? = nil
+    @Published var discoveredLandmark: (name: String, certainty: Int)? = ("Brno dragon", 20)
     
     
     private var subscribtions = Set<AnyCancellable>()
@@ -52,11 +52,11 @@ extension ImageRecognitionStore{
         }
         
         // TEMPORARY - faulty model
-        if bestResult.key == "Brno dragon"{
-            return bestResult.value > 0.99 ? (bestResult.key, Int(bestResult.value*100)) : nil
+        if bestResult.key.lowercased() == "brno dragon"{
+            return bestResult.value > 0.995 ? (bestResult.key, Int(bestResult.value*100)) : nil
         }
         else {
-            return bestResult.value > 0.99 ? (bestResult.key, Int(bestResult.value*100)) : nil
+            return bestResult.value > 0.98 ? (bestResult.key, Int(bestResult.value*100)) : nil
         }
     }
     
@@ -89,8 +89,10 @@ extension ImageRecognitionStore{
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink{ [weak self] image in
+                if self?.image == nil && image == nil { return }
                 self?.errorMessage = ""
                 self?.discoveredLandmark = nil
+                
                 guard let img = image else {
                     self?.errorMessage = "Failed to process image"
                     return
@@ -110,7 +112,7 @@ extension ImageRecognitionStore{
                         self?.discoveredLandmark = recognized
                     }
                     catch{
-                        print(error)
+                        self?.errorMessage = "Failed to save the newly discovered landmark: \(recognized.name)"
                     }
                 }
             }
