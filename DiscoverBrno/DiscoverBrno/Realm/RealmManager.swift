@@ -93,7 +93,7 @@ extension RealmManager{
         
         let landmarks = realmInstance.objects(DiscoverableLandmark.self)
         
-        return landmarks.first(where: { $0.name == name })
+        return landmarks.first(where: { $0.name.lowercased() == name.lowercased() })
     }
     
     func getDiscoveredLandmarkByName(name: String) -> DiscoveredLandmark?{

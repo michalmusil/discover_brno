@@ -35,6 +35,8 @@
 		0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */; };
 		0CBA39AD296DD0B00087F023 /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39AC296DD0B00087F023 /* DiContainer.swift */; };
 		0CDE245729715F1F00E4E2D3 /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE245629715F1F00E4E2D3 /* DataError.swift */; };
+		0CDE245A2971970600E4E2D3 /* DiscoveredDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE24592971970600E4E2D3 /* DiscoveredDetailScreen.swift */; };
+		0CDE245C2971973400E4E2D3 /* DiscoveredDetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE245B2971973400E4E2D3 /* DiscoveredDetailStore.swift */; };
 		0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */; };
 		0CF2120629673747001BBC8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120529673747001BBC8D /* ContentView.swift */; };
 		0CF2120829673748001BBC8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2120729673748001BBC8D /* Assets.xcassets */; };
@@ -88,6 +90,8 @@
 		0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredLandmark.swift; sourceTree = "<group>"; };
 		0CBA39AC296DD0B00087F023 /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
 		0CDE245629715F1F00E4E2D3 /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
+		0CDE24592971970600E4E2D3 /* DiscoveredDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredDetailScreen.swift; sourceTree = "<group>"; };
+		0CDE245B2971973400E4E2D3 /* DiscoveredDetailStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredDetailStore.swift; sourceTree = "<group>"; };
 		0CF2120029673747001BBC8D /* DiscoverBrno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscoverBrno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverBrnoApp.swift; sourceTree = "<group>"; };
 		0CF2120529673747001BBC8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,13 +152,13 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
-		0CB3B9F8297054C0000CE1FD /* ImageRecognitionScene */ = {
+		0CB3B9F8297054C0000CE1FD /* ImageRecognition */ = {
 			isa = PBXGroup;
 			children = (
 				0CB3B9F9297054E8000CE1FD /* ImageRecognitionScreen.swift */,
 				0CB3B9FB2970554C000CE1FD /* ImageRecognitionStore.swift */,
 			);
-			path = ImageRecognitionScene;
+			path = ImageRecognition;
 			sourceTree = "<group>";
 		};
 		0CB5A65D296EC20E00D5A6CC /* Utils */ = {
@@ -209,6 +213,15 @@
 				0CB5A66D296F17F100D5A6CC /* RealmObjects */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0CDE2458297196EB00E4E2D3 /* DiscoveredDetail */ = {
+			isa = PBXGroup;
+			children = (
+				0CDE24592971970600E4E2D3 /* DiscoveredDetailScreen.swift */,
+				0CDE245B2971973400E4E2D3 /* DiscoveredDetailStore.swift */,
+			);
+			path = DiscoveredDetail;
 			sourceTree = "<group>";
 		};
 		0CF211F729673747001BBC8D = {
@@ -280,8 +293,9 @@
 				0C1E45E22967A1C300936E52 /* ContentStore.swift */,
 				0C1E45D52967908F00936E52 /* Authentication */,
 				0CF2123729674215001BBC8D /* Home */,
-				0CB3B9F8297054C0000CE1FD /* ImageRecognitionScene */,
+				0CB3B9F8297054C0000CE1FD /* ImageRecognition */,
 				0CF212352967417B001BBC8D /* DiscoveredList */,
+				0CDE2458297196EB00E4E2D3 /* DiscoveredDetail */,
 				0CF21236296741E4001BBC8D /* Map */,
 				0CF2123829674219001BBC8D /* Rewards */,
 				0CF212392967422A001BBC8D /* Settings */,
@@ -486,6 +500,7 @@
 				0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */,
 				0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */,
 				0CB5A670296F180400D5A6CC /* BrnoLocation.swift in Sources */,
+				0CDE245C2971973400E4E2D3 /* DiscoveredDetailStore.swift in Sources */,
 				0CB5A66C296ED5A100D5A6CC /* MapStore.swift in Sources */,
 				0CF2120629673747001BBC8D /* ContentView.swift in Sources */,
 				0CB5A65C296EBE8700D5A6CC /* RegistrationStore.swift in Sources */,
@@ -501,6 +516,7 @@
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
 				0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */,
 				0CDE245729715F1F00E4E2D3 /* DataError.swift in Sources */,
+				0CDE245A2971970600E4E2D3 /* DiscoveredDetailScreen.swift in Sources */,
 				0CB3B9FE29706411000CE1FD /* UIImageExtensions.swift in Sources */,
 				0CB5A667296ED36900D5A6CC /* MapScreen.swift in Sources */,
 				0CB5A663296ED31100D5A6CC /* HomeScreen.swift in Sources */,

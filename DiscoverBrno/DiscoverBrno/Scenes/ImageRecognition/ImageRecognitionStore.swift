@@ -16,7 +16,7 @@ final class ImageRecognitionStore: ObservableObject{
     
     @Published var image: UIImage? = nil
     @Published var errorMessage: String = ""
-    @Published var discoveredLandmark: (name: String, certainty: Int)? = ("Brno dragon", 20)
+    @Published var discoveredLandmark: DiscoveredLandmark?
     
     
     private var subscribtions = Set<AnyCancellable>()
@@ -60,14 +60,14 @@ extension ImageRecognitionStore{
         }
     }
     
-    private func checkIfUserAlreadyDiscovered(landmarkName: String) -> Bool{
-        guard let _ = realmManager.getDiscoveredLandmarkByName(name: landmarkName) else {
-            return false
+    private func checkIfUserAlreadyDiscovered(landmarkName: String) -> DiscoveredLandmark?{
+        guard let landmark = realmManager.getDiscoveredLandmarkByName(name: landmarkName) else {
+            return nil
         }
-        return true
+        return landmark
     }
     
-    private func saveNewDiscoveredLandmark(landmarkName: String) throws{
+    private func saveNewDiscoveredLandmark(landmarkName: String) throws -> DiscoveredLandmark{
         let discovered = DiscoveredLandmark()
         let discoverableParent = realmManager.getDiscoverableLandmarkByName(name: landmarkName)
         
@@ -76,6 +76,8 @@ extension ImageRecognitionStore{
         }
         
         try realmManager.addDiscoveredLandmark(discovered: discovered, parent: discoverable)
+        
+        return discovered
     }
 }
 
@@ -101,19 +103,16 @@ extension ImageRecognitionStore{
                     self?.errorMessage = "Landmark was not recognized"
                     return
                 }
-                guard let alreadyDisovered = self?.checkIfUserAlreadyDiscovered(landmarkName: recognized.name) else { return }
-                
-                if alreadyDisovered{
-                    self?.errorMessage = "\(recognized.name) was already discovered"
+                if let alreadyDisovered = self?.checkIfUserAlreadyDiscovered(landmarkName: recognized.name) {
+                    self?.errorMessage = "\(alreadyDisovered.landmark?.name ?? "") was already discovered"
+                    return
                 }
-                else{
-                    do{
-                        try self?.saveNewDiscoveredLandmark(landmarkName: recognized.name)
-                        self?.discoveredLandmark = recognized
-                    }
-                    catch{
-                        self?.errorMessage = "Failed to save the newly discovered landmark: \(recognized.name)"
-                    }
+                do{
+                    let saved = try self?.saveNewDiscoveredLandmark(landmarkName: recognized.name)
+                    self?.discoveredLandmark = saved
+                }
+                catch{
+                    self?.errorMessage = "Failed to save the newly discovered landmark: \(recognized.name)"
                 }
             }
             .store(in: &subscribtions)

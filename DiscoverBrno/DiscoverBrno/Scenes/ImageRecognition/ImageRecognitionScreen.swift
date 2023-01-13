@@ -14,7 +14,7 @@ struct ImageRecognitionScreen: View {
     private let subscribtions = Set<AnyCancellable>()
     
     @StateObject var store: ImageRecognitionStore
-    @State var cameraPresented: Bool = false
+    @State var cameraPresented: Bool = true
     
     @ObservedResults(DiscoveredLandmark.self)
     var alreadyDiscovered
@@ -76,8 +76,8 @@ struct ImageRecognitionScreen: View {
                     } label: {
                         Text("Try again")
                             .font(.title3)
-                            .frame(minWidth: 250)
                             .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
                             .foregroundColor(.white)
                             .background(Color.accentColor)
                             .cornerRadius(10)
@@ -91,7 +91,7 @@ struct ImageRecognitionScreen: View {
                     Text("you have discovered: ")
                         .font(.title3)
                         .padding(.bottom, 10)
-                    Text(discovered.name)
+                    Text(discovered.landmark?.name ?? "")
                         .font(.title)
                         .fontWeight(.bold)
                     
@@ -102,9 +102,25 @@ struct ImageRecognitionScreen: View {
                         Button{
                             cameraPresented = true
                         } label: {
+                            Text("New discovery")
+                                .font(.title3)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 10)
+                                .foregroundColor(.orange)
+                                .background(Color.accentColor)
+                                .cornerRadius(10)
+                                .padding(.top, 12)
+                        }
+                        Text(store.errorMessage)
+                            .font(.title)
+                            .foregroundColor(.red)
+                        
+                        NavigationLink{
+                            DiscoveredDetailScreen(di: di, discoveredLandmark: discovered)
+                        } label: {
                             Text("Go to detail")
                                 .font(.title3)
-                                .frame(minWidth: 250)
+                                .padding(.horizontal, 20)
                                 .padding(.vertical, 10)
                                 .foregroundColor(.white)
                                 .background(Color.accentColor)
@@ -119,8 +135,8 @@ struct ImageRecognitionScreen: View {
                     } label: {
                         Text("Open camera")
                             .font(.title3)
-                            .frame(minWidth: 250)
                             .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
                             .foregroundColor(.white)
                             .background(Color.accentColor)
                             .cornerRadius(10)

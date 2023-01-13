@@ -65,7 +65,7 @@ struct MapScreen: View {
             
                 if let discoverable = self.lastSelected,
                    showPopup == true{
-                    MapPopupView(showPopup: $showPopup, landmark: discoverable, hasBeenDiscovered: $lastSelectedDiscovered)
+                    MapPopupView(di: di, landmark: discoverable, showPopup: $showPopup, hasBeenDiscovered: $lastSelectedDiscovered)
                         .frame(height: 210)
                         .frame(maxWidth: .infinity)
                         .padding(.bottom, 5)

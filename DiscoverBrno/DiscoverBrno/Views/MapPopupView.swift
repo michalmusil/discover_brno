@@ -9,14 +9,27 @@ import SwiftUI
 import RealmSwift
 
 struct MapPopupView: View {
-    
-    @Binding
-    var showPopup: Bool
+    private let di: DiContainer
     
     var landmark: DiscoverableLandmark
     
     @Binding
+    var showPopup: Bool
+    @Binding
     var hasBeenDiscovered: Bool
+    
+    private let discoveredLandmark: DiscoveredLandmark?
+    
+    init(di: DiContainer, landmark: DiscoverableLandmark, showPopup: Binding<Bool>, hasBeenDiscovered: Binding<Bool>) {
+        self.di = di
+        self.landmark = landmark
+        self._showPopup = showPopup
+        self._hasBeenDiscovered = hasBeenDiscovered
+        
+        self.discoveredLandmark = di.realmManager.getDiscoveredLandmarkByName(name: landmark.name)
+    }
+    
+    
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
@@ -38,9 +51,10 @@ struct MapPopupView: View {
                     image
                     content
                 }
-                if hasBeenDiscovered{
+                if let discoverd = discoveredLandmark,
+                   hasBeenDiscovered{
                     NavigationLink{
-                        Text("Na nan a")
+                        DiscoveredDetailScreen(di: di, discoveredLandmark: discoverd)
                     } label: {
                         Text("Go to detail")
                             .frame(maxWidth: .infinity)
@@ -116,6 +130,6 @@ struct MapPopupView: View {
 
 struct MapPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        MapPopupView(showPopup: .constant(true), landmark: DiscoverableLandmark.sampleDiscoverable, hasBeenDiscovered: .constant(true))
+        MapPopupView(di: DiContainer(), landmark: DiscoverableLandmark.sampleDiscoverable, showPopup: .constant(true), hasBeenDiscovered: .constant(true))
     }
 }
