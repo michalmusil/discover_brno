@@ -10,6 +10,9 @@ import MapKit
 import RealmSwift
 
 struct MapScreen: View {
+    private let di: DiContainer
+    @StateObject private var store: MapStore
+    
     @ObservedResults(DiscoverableLandmark.self)
     var discoverableLandmarks
     @ObservedResults(DiscoveredLandmark.self)
@@ -20,18 +23,17 @@ struct MapScreen: View {
     @State var lastSelectedDiscovered: Bool = false
     @State var showPopup: Bool = false
     
+    @State var locations: [BrnoLocation] = []
     
     init(di: DiContainer) {
         self.di = di
         self._store = StateObject(wrappedValue: di.mapStore)
     }
     
-    private let di: DiContainer
-    @StateObject private var store: MapStore
-    
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
             ZStack(alignment: .bottom){
+                /*
                 Map(
                     coordinateRegion: $store.coordinateRegion,
                     interactionModes: [.all],
@@ -62,6 +64,12 @@ struct MapScreen: View {
                 .onAppear{
                     store.centerMapOnUserLocation()
                 }
+                 */
+                MapView(coordinateRegion: store.coordinateRegion, locations: locations)
+                    .ignoresSafeArea(edges: .top)
+                    .onAppear{
+                        store.centerMapOnUserLocation()
+                    }
             
                 if let discoverable = self.lastSelected,
                    showPopup == true{
@@ -72,6 +80,11 @@ struct MapScreen: View {
                 }
             }
             
+            Button("deez"){
+                locations.append(BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: 49.2, longitude: 16.3), landmark: DiscoverableLandmark.sampleDiscoverable, isDiscovered: false))
+            }
+            
+            /*
             NavigationLink{
                 ImageRecognitionScreen(di: di)
             } label: {
@@ -84,6 +97,7 @@ struct MapScreen: View {
                     .clipShape(Circle())
                     .padding(.trailing, 15)
             }
+             */
         }
     }
 }
