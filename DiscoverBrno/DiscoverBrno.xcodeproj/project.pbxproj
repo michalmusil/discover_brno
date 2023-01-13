@@ -14,6 +14,7 @@
 		0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E029679E8000936E52 /* LoginStore.swift */; };
 		0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E22967A1C300936E52 /* ContentStore.swift */; };
 		0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C41F493296F548200ED2D83 /* LandmarkMarker.swift */; };
+		0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */; };
 		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
 		0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F029701252000CE1FD /* MapPopupView.swift */; };
 		0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F429703AF1000CE1FD /* MapView.swift */; };
@@ -69,6 +70,7 @@
 		0C1E45E029679E8000936E52 /* LoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStore.swift; sourceTree = "<group>"; };
 		0C1E45E22967A1C300936E52 /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
 		0C41F493296F548200ED2D83 /* LandmarkMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMarker.swift; sourceTree = "<group>"; };
+		0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapAnnotation.swift; sourceTree = "<group>"; };
 		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
 		0CB3B9F029701252000CE1FD /* MapPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPopupView.swift; sourceTree = "<group>"; };
 		0CB3B9F429703AF1000CE1FD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				0CB5A66F296F180400D5A6CC /* BrnoLocation.swift */,
+				0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				0CB3B9FC2970554C000CE1FD /* ImageRecognitionStore.swift in Sources */,
 				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,
 				0CB3B9F729705220000CE1FD /* ImagePicker.swift in Sources */,
+				0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */,
 				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,
 				0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */,
 			);

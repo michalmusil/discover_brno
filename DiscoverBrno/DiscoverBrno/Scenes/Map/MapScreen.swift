@@ -65,10 +65,11 @@ struct MapScreen: View {
                     store.centerMapOnUserLocation()
                 }
                  */
-                MapView(coordinateRegion: store.coordinateRegion, locations: locations)
+                MapView(locations: locations)
                     .ignoresSafeArea(edges: .top)
                     .onAppear{
                         store.centerMapOnUserLocation()
+                        updateBrnoLocations(discoverableLandmarks: discoverableLandmarks.reversed())
                     }
             
                 if let discoverable = self.lastSelected,
@@ -80,11 +81,6 @@ struct MapScreen: View {
                 }
             }
             
-            Button("deez"){
-                locations.append(BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: 49.2, longitude: 16.3), landmark: DiscoverableLandmark.sampleDiscoverable, isDiscovered: false))
-            }
-            
-            /*
             NavigationLink{
                 ImageRecognitionScreen(di: di)
             } label: {
@@ -97,7 +93,7 @@ struct MapScreen: View {
                     .clipShape(Circle())
                     .padding(.trailing, 15)
             }
-             */
+             
         }
     }
 }
@@ -109,13 +105,32 @@ extension MapScreen{
         return discoveredLandmarks.first(where: { $0.landmark?._id.stringValue == discoverable._id.stringValue })
     }
     
-    private func getBrnoLocations(discoverableLandmarks: [DiscoverableLandmark]) -> [BrnoLocation]{
+    private func updateBrnoLocations(discoverableLandmarks: [DiscoverableLandmark]){
         var locationsTemp: [BrnoLocation] = []
         for landmark in discoverableLandmarks {
             let isDiscovered = getDiscoveredIfExists(discoverable: landmark) != nil
-            locationsTemp.append(BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), landmark: landmark, isDiscovered: isDiscovered))
+            
+            let onTap: (DiscoverableLandmark) -> Void = isDiscovered ?
+            { discoveredLandmark in
+                // NAVIGATE TO LANDMARK DETAIL
+                lastSelected = discoveredLandmark
+                lastSelectedDiscovered = true
+                withAnimation{
+                    showPopup = true
+                }
+            }
+            : { discoverableLandmark in
+                lastSelected = discoverableLandmark
+                lastSelectedDiscovered = false
+                withAnimation{
+                    showPopup = true
+                }
+            }
+           
+            
+            locationsTemp.append(BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), landmark: landmark, isDiscovered: isDiscovered, onTap: onTap))
         }
-        return locationsTemp
+        locations = locationsTemp
     }
 }
 

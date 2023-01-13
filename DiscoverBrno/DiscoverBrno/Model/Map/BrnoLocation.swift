@@ -14,9 +14,12 @@ struct BrnoLocation: Identifiable{
     var landmark: DiscoverableLandmark
     var isDiscovered: Bool
     
-    init(coordinate: CLLocationCoordinate2D, landmark: DiscoverableLandmark, isDiscovered: Bool) {
+    var onTap: (DiscoverableLandmark) -> Void
+    
+    init(coordinate: CLLocationCoordinate2D, landmark: DiscoverableLandmark, isDiscovered: Bool, onTap: @escaping (DiscoverableLandmark) -> Void) {
         self.coordinate = coordinate
         self.landmark = landmark
         self.isDiscovered = isDiscovered
+        self.onTap = onTap
     }
 }

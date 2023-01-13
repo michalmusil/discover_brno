@@ -13,11 +13,9 @@ import Combine
 struct MapView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     
-    @State private var subscribtions = Set<AnyCancellable>()
+    private var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 49.194855, longitude: 16.608431), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
     
-    private var coordinateRegion: MKCoordinateRegion
     let configuration: MKStandardMapConfiguration
-
     private var locations: [BrnoLocation]
     
     
@@ -25,11 +23,10 @@ struct MapView: UIViewRepresentable {
         return MapCoordinator()
     }
     
-    init(coordinateRegion: MKCoordinateRegion, locations: [BrnoLocation]) {
+    init(locations: [BrnoLocation]) {
         configuration = MKStandardMapConfiguration()
         configuration.pointOfInterestFilter = MKPointOfInterestFilter(including: [])
         
-        self.coordinateRegion = coordinateRegion
         self.locations = locations
     }
 
@@ -41,32 +38,55 @@ struct MapView: UIViewRepresentable {
         
         mapView.region.span = coordinateRegion.span
         mapView.setRegion(coordinateRegion, animated: true)
-
+        
         return mapView
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        uiView.region.span = coordinateRegion.span
-        uiView.setRegion(coordinateRegion, animated: true)
         refreshLocations(locations: locations, mapView: uiView)
     }
     
     
     func refreshLocations(locations: [BrnoLocation], mapView: MKMapView){
-        var annotations: [MKPointAnnotation] = []
-        let existingAnnotations = mapView.annotations
-        mapView.removeAnnotations(existingAnnotations)
+        guard determineIfUpdateAnnotations(annotations: mapView.annotations) else {
+            return
+        }
         
+        var annotations: [CustomMapAnnotation] = []
         for location in locations{
-            let annotation = MKPointAnnotation()
+            let defaultImage = location.isDiscovered ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "xmark.circle.fill")
+            let annotation = CustomMapAnnotation(coordinate: location.coordinate, landmark: location.landmark, defaultImage: defaultImage!, isDiscovered: location.isDiscovered, onTap: location.onTap)
             annotation.title = location.landmark.name
-            annotation.coordinate = location.coordinate
             annotations.append(annotation)
         }
-        print(annotations.count)
-        
+        mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotations(annotations)
         mapView.showAnnotations(mapView.annotations, animated: true)
+    }
+    
+    private func determineIfUpdateAnnotations(annotations: [MKAnnotation]) -> Bool{
+        guard locations.count > 0 else {
+            return false
+        }
+        
+        var customAnnotations: [CustomMapAnnotation] = []
+        for annotation in annotations {
+            if let customAnnotation = annotation as? CustomMapAnnotation{
+                customAnnotations.append(customAnnotation)
+            }
+        }
+        
+        if locations.count != customAnnotations.count{
+            return true
+        }
+        
+        for location in locations{
+            guard let annotation = customAnnotations.first(where: {$0.landmark._id.stringValue == location.landmark._id.stringValue}),
+                  location.isDiscovered == annotation.isDiscovered else {
+                return true
+            }
+        }
+        return false
     }
     
     
@@ -76,22 +96,29 @@ struct MapView: UIViewRepresentable {
             if annotation is MKUserLocation {
                 return nil
             }
-            guard let title = annotation.title as? String else {
+            guard let customAnnotation = annotation as? CustomMapAnnotation else {
                 return nil
             }
             
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: title)
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: customAnnotation.title ?? "")
             
             if annotationView == nil{
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: title)
+                annotationView = MKAnnotationView(annotation: customAnnotation, reuseIdentifier: customAnnotation.title ?? "")
             }
             else {
-                annotationView?.annotation = annotation
+                annotationView?.annotation = customAnnotation
             }
 
-            annotationView?.image = UIImage(systemName: "pin.fill")
-            
+            annotationView?.image = customAnnotation.defaultImage
+            annotationView?.sizeToFit()
             return annotationView
+        }
+        
+        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+            guard let customAnnotation = view.annotation as? CustomMapAnnotation else {
+                return
+            }
+            customAnnotation.onTap(customAnnotation.landmark)
         }
     }
 }

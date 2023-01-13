@@ -85,6 +85,6 @@ struct LandmarkMarker: View {
 
 struct LandmarkMarker_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkMarker(location: BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: 50, longitude: 50), landmark: DiscoverableLandmark.sampleDiscoverable, isDiscovered: false), onTapDiscovered: {_ in}, onTapDiscoverable: {_ in})
+        LandmarkMarker(location: BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: 50, longitude: 50), landmark: DiscoverableLandmark.sampleDiscoverable, isDiscovered: false, onTap: {_ in}), onTapDiscovered: {_ in}, onTapDiscoverable: {_ in})
     }
 }

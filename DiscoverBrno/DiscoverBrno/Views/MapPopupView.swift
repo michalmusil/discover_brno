@@ -38,7 +38,7 @@ struct MapPopupView: View {
                     showPopup.toggle()
                 }
             } label: {
-                Image(systemName: "xmark.circle")
+                Image(systemName: "xmark.circle.fill")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 25, height: 25)
