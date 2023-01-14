@@ -54,11 +54,11 @@ extension LoginStore{
                 if let valid = emailValid,
                    valid == false {
                     self?.credentialsValid = false
-                    return "Not a valid email address."
+                    return String(localized: "invalidEmail")
                 }
                 if password.count < 6{
                     self?.credentialsValid = false
-                    return "Password must be at least 6 characters"
+                    return String(localized: "passwordTooShort")
                 }
                 self?.credentialsValid = true
                 return ""

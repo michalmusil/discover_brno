@@ -11,6 +11,8 @@ struct RegistrationScreen: View {
     @StateObject private var store: RegistrationStore
     @Binding private var parentState: ContentStore.State
     
+    @State var firstDisplayed = true
+    
     init(di: DiContainer, parentState: Binding<ContentStore.State>) {
         self._store = StateObject(wrappedValue: di.registrationStore)
         self._parentState = parentState
@@ -20,69 +22,73 @@ struct RegistrationScreen: View {
         Group{
             switch store.state{
             case .start:
-                registrationForm
+                registrationContent
             case .idle:
-                registrationForm
+                registrationContent
             case .loading:
                 ProgressView()
             }
         }
         .padding()
-        .navigationTitle("Register")
         .navigationBarTitleDisplayMode(.large)
         
+    }
+    
+    @ViewBuilder
+    var registrationContent: some View{
+        VStack{
+            image
+            registrationForm
+        }
+        .padding(.horizontal, 5)
+    }
+    
+    @ViewBuilder
+    var image: some View{
+        Image(uiImage: UIImage(named: "discoverBrnoLogo")!)
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 30)
+            .padding(.bottom, 40)
     }
     
     
     @ViewBuilder
     var registrationForm: some View{
         VStack{
-            TextField("E-mail", text: $store.email)
-                .autocorrectionDisabled(true)
-                .textInputAutocapitalization(.never)
-                .keyboardType(.emailAddress)
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal, 30)
-            SecureField("Password", text: $store.password)
-                .autocorrectionDisabled(true)
-                .keyboardType(.emailAddress)
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal, 30)
+            DBTextField(title: String(localized: "email"), text: $store.email, keyboardType: .emailAddress)
+            DBSecureField(title: String(localized: "password"), text: $store.password)
+                .onTapGesture {
+                    firstDisplayed = false
+                }
         
-            if !store.errorMessage.isEmpty{
+            if !store.errorMessage.isEmpty && !firstDisplayed{
                 Text(store.errorMessage)
                     .foregroundColor(.red)
                     .font(.caption)
             }
             
-            Button{
+            DBButton(text: String(localized: "register")){
                 Task{
                     do{
                         let credentials = try await store.registerUser()
                         try await store.loginUser(email: credentials.email, password: credentials.password)
                     }
                     catch AuthenticationError.registrationFailed {
-                        store.errorMessage = "Registration failed"
+                        store.errorMessage = String(localized: "registrationFailed")
                         store.state = .idle
                     }
                     catch AuthenticationError.loginFailed {
-                        store.errorMessage = "Registration was successful, but logging you in failed"
+                        store.errorMessage = String(localized: "registrationSuccessButLoginFailed")
                         store.state = .idle
                     }
                 }
-            } label: {
-                Text("Register")
-                    .font(.title3)
-                    .frame(minWidth: 200)
-                    .padding(.vertical, 10)
-                    .foregroundColor(.white)
-                    .background(store.credentialsValid ? .blue : .gray)
-                    .cornerRadius(10)
-                    .padding(.top, 12)
             }
             .disabled(!store.credentialsValid)
+            .padding(.vertical, 5)
             
-            Button("Log in"){
+            Button(String(localized: "login")){
                 parentState = .login
             }
             .padding(.top, 5)

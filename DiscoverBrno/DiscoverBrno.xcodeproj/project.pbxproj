@@ -15,6 +15,12 @@
 		0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E22967A1C300936E52 /* ContentStore.swift */; };
 		0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C41F493296F548200ED2D83 /* LandmarkMarker.swift */; };
 		0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */; };
+		0C6A720029721AB600755A96 /* DBButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FF29721AB600755A96 /* DBButton.swift */; };
+		0C6A720229721F1D00755A96 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720129721F1D00755A96 /* ColorExtensions.swift */; };
+		0C6A720429721F6500755A96 /* BackgroundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720329721F6500755A96 /* BackgroundGradient.swift */; };
+		0C6A7208297224BC00755A96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C6A720A297224BC00755A96 /* Localizable.strings */; };
+		0C6A720C297227A000755A96 /* DBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720B297227A000755A96 /* DBTextField.swift */; };
+		0C6A720E29722A1600755A96 /* DBSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720D29722A1600755A96 /* DBSecureField.swift */; };
 		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
 		0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F029701252000CE1FD /* MapPopupView.swift */; };
 		0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F429703AF1000CE1FD /* MapView.swift */; };
@@ -71,6 +77,12 @@
 		0C1E45E22967A1C300936E52 /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
 		0C41F493296F548200ED2D83 /* LandmarkMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMarker.swift; sourceTree = "<group>"; };
 		0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapAnnotation.swift; sourceTree = "<group>"; };
+		0C6A71FF29721AB600755A96 /* DBButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBButton.swift; sourceTree = "<group>"; };
+		0C6A720129721F1D00755A96 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		0C6A720329721F6500755A96 /* BackgroundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradient.swift; sourceTree = "<group>"; };
+		0C6A7209297224BC00755A96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0C6A720B297227A000755A96 /* DBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTextField.swift; sourceTree = "<group>"; };
+		0C6A720D29722A1600755A96 /* DBSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSecureField.swift; sourceTree = "<group>"; };
 		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
 		0CB3B9F029701252000CE1FD /* MapPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPopupView.swift; sourceTree = "<group>"; };
 		0CB3B9F429703AF1000CE1FD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -154,6 +166,34 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		0C6A71FC29721A8F00755A96 /* Functional */ = {
+			isa = PBXGroup;
+			children = (
+				0C41F493296F548200ED2D83 /* LandmarkMarker.swift */,
+				0CB3B9F029701252000CE1FD /* MapPopupView.swift */,
+				0CB3B9F429703AF1000CE1FD /* MapView.swift */,
+			);
+			path = Functional;
+			sourceTree = "<group>";
+		};
+		0C6A71FD29721A9B00755A96 /* Primitives */ = {
+			isa = PBXGroup;
+			children = (
+				0C6A71FF29721AB600755A96 /* DBButton.swift */,
+				0C6A720B297227A000755A96 /* DBTextField.swift */,
+				0C6A720D29722A1600755A96 /* DBSecureField.swift */,
+			);
+			path = Primitives;
+			sourceTree = "<group>";
+		};
+		0C6A7205297223DC00755A96 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				0C6A720A297224BC00755A96 /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
 		0CB3B9F8297054C0000CE1FD /* ImageRecognition */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +209,7 @@
 				0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */,
 				0CB3B9F629705220000CE1FD /* ImagePicker.swift */,
 				0CB3B9FD29706411000CE1FD /* UIImageExtensions.swift */,
+				0C6A720129721F1D00755A96 /* ColorExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -202,9 +243,9 @@
 		0CB5A671296F417500D5A6CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0C41F493296F548200ED2D83 /* LandmarkMarker.swift */,
-				0CB3B9F029701252000CE1FD /* MapPopupView.swift */,
-				0CB3B9F429703AF1000CE1FD /* MapView.swift */,
+				0C6A71FD29721A9B00755A96 /* Primitives */,
+				0C6A71FC29721A8F00755A96 /* Functional */,
+				0C6A720329721F6500755A96 /* BackgroundGradient.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +301,7 @@
 				0CB5A65D296EC20E00D5A6CC /* Utils */,
 				0CF2122F29673DC6001BBC8D /* Assets */,
 				0CF2120929673748001BBC8D /* Preview Content */,
+				0C6A7205297223DC00755A96 /* Strings */,
 			);
 			path = DiscoverBrno;
 			sourceTree = "<group>";
@@ -474,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CF2120B29673748001BBC8D /* Preview Assets.xcassets in Resources */,
+				0C6A7208297224BC00755A96 /* Localizable.strings in Resources */,
 				0CF2120829673748001BBC8D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,14 +549,18 @@
 				0CDE245C2971973400E4E2D3 /* DiscoveredDetailStore.swift in Sources */,
 				0CB5A66C296ED5A100D5A6CC /* MapStore.swift in Sources */,
 				0CF2120629673747001BBC8D /* ContentView.swift in Sources */,
+				0C6A720E29722A1600755A96 /* DBSecureField.swift in Sources */,
 				0CB5A65C296EBE8700D5A6CC /* RegistrationStore.swift in Sources */,
 				0CBA39AD296DD0B00087F023 /* DiContainer.swift in Sources */,
 				0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */,
 				0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */,
+				0C6A720229721F1D00755A96 /* ColorExtensions.swift in Sources */,
 				0CB5A65F296EC22900D5A6CC /* EmailValidator.swift in Sources */,
 				0CBA39A7296DC3300087F023 /* DiscoverableLandmark.swift in Sources */,
 				0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */,
+				0C6A720429721F6500755A96 /* BackgroundGradient.swift in Sources */,
 				0CB5A66A296ED51D00D5A6CC /* CustomLocationManager.swift in Sources */,
+				0C6A720C297227A000755A96 /* DBTextField.swift in Sources */,
 				0CB5A665296ED33900D5A6CC /* DiscoveredListScreen.swift in Sources */,
 				0CB5A65A296EBE7F00D5A6CC /* RegistrationScreen.swift in Sources */,
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
@@ -530,6 +577,7 @@
 				0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */,
 				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,
 				0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */,
+				0C6A720029721AB600755A96 /* DBButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +612,17 @@
 			targetProxy = 0CF2121B29673748001BBC8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0C6A720A297224BC00755A96 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C6A7209297224BC00755A96 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0CF2122229673748001BBC8D /* Debug */ = {

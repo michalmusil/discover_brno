@@ -37,7 +37,6 @@ final class RegistrationStore: ObservableObject{
     func loginUser(email: String, password: String) async throws{
         self.state = .loading
         try await realmManager.loginEmailPassword(email: email, password: password)
-        print("aaa")
     }
 }
 
@@ -62,11 +61,11 @@ extension RegistrationStore{
                 if let valid = emailValid,
                    valid == false {
                     self?.credentialsValid = false
-                    return "Not a valid email address."
+                    return String(localized: "emailInvalid")
                 }
                 if password.count < 6{
                     self?.credentialsValid = false
-                    return "Password must be at least 6 characters"
+                    return String(localized: "passwordTooShort")
                 }
                 self?.credentialsValid = true
                 return ""

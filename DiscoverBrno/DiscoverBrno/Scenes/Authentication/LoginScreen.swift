@@ -12,6 +12,8 @@ struct LoginScreen: View {
     @StateObject private var store: LoginStore
     @Binding private var parentState: ContentStore.State
     
+    @State var firstDisplayed = true
+    
     init(di: DiContainer, parentState: Binding<ContentStore.State>) {
         self._store = StateObject(wrappedValue: di.loginStore)
         self._parentState = parentState
@@ -21,64 +23,68 @@ struct LoginScreen: View {
         Group{
             switch store.state{
             case .start:
-                loginForm
+                loginContent
             case .idle:
-                loginForm
+                loginContent
             case .loading:
                 ProgressView()
             }
         }
         .padding()
-        .navigationTitle("Log in")
         .navigationBarTitleDisplayMode(.large)
         
+    }
+    
+    @ViewBuilder
+    var loginContent: some View{
+        VStack{
+            image
+            loginForm
+        }
+        .padding(.horizontal, 5)
+    }
+    
+    @ViewBuilder
+    var image: some View{
+        Image(uiImage: UIImage(named: "discoverBrnoLogo")!)
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 30)
+            .padding(.bottom, 40)
     }
     
     
     @ViewBuilder
     var loginForm: some View{
         VStack{
-            TextField("E-mail", text: $store.email)
-                .autocorrectionDisabled(true)
-                .textInputAutocapitalization(.never)
-                .keyboardType(.emailAddress)
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal, 30)
-            SecureField("Password", text: $store.password)
-                .autocorrectionDisabled(true)
-                .keyboardType(.emailAddress)
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal, 30)
+            DBTextField(title: String(localized: "email"), text: $store.email, keyboardType: .emailAddress)
+            DBSecureField(title: String(localized: "password"), text: $store.password)
+                .onTapGesture {
+                    firstDisplayed = false
+                }
         
-            if !store.errorMessage.isEmpty{
+            if !store.errorMessage.isEmpty && !firstDisplayed{
                 Text(store.errorMessage)
                     .foregroundColor(.red)
                     .font(.caption)
             }
             
-            Button{
+            DBButton(text: String(localized: "login")){
                 Task{
                     do{
                         try await store.loginUser()
                     }
                     catch AuthenticationError.loginFailed {
-                        store.errorMessage = "Logging in failed"
+                        store.errorMessage = String(localized: "loggingInFailed")
                         store.state = .idle
                     }
                 }
-            } label: {
-                Text("Log in")
-                    .font(.title3)
-                    .frame(minWidth: 200)
-                    .padding(.vertical, 10)
-                    .foregroundColor(.white)
-                    .background(store.credentialsValid ? .blue : .gray)
-                    .cornerRadius(10)
-                    .padding(.top, 12)
             }
             .disabled(!store.credentialsValid)
+            .padding(.vertical, 5)
             
-            Button("New user"){
+            Button(String(localized: "registerNewUser")){
                 parentState = .registration
             }
             .padding(.top, 5)

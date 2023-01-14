@@ -18,27 +18,28 @@ struct ContentView: View {
     }
     
     var body: some View {
-        NavigationView{
-            if let configuration = store.realmManager.configuration,
-               let realm = store.realmManager.realm,
-               let user = store.realmManager.user{
+        if let configuration = store.realmManager.configuration,
+           let realm = store.realmManager.realm,
+           let user = store.realmManager.user{
+            
+            NavigationView{
                 appNavigation
                     .environment(\.realmConfiguration, configuration)
                     .environment(\.realm, realm)
             }
-            else {
-                Group{
-                    switch store.state{
-                    case .login:
-                        LoginScreen(di: di, parentState: $store.state)
-                            .transition(AnyTransition.scale.animation(.easeInOut(duration: 0.2)))
-                    case .registration:
-                        RegistrationScreen(di: di, parentState: $store.state)
-                            .transition(AnyTransition.scale.animation(.easeInOut(duration: 0.2)))
-                    }
+        }
+        else {
+            Group{
+                switch store.state{
+                case .login:
+                    LoginScreen(di: di, parentState: $store.state)
+                        .transition(AnyTransition.scale.animation(.easeInOut(duration: 0.2)))
+                case .registration:
+                    RegistrationScreen(di: di, parentState: $store.state)
+                        .transition(AnyTransition.scale.animation(.easeInOut(duration: 0.2)))
                 }
-                
             }
+            
         }
     }
     
