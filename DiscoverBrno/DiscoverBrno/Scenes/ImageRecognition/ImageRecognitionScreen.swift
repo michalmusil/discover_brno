@@ -35,7 +35,7 @@ struct ImageRecognitionScreen: View {
                 image
                 content
             }
-            .navigationTitle("New discovery")
+            .navigationTitle(String(localized: "discover"))
             .navigationBarTitleDisplayMode(.inline)
         }
     }
@@ -71,24 +71,15 @@ struct ImageRecognitionScreen: View {
                     Text(store.errorMessage)
                         .font(.title3)
                         .foregroundColor(.red)
-                    Button{
+                    DBButton(text: String(localized: "tryAgain")){
                         cameraPresented = true
-                    } label: {
-                        Text("Try again")
-                            .font(.title3)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 20)
-                            .foregroundColor(.white)
-                            .background(Color.accentColor)
-                            .cornerRadius(10)
-                            .padding(.top, 12)
                     }
                 }
                 else if let discovered = store.discoveredLandmark{
-                    Text("🎉Congratulations!🎉")
+                    Text(String(localized: "congratulations"))
                         .font(.title)
                         .fontWeight(.bold)
-                    Text("you have discovered: ")
+                    Text(String(localized: "youHaveDiscovered"))
                         .font(.title3)
                         .padding(.bottom, 10)
                     Text(discovered.landmark?.name ?? "")
@@ -99,48 +90,19 @@ struct ImageRecognitionScreen: View {
                         Text(store.errorMessage)
                             .font(.title)
                             .foregroundColor(.red)
-                        Button{
+                        DBButton(text: String(localized: "newDiscovery")){
                             cameraPresented = true
-                        } label: {
-                            Text("New discovery")
-                                .font(.title3)
-                                .padding(.horizontal, 20)
-                                .padding(.vertical, 10)
-                                .foregroundColor(.orange)
-                                .background(Color.accentColor)
-                                .cornerRadius(10)
-                                .padding(.top, 12)
                         }
                         Text(store.errorMessage)
                             .font(.title)
                             .foregroundColor(.red)
                         
-                        NavigationLink{
-                            DiscoveredDetailScreen(di: di, discoveredLandmark: discovered)
-                        } label: {
-                            Text("Go to detail")
-                                .font(.title3)
-                                .padding(.horizontal, 20)
-                                .padding(.vertical, 10)
-                                .foregroundColor(.white)
-                                .background(Color.accentColor)
-                                .cornerRadius(10)
-                                .padding(.top, 12)
-                        }
+                        DBNavigationButton(text: String(localized: "goToDetail"), destination: DiscoveredDetailScreen(di: di, discoveredLandmark: discovered))
                     }
                 }
                 else {
-                    Button{
+                    DBButton(text: String(localized: "openCamera")){
                         cameraPresented = true
-                    } label: {
-                        Text("Open camera")
-                            .font(.title3)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 20)
-                            .foregroundColor(.white)
-                            .background(Color.accentColor)
-                            .cornerRadius(10)
-                            .padding(.top, 12)
                     }
                 }
             }

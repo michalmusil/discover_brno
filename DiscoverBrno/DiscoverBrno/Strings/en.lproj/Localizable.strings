@@ -19,3 +19,16 @@
 
 "email" = "Email";
 "password" = "Password";
+
+"discover" = "Discover";
+
+
+"goToDetail" = "Go to detail";
+"openCamera" = "Open camera";
+"tryAgain" = "Try again";
+"newDiscovery" = "New discovery";
+
+"congratulations" = "🎉Congratulations!🎉";
+"youHaveDiscovered" = "You have discovered";
+
+"hint" = "Hint";

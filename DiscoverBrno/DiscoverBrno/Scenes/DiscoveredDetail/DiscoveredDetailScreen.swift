@@ -34,9 +34,9 @@ struct DiscoveredDetailScreen: View {
         if let landmark = discoveredLandmark.landmark{
             AsyncImage(url: URL(string: landmark.titleImageUrl), content: { image in
                 image.resizable()
+                .scaledToFit()
                 .aspectRatio(1, contentMode: .fill)
                 .frame(maxWidth: .infinity)
-                .scaledToFill()
                 .cornerRadius(20)
             }, placeholder: {
                 ProgressView()
@@ -46,7 +46,6 @@ struct DiscoveredDetailScreen: View {
         else {
             Image(systemName: "questionmark")
                 .resizable()
-                .scaledToFit()
                 .aspectRatio(1, contentMode: .fill)
                 .frame(maxWidth: .infinity)
                 .padding(100)
@@ -63,6 +62,7 @@ struct DiscoveredDetailScreen: View {
                 VStack{
                     Text(landmark.name)
                         .font(.title)
+                        .padding(.vertical, 10)
                     Text(landmark.landmarkDescription)
                         .font(.body)
                         .multilineTextAlignment(.leading)

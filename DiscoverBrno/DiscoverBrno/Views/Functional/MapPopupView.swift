@@ -41,35 +41,28 @@ struct MapPopupView: View {
                 Image(systemName: "xmark.circle.fill")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 25, height: 25)
-                    .foregroundColor(.black)
-                    .padding(.trailing, 2)
-                    .offset(y: -23)
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.accentColor)
+                    .padding(6)
             }
-            VStack(alignment: .leading){
-                HStack{
-                    image
-                    content
-                }
-                if let discoverd = discoveredLandmark,
-                   hasBeenDiscovered{
-                    NavigationLink{
-                        DiscoveredDetailScreen(di: di, discoveredLandmark: discoverd)
-                    } label: {
-                        Text("Go to detail")
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 30)
-                            .padding(5)
-                            .background(.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                            .padding(.horizontal, 10)
+            ZStack{
+                VStack(alignment: .leading){
+                    HStack{
+                        image
+                        content
+                    }
+                    if let discovered = discoveredLandmark,
+                       hasBeenDiscovered{
+                        DBNavigationButton(text: String(localized: "goToDetail"), destination: DiscoveredDetailScreen(di: di, discoveredLandmark: discovered))
+                            .padding(.top, 3)
                     }
                 }
             }
+            .padding(.vertical, 30)
+            .padding(.horizontal, 10)
+            .frame(maxWidth: .infinity)
         }
-        .padding(.vertical, 30)
-        .padding(.horizontal, 10)
+        .frame(maxWidth: .infinity)
         .background(.background)
         .cornerRadius(20)
         .shadow(color: .gray, radius: 10)
@@ -85,17 +78,17 @@ struct MapPopupView: View {
                 ProgressView()
             })
             .scaledToFill()
-            .frame(width: 60, height: 60)
+            .frame(width: 80, height: 80)
             .clipShape(Circle())
-            .padding(.horizontal, 15)
+            .padding(.horizontal, 5)
         }
         else{
             Image(systemName: "questionmark.circle")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 60, height: 60)
+                .frame(width: 80, height: 80)
                 .clipShape(Circle())
-                .padding(.horizontal, 15)
+                .padding(.horizontal, 5)
         }
     }
     
@@ -106,6 +99,8 @@ struct MapPopupView: View {
                 Text(landmark.name)
                     .font(.title3)
                     .fontWeight(.bold)
+                    .lineLimit(1)
+                    .multilineTextAlignment(.leading)
                 
                 Text(landmark.landmarkDescription)
                     .font(.body)
@@ -113,14 +108,15 @@ struct MapPopupView: View {
                     .multilineTextAlignment(.leading)
             }
             else{
-                Text("Hint:")
+                Text(String(localized: "hint"))
                     .font(.title3)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.leading)
                     
                 
                 Text(landmark.hint)
-                    .font(.system(size: 12))
+                    .font(.body)
+                    .lineLimit(4)
                     .multilineTextAlignment(.leading)
             }
         }
@@ -130,6 +126,6 @@ struct MapPopupView: View {
 
 struct MapPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        MapPopupView(di: DiContainer(), landmark: DiscoverableLandmark.sampleDiscoverable, showPopup: .constant(true), hasBeenDiscovered: .constant(true))
+        MapPopupView(di: DiContainer(), landmark: DiscoverableLandmark.sampleDiscoverable, showPopup: .constant(true), hasBeenDiscovered: .constant(false))
     }
 }

@@ -21,6 +21,7 @@
 		0C6A7208297224BC00755A96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C6A720A297224BC00755A96 /* Localizable.strings */; };
 		0C6A720C297227A000755A96 /* DBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720B297227A000755A96 /* DBTextField.swift */; };
 		0C6A720E29722A1600755A96 /* DBSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720D29722A1600755A96 /* DBSecureField.swift */; };
+		0C9EF30B2974550E0047C9CF /* DBNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */; };
 		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
 		0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F029701252000CE1FD /* MapPopupView.swift */; };
 		0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F429703AF1000CE1FD /* MapView.swift */; };
@@ -83,6 +84,7 @@
 		0C6A7209297224BC00755A96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C6A720B297227A000755A96 /* DBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTextField.swift; sourceTree = "<group>"; };
 		0C6A720D29722A1600755A96 /* DBSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSecureField.swift; sourceTree = "<group>"; };
+		0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBNavigationButton.swift; sourceTree = "<group>"; };
 		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
 		0CB3B9F029701252000CE1FD /* MapPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPopupView.swift; sourceTree = "<group>"; };
 		0CB3B9F429703AF1000CE1FD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				0C6A71FF29721AB600755A96 /* DBButton.swift */,
 				0C6A720B297227A000755A96 /* DBTextField.swift */,
 				0C6A720D29722A1600755A96 /* DBSecureField.swift */,
+				0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */,
 			);
 			path = Primitives;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C9EF30B2974550E0047C9CF /* DBNavigationButton.swift in Sources */,
 				0CB5A661296EC6B800D5A6CC /* AuthenticationError.swift in Sources */,
 				0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */,
 				0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */,
