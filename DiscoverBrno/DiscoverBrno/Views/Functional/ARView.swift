@@ -11,28 +11,43 @@ import ARKit
 
 struct ARView: UIViewRepresentable{
     
+    let arView = ARSCNView()
+    
     func makeUIView(context: Context) -> ARSCNView {
-        let arView = ARSCNView()
         arView.delegate = context.coordinator
         
-        let scene = SCNScene(named: "RewardsCatalog.scnassets/BrnoDragon.scn")
+        let scene = SCNScene(named: "RewardsCatalog.scnassets/StartupScene.scn")!
         let config = ARWorldTrackingConfiguration()
         
-        if let scn = scene{
-            arView.scene = scn
-        }
+        arView.scene = scene
         arView.showsStatistics = true
         arView.session.run(config)
+        
+        addReward()
+        
         return arView
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        
+
     }
     
     func makeCoordinator() -> Coordinator {
         Coordinator()
     }
+    
+    
+    private func addReward(){
+        let node = SCNScene(named: "RewardsCatalog.scnassets/BrnoDragon.scn")?.rootNode.childNode(withName: "Content", recursively: false)
+        
+        if let reward = node{
+            reward.position = SCNVector3(0,-0.3,-0.3) // Trochu dolu a od sebe
+            reward.scale = SCNVector3(0.001, 0.001, 0.001)
+            arView.scene.rootNode.addChildNode(reward)
+        }
+    }
+    
+    
     
     class Coordinator: NSObject, ARSCNViewDelegate{
         
