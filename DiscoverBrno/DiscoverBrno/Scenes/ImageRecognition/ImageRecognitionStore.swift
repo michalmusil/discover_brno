@@ -96,15 +96,15 @@ extension ImageRecognitionStore{
                 self?.discoveredLandmark = nil
                 
                 guard let img = image else {
-                    self?.errorMessage = "Failed to process image"
+                    self?.errorMessage = String(localized: "failedToProcessImage")
                     return
                 }
                 guard let recognized = self?.tryRecognizeImage(image: img) else {
-                    self?.errorMessage = "Landmark was not recognized"
+                    self?.errorMessage = String(localized: "landmarkNotRecognized")
                     return
                 }
                 if let alreadyDisovered = self?.checkIfUserAlreadyDiscovered(landmarkName: recognized.name) {
-                    self?.errorMessage = "\(alreadyDisovered.landmark?.name ?? "") was already discovered"
+                    self?.errorMessage = "\(String(localized: "landmarkAlreadyDiscovered")): \(alreadyDisovered.landmark?.name ?? "")"
                     return
                 }
                 do{
@@ -112,7 +112,7 @@ extension ImageRecognitionStore{
                     self?.discoveredLandmark = saved
                 }
                 catch{
-                    self?.errorMessage = "Failed to save the newly discovered landmark: \(recognized.name)"
+                    self?.errorMessage = String(localized: "failedToSaveLandmark")
                 }
             }
             .store(in: &subscribtions)

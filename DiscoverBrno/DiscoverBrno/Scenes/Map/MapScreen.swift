@@ -33,38 +33,6 @@ struct MapScreen: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
             ZStack(alignment: .bottom){
-                /*
-                Map(
-                    coordinateRegion: $store.coordinateRegion,
-                    interactionModes: [.all],
-                    showsUserLocation: true,
-                    annotationItems: getBrnoLocations(discoverableLandmarks: discoverableLandmarks.reversed()),
-                    annotationContent: { location in
-                        MapAnnotation(coordinate: location.coordinate, content: {
-                            LandmarkMarker(location: location, onTapDiscovered: { discoveredLandmark in
-                                // NAVIGATE TO LANDMARK DETAIL
-                                lastSelected = discoveredLandmark
-                                lastSelectedDiscovered = true
-                                withAnimation{
-                                    showPopup = true
-                                }
-                                //print(discoveredLandmark.landmark?.name ?? "ERROR")
-                            }, onTapDiscoverable: { discoverableLandmark in
-                                // DISPLAY HINT
-                                lastSelected = discoverableLandmark
-                                lastSelectedDiscovered = false
-                                withAnimation{
-                                    showPopup = true
-                                }
-                                //print("NOT YET DISCOVERED: \(discoverableLandmark.name)")
-                            })
-                        })
-                    })
-                .ignoresSafeArea(edges: .top)
-                .onAppear{
-                    store.centerMapOnUserLocation()
-                }
-                 */
                 MapView(locations: locations)
                     .ignoresSafeArea(edges: .top)
                     .onAppear{

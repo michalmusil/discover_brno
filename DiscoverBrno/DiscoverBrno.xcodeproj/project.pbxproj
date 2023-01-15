@@ -13,6 +13,8 @@
 		0C1E45DF296795F200936E52 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C1E45DE296795F200936E52 /* RealmSwift */; };
 		0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E029679E8000936E52 /* LoginStore.swift */; };
 		0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E22967A1C300936E52 /* ContentStore.swift */; };
+		0C3243942974A55100C9EB99 /* RewardARScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3243932974A55100C9EB99 /* RewardARScreen.swift */; };
+		0C3243982974A9C400C9EB99 /* RewardsCatalog.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C3243972974A9C400C9EB99 /* RewardsCatalog.scnassets */; };
 		0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C41F493296F548200ED2D83 /* LandmarkMarker.swift */; };
 		0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */; };
 		0C6A720029721AB600755A96 /* DBButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FF29721AB600755A96 /* DBButton.swift */; };
@@ -22,6 +24,7 @@
 		0C6A720C297227A000755A96 /* DBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720B297227A000755A96 /* DBTextField.swift */; };
 		0C6A720E29722A1600755A96 /* DBSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720D29722A1600755A96 /* DBSecureField.swift */; };
 		0C9EF30B2974550E0047C9CF /* DBNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */; };
+		0C9EF30D29745BE60047C9CF /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF30C29745BE60047C9CF /* ARView.swift */; };
 		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
 		0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F029701252000CE1FD /* MapPopupView.swift */; };
 		0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F429703AF1000CE1FD /* MapView.swift */; };
@@ -76,6 +79,8 @@
 		0C1E45D92967927900936E52 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0C1E45E029679E8000936E52 /* LoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStore.swift; sourceTree = "<group>"; };
 		0C1E45E22967A1C300936E52 /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
+		0C3243932974A55100C9EB99 /* RewardARScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardARScreen.swift; sourceTree = "<group>"; };
+		0C3243972974A9C400C9EB99 /* RewardsCatalog.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = RewardsCatalog.scnassets; sourceTree = "<group>"; };
 		0C41F493296F548200ED2D83 /* LandmarkMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMarker.swift; sourceTree = "<group>"; };
 		0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapAnnotation.swift; sourceTree = "<group>"; };
 		0C6A71FF29721AB600755A96 /* DBButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBButton.swift; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 		0C6A720B297227A000755A96 /* DBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTextField.swift; sourceTree = "<group>"; };
 		0C6A720D29722A1600755A96 /* DBSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSecureField.swift; sourceTree = "<group>"; };
 		0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBNavigationButton.swift; sourceTree = "<group>"; };
+		0C9EF30C29745BE60047C9CF /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
 		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
 		0CB3B9F029701252000CE1FD /* MapPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPopupView.swift; sourceTree = "<group>"; };
 		0CB3B9F429703AF1000CE1FD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -168,12 +174,21 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		0C3243922974A53100C9EB99 /* RewardAR */ = {
+			isa = PBXGroup;
+			children = (
+				0C3243932974A55100C9EB99 /* RewardARScreen.swift */,
+			);
+			path = RewardAR;
+			sourceTree = "<group>";
+		};
 		0C6A71FC29721A8F00755A96 /* Functional */ = {
 			isa = PBXGroup;
 			children = (
 				0C41F493296F548200ED2D83 /* LandmarkMarker.swift */,
 				0CB3B9F029701252000CE1FD /* MapPopupView.swift */,
 				0CB3B9F429703AF1000CE1FD /* MapView.swift */,
+				0C9EF30C29745BE60047C9CF /* ARView.swift */,
 			);
 			path = Functional;
 			sourceTree = "<group>";
@@ -195,6 +210,14 @@
 				0C6A720A297224BC00755A96 /* Localizable.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		0C9EF30E29745D3A0047C9CF /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				0C3243972974A9C400C9EB99 /* RewardsCatalog.scnassets */,
+			);
+			path = AR;
 			sourceTree = "<group>";
 		};
 		0CB3B9F8297054C0000CE1FD /* ImageRecognition */ = {
@@ -341,11 +364,12 @@
 				0C1E45E22967A1C300936E52 /* ContentStore.swift */,
 				0C1E45D52967908F00936E52 /* Authentication */,
 				0CF2123729674215001BBC8D /* Home */,
-				0CB3B9F8297054C0000CE1FD /* ImageRecognition */,
-				0CF212352967417B001BBC8D /* DiscoveredList */,
-				0CDE2458297196EB00E4E2D3 /* DiscoveredDetail */,
 				0CF21236296741E4001BBC8D /* Map */,
+				0CF212352967417B001BBC8D /* DiscoveredList */,
+				0CB3B9F8297054C0000CE1FD /* ImageRecognition */,
+				0CDE2458297196EB00E4E2D3 /* DiscoveredDetail */,
 				0CF2123829674219001BBC8D /* Rewards */,
+				0C3243922974A53100C9EB99 /* RewardAR */,
 				0CF212392967422A001BBC8D /* Settings */,
 			);
 			path = Scenes;
@@ -354,6 +378,7 @@
 		0CF2122F29673DC6001BBC8D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0C9EF30E29745D3A0047C9CF /* AR */,
 				0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */,
 				0CF2120729673748001BBC8D /* Assets.xcassets */,
 			);
@@ -518,6 +543,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C3243982974A9C400C9EB99 /* RewardsCatalog.scnassets in Resources */,
 				0CF2120B29673748001BBC8D /* Preview Assets.xcassets in Resources */,
 				0C6A7208297224BC00755A96 /* Localizable.strings in Resources */,
 				0CF2120829673748001BBC8D /* Assets.xcassets in Resources */,
@@ -546,6 +572,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C9EF30B2974550E0047C9CF /* DBNavigationButton.swift in Sources */,
+				0C3243942974A55100C9EB99 /* RewardARScreen.swift in Sources */,
 				0CB5A661296EC6B800D5A6CC /* AuthenticationError.swift in Sources */,
 				0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */,
 				0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */,
@@ -574,6 +601,7 @@
 				0CB3B9FE29706411000CE1FD /* UIImageExtensions.swift in Sources */,
 				0CB5A667296ED36900D5A6CC /* MapScreen.swift in Sources */,
 				0CB5A663296ED31100D5A6CC /* HomeScreen.swift in Sources */,
+				0C9EF30D29745BE60047C9CF /* ARView.swift in Sources */,
 				0CB3B9FA297054E8000CE1FD /* ImageRecognitionScreen.swift in Sources */,
 				0CB3B9FC2970554C000CE1FD /* ImageRecognitionStore.swift in Sources */,
 				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,

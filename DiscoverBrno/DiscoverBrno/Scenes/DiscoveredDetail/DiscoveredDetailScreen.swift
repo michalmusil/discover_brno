@@ -63,6 +63,11 @@ struct DiscoveredDetailScreen: View {
                     Text(landmark.name)
                         .font(.title)
                         .padding(.vertical, 10)
+                    
+                    DBNavigationButton(text: "Show reward", destination: RewardARScreen(discoveredLandmark: discoveredLandmark))
+                        .frame(maxWidth: 180)
+                        .padding()
+                    
                     Text(landmark.landmarkDescription)
                         .font(.body)
                         .multilineTextAlignment(.leading)
