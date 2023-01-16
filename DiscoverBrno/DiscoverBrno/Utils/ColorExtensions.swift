@@ -14,5 +14,5 @@ extension Color {
     
     static let disabled = Color("Disabled")
     
-    static let textColor = Color("TextColor")
+    static let onAccent = Color("OnAccent")
 }
