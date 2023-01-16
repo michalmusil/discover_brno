@@ -16,6 +16,8 @@
 		0C3243942974A55100C9EB99 /* RewardARScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3243932974A55100C9EB99 /* RewardARScreen.swift */; };
 		0C3243982974A9C400C9EB99 /* RewardsCatalog.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C3243972974A9C400C9EB99 /* RewardsCatalog.scnassets */; };
 		0C32439A2974C4F600C9EB99 /* LandmarkReward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3243992974C4F600C9EB99 /* LandmarkReward.swift */; };
+		0C3CB9832975CEE300AD346D /* DiscoveryListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CB9822975CEE300AD346D /* DiscoveryListStore.swift */; };
+		0C3CB9852975D03100AD346D /* UndiscoveredListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CB9842975D03100AD346D /* UndiscoveredListItem.swift */; };
 		0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C41F493296F548200ED2D83 /* LandmarkMarker.swift */; };
 		0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */; };
 		0C6A720029721AB600755A96 /* DBButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FF29721AB600755A96 /* DBButton.swift */; };
@@ -39,7 +41,7 @@
 		0CB5A65F296EC22900D5A6CC /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */; };
 		0CB5A661296EC6B800D5A6CC /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A660296EC6B800D5A6CC /* AuthenticationError.swift */; };
 		0CB5A663296ED31100D5A6CC /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A662296ED31100D5A6CC /* HomeScreen.swift */; };
-		0CB5A665296ED33900D5A6CC /* DiscoveredListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A664296ED33900D5A6CC /* DiscoveredListScreen.swift */; };
+		0CB5A665296ED33900D5A6CC /* DiscoveryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A664296ED33900D5A6CC /* DiscoveryListScreen.swift */; };
 		0CB5A667296ED36900D5A6CC /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A666296ED36900D5A6CC /* MapScreen.swift */; };
 		0CB5A66A296ED51D00D5A6CC /* CustomLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A669296ED51D00D5A6CC /* CustomLocationManager.swift */; };
 		0CB5A66C296ED5A100D5A6CC /* MapStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A66B296ED5A100D5A6CC /* MapStore.swift */; };
@@ -84,6 +86,8 @@
 		0C3243932974A55100C9EB99 /* RewardARScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardARScreen.swift; sourceTree = "<group>"; };
 		0C3243972974A9C400C9EB99 /* RewardsCatalog.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = RewardsCatalog.scnassets; sourceTree = "<group>"; };
 		0C3243992974C4F600C9EB99 /* LandmarkReward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkReward.swift; sourceTree = "<group>"; };
+		0C3CB9822975CEE300AD346D /* DiscoveryListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryListStore.swift; sourceTree = "<group>"; };
+		0C3CB9842975D03100AD346D /* UndiscoveredListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndiscoveredListItem.swift; sourceTree = "<group>"; };
 		0C41F493296F548200ED2D83 /* LandmarkMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMarker.swift; sourceTree = "<group>"; };
 		0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapAnnotation.swift; sourceTree = "<group>"; };
 		0C6A71FF29721AB600755A96 /* DBButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBButton.swift; sourceTree = "<group>"; };
@@ -107,7 +111,7 @@
 		0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		0CB5A660296EC6B800D5A6CC /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
 		0CB5A662296ED31100D5A6CC /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		0CB5A664296ED33900D5A6CC /* DiscoveredListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredListScreen.swift; sourceTree = "<group>"; };
+		0CB5A664296ED33900D5A6CC /* DiscoveryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryListScreen.swift; sourceTree = "<group>"; };
 		0CB5A666296ED36900D5A6CC /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		0CB5A669296ED51D00D5A6CC /* CustomLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLocationManager.swift; sourceTree = "<group>"; };
 		0CB5A66B296ED5A100D5A6CC /* MapStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStore.swift; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				0C8B8A312975AEBE00BE53E0 /* DiscoveredListItem.swift */,
+				0C3CB9842975D03100AD346D /* UndiscoveredListItem.swift */,
 			);
 			path = ListItems;
 			sourceTree = "<group>";
@@ -410,7 +415,8 @@
 		0CF212352967417B001BBC8D /* DiscoveredList */ = {
 			isa = PBXGroup;
 			children = (
-				0CB5A664296ED33900D5A6CC /* DiscoveredListScreen.swift */,
+				0CB5A664296ED33900D5A6CC /* DiscoveryListScreen.swift */,
+				0C3CB9822975CEE300AD346D /* DiscoveryListStore.swift */,
 			);
 			path = DiscoveredList;
 			sourceTree = "<group>";
@@ -606,7 +612,8 @@
 				0C6A720429721F6500755A96 /* BackgroundGradient.swift in Sources */,
 				0CB5A66A296ED51D00D5A6CC /* CustomLocationManager.swift in Sources */,
 				0C6A720C297227A000755A96 /* DBTextField.swift in Sources */,
-				0CB5A665296ED33900D5A6CC /* DiscoveredListScreen.swift in Sources */,
+				0CB5A665296ED33900D5A6CC /* DiscoveryListScreen.swift in Sources */,
+				0C3CB9852975D03100AD346D /* UndiscoveredListItem.swift in Sources */,
 				0CB5A65A296EBE7F00D5A6CC /* RegistrationScreen.swift in Sources */,
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
 				0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */,
@@ -621,6 +628,7 @@
 				0CB3B9FC2970554C000CE1FD /* ImageRecognitionStore.swift in Sources */,
 				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,
 				0CB3B9F729705220000CE1FD /* ImagePicker.swift in Sources */,
+				0C3CB9832975CEE300AD346D /* DiscoveryListStore.swift in Sources */,
 				0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */,
 				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,
 				0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */,

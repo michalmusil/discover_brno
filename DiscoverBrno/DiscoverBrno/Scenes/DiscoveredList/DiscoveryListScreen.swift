@@ -8,23 +8,26 @@
 import SwiftUI
 import RealmSwift
 
-struct DiscoveredListScreen: View {
+struct DiscoveryListScreen: View {
     private let di: DiContainer
+    
+    @StateObject var store: DiscoveryListStore
     
     @ObservedResults(DiscoveredLandmark.self)
     var discoveredLandmarks
-
-    @State var selectedListType: DiscoveryListType = .discovered
+    @State
+    var undiscoveredLandmarks: [DiscoverableLandmark] = []
     
     init(di: DiContainer) {
         self.di = di
+        self._store = StateObject(wrappedValue: di.discoveryListStore)
     }
     
     var body: some View {
         VStack{
             ScrollView(.vertical){
                 LazyVStack{
-                    switch selectedListType {
+                    switch store.selectedListType {
                     case .discovered:
                         discoveredItems
                     case .undiscovered:
@@ -33,7 +36,7 @@ struct DiscoveredListScreen: View {
                 }
             }
             
-            Picker("Select list type", selection: $selectedListType){
+            Picker("Select list type", selection: $store.selectedListType){
                 ForEach(DiscoveryListType.allCases, id: \.self){ listType in
                     Text(listType.getName())
                 }
@@ -41,6 +44,10 @@ struct DiscoveredListScreen: View {
             .pickerStyle(.segmented)
             .padding(.bottom, 8)
             .padding(.horizontal)
+        }
+        .onAppear{
+            undiscoveredLandmarks = store.getUndiscoveredLandmarks()
+            store.selectedListType = discoveredLandmarks.isEmpty ? .undiscovered : .discovered
         }
     }
     
@@ -53,8 +60,8 @@ struct DiscoveredListScreen: View {
     
     @ViewBuilder
     var undiscoveredItems: some View{
-        ForEach(discoveredLandmarks){ discovered in
-            DiscoveredListItem(di: di, discoveredLandmark: discovered)
+        ForEach(undiscoveredLandmarks){ undiscovered in
+            UndiscoveredListItem(discoverableLandmark: undiscovered)
         }
     }
     
@@ -78,6 +85,6 @@ enum DiscoveryListType: CaseIterable{
 
 struct DiscoveredListScreen_Previews: PreviewProvider {
     static var previews: some View {
-        DiscoveredListScreen(di: DiContainer())
+        DiscoveryListScreen(di: DiContainer())
     }
 }

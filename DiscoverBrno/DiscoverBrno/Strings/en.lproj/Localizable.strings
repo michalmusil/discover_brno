@@ -6,6 +6,10 @@
   
 */
 
+"home" = "Home";
+"map" = "Map";
+"discoveries" = "Discoveries";
+
 "login" = "Log in";
 "registerNewUser" = "Register new user";
 

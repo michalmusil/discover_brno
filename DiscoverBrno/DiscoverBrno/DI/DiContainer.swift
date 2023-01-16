@@ -28,6 +28,7 @@ final class DiContainer{
     let mapStore: MapStore
     let imageRecognitionStore: ImageRecognitionStore
     let discoveredDetailStore: DiscoveredDetailStore
+    let discoveryListStore: DiscoveryListStore
     
     init(){
         self.realmManager = RealmManager.shared
@@ -44,5 +45,6 @@ final class DiContainer{
         self.mapStore = MapStore(realmManager: realmManager, locationManager: locationManager)
         self.imageRecognitionStore = ImageRecognitionStore(realmManager: realmManager, mlModel: mlModel)
         self.discoveredDetailStore = DiscoveredDetailStore()
+        self.discoveryListStore = DiscoveryListStore(realmManager: realmManager)
     }
 }

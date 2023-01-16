@@ -86,6 +86,26 @@ extension RealmManager{
         return landmarks.reversed()
     }
     
+    func getUndiscoveredLandmarks() throws -> [DiscoverableLandmark]{
+        guard let _ = self.realm else {
+            throw DataError.realmInstanceNil
+        }
+        
+        var discoverable = try getDiscoverableLandmarks()
+        let discovered = try getDiscoveredLandmarks()
+        
+        
+        discovered.forEach{ discov in
+            if let containing = discoverable.firstIndex(where: { $0._id == discov.landmark?._id}){
+                discoverable.remove(at: containing)
+            }
+        }
+        
+        return discoverable
+    }
+    
+    
+    
     func getDiscoverableLandmarkByName(name: String) -> DiscoverableLandmark?{
         guard let realmInstance = self.realm else {
             return nil
@@ -95,6 +115,7 @@ extension RealmManager{
         
         return landmarks.first(where: { $0.name.lowercased() == name.lowercased() })
     }
+    
     
     func getDiscoveredLandmarkByName(name: String) -> DiscoveredLandmark?{
         guard let realmInstance = self.realm else {

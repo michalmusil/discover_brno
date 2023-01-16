@@ -75,31 +75,6 @@ struct DiscoveredListItem: View {
                 .padding(.horizontal, 5)
         }
     }
-    
-    @ViewBuilder
-    var nonExpandedContent: some View{
-        HStack{
-            image
-            Spacer()
-            title
-            Spacer()
-        }
-        .padding(.horizontal, 15)
-    }
-    
-    @ViewBuilder
-    var expandedContent: some View{
-        VStack{
-            HStack{
-                image
-                Spacer()
-                title
-                Spacer()
-            }
-            
-        }
-        .padding(.horizontal, 15)
-    }
 }
 
 

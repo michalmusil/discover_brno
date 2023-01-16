@@ -49,19 +49,19 @@ struct ContentView: View {
             HomeScreen(di: di)
                 .tabItem{
                     Image(systemName: "house.circle")
-                    Text("Home")
+                    Text(String(localized: "home"))
                 }
             
             MapScreen(di: di)
                 .tabItem{
                     Image(systemName: "map.circle")
-                    Text("Map")
+                    Text(String(localized: "map"))
                 }
             
-            DiscoveredListScreen(di: di)
+            DiscoveryListScreen(di: di)
                 .tabItem{
                     Image(systemName: "checkmark.circle")
-                    Text("Discovered")
+                    Text(String(localized: "discoveries"))
                 }
         }
     }
