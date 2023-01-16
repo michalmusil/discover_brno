@@ -65,7 +65,7 @@ struct MapPopupView: View {
         .frame(maxWidth: .infinity)
         .background(.background)
         .cornerRadius(20)
-        .shadow(color: .gray, radius: 10)
+        .shadow(color: .shadowColor, radius: 10)
         
     }
     

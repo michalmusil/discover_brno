@@ -24,6 +24,7 @@
 		0C6A7208297224BC00755A96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C6A720A297224BC00755A96 /* Localizable.strings */; };
 		0C6A720C297227A000755A96 /* DBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720B297227A000755A96 /* DBTextField.swift */; };
 		0C6A720E29722A1600755A96 /* DBSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720D29722A1600755A96 /* DBSecureField.swift */; };
+		0C8B8A322975AEBE00BE53E0 /* DiscoveredListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B8A312975AEBE00BE53E0 /* DiscoveredListItem.swift */; };
 		0C9EF30B2974550E0047C9CF /* DBNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */; };
 		0C9EF30D29745BE60047C9CF /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF30C29745BE60047C9CF /* ARView.swift */; };
 		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
@@ -91,6 +92,7 @@
 		0C6A7209297224BC00755A96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0C6A720B297227A000755A96 /* DBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTextField.swift; sourceTree = "<group>"; };
 		0C6A720D29722A1600755A96 /* DBSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSecureField.swift; sourceTree = "<group>"; };
+		0C8B8A312975AEBE00BE53E0 /* DiscoveredListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredListItem.swift; sourceTree = "<group>"; };
 		0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBNavigationButton.swift; sourceTree = "<group>"; };
 		0C9EF30C29745BE60047C9CF /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
 		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
@@ -214,6 +216,14 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		0C8B8A302975AEAE00BE53E0 /* ListItems */ = {
+			isa = PBXGroup;
+			children = (
+				0C8B8A312975AEBE00BE53E0 /* DiscoveredListItem.swift */,
+			);
+			path = ListItems;
+			sourceTree = "<group>";
+		};
 		0C9EF30E29745D3A0047C9CF /* AR */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +282,7 @@
 		0CB5A671296F417500D5A6CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0C8B8A302975AEAE00BE53E0 /* ListItems */,
 				0C6A71FD29721A9B00755A96 /* Primitives */,
 				0C6A71FC29721A8F00755A96 /* Functional */,
 				0C6A720329721F6500755A96 /* BackgroundGradient.swift */,
@@ -600,6 +611,7 @@
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
 				0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */,
 				0CDE245729715F1F00E4E2D3 /* DataError.swift in Sources */,
+				0C8B8A322975AEBE00BE53E0 /* DiscoveredListItem.swift in Sources */,
 				0CDE245A2971970600E4E2D3 /* DiscoveredDetailScreen.swift in Sources */,
 				0CB3B9FE29706411000CE1FD /* UIImageExtensions.swift in Sources */,
 				0CB5A667296ED36900D5A6CC /* MapScreen.swift in Sources */,

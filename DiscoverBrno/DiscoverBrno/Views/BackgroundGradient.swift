@@ -15,7 +15,6 @@ struct BackgroundGradient: View {
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

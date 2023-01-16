@@ -6,16 +6,25 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct DiscoveredListScreen: View {
     private let di: DiContainer
+    
+    @ObservedResults(DiscoveredLandmark.self)
+    var discoveredLandmarks
     
     init(di: DiContainer) {
         self.di = di
     }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List{
+            Na
+            ForEach(discoveredLandmarks){ discovered in
+                DiscoveredListItem(discoveredLandmark: discovered)
+            }
+        }
     }
 }
 

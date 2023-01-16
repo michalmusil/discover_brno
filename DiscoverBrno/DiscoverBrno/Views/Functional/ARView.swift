@@ -140,7 +140,7 @@ extension ARCoordinator{
         
         reward.simdWorldTransform = startingPosition
         reward.scale = landmarkReward.getScale()
-        reward.simdWorldPosition.y += 0.03
+        reward.simdWorldPosition.y += 0.01
         // Rotating the model
         let result = rotateModel(rewardModel: reward, rotateBy: landmarkReward.getRotation())
         
