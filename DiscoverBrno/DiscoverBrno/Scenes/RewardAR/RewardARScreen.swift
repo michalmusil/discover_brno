@@ -13,7 +13,7 @@ struct RewardARScreen: View {
     
     var body: some View {
         ZStack{
-            ARView()
+            ARView(discoveredLandmark: discoveredLandmark)
         }
         .ignoresSafeArea(.all)
     }

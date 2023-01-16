@@ -15,6 +15,7 @@
 		0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45E22967A1C300936E52 /* ContentStore.swift */; };
 		0C3243942974A55100C9EB99 /* RewardARScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3243932974A55100C9EB99 /* RewardARScreen.swift */; };
 		0C3243982974A9C400C9EB99 /* RewardsCatalog.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C3243972974A9C400C9EB99 /* RewardsCatalog.scnassets */; };
+		0C32439A2974C4F600C9EB99 /* LandmarkReward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3243992974C4F600C9EB99 /* LandmarkReward.swift */; };
 		0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C41F493296F548200ED2D83 /* LandmarkMarker.swift */; };
 		0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */; };
 		0C6A720029721AB600755A96 /* DBButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FF29721AB600755A96 /* DBButton.swift */; };
@@ -81,6 +82,7 @@
 		0C1E45E22967A1C300936E52 /* ContentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStore.swift; sourceTree = "<group>"; };
 		0C3243932974A55100C9EB99 /* RewardARScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardARScreen.swift; sourceTree = "<group>"; };
 		0C3243972974A9C400C9EB99 /* RewardsCatalog.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = RewardsCatalog.scnassets; sourceTree = "<group>"; };
+		0C3243992974C4F600C9EB99 /* LandmarkReward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkReward.swift; sourceTree = "<group>"; };
 		0C41F493296F548200ED2D83 /* LandmarkMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMarker.swift; sourceTree = "<group>"; };
 		0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapAnnotation.swift; sourceTree = "<group>"; };
 		0C6A71FF29721AB600755A96 /* DBButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBButton.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				0CBA39A6296DC3300087F023 /* DiscoverableLandmark.swift */,
 				0CBA39AA296DC4A70087F023 /* DiscoveredLandmark.swift */,
+				0C3243992974C4F600C9EB99 /* LandmarkReward.swift */,
 			);
 			path = RealmObjects;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */,
 				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,
 				0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */,
+				0C32439A2974C4F600C9EB99 /* LandmarkReward.swift in Sources */,
 				0C6A720029721AB600755A96 /* DBButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

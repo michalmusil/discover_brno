@@ -13,4 +13,6 @@ extension Color {
     static let appBackgroundGradientBottom = Color("AppTheme2")
     
     static let disabled = Color("Disabled")
+    
+    static let textColor = Color("TextColor")
 }

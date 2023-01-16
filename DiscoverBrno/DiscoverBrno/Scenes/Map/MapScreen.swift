@@ -64,6 +64,7 @@ struct MapScreen: View {
     }
 }
 
+
 // MARK: Util functions
 extension MapScreen{
     

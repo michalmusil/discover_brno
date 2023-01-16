@@ -30,7 +30,6 @@ struct DBButton: View {
                     .foregroundColor(isEnabled ? .accentColor : .disabled)
                 Text(text)
                     .font(.title3)
-                    .foregroundColor(.primary)
                     .colorInvert()
                     .padding(.vertical, 10)
             }
