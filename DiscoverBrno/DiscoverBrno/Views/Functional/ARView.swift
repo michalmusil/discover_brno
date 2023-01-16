@@ -22,7 +22,6 @@ struct ARView: UIViewRepresentable{
         let config = setUpConfiguration()
         
         arView.scene = scene
-        arView.showsStatistics = true
         arView.session.run(config)
         
         return arView

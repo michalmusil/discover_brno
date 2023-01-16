@@ -9,6 +9,10 @@
 "login" = "Log in";
 "registerNewUser" = "Register new user";
 
+"discovered" = "Discovered";
+"discoverable" = "Discoverable";
+"undiscovered" = "Undiscovered";
+
 "invalidEmail" = "Not a valid email address";
 "passwordTooShort" = "Password must be at least 6 characters";
 "loggingInFailed" = "Logging in failed";
@@ -36,3 +40,4 @@
 "landmarkAlreadyDiscovered" = "Landmark already discovered";
 
 "hint" = "Hint";
+

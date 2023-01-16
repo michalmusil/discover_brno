@@ -44,6 +44,7 @@ struct MapScreen: View {
                    showPopup == true{
                     MapPopupView(di: di, landmark: discoverable, showPopup: $showPopup, hasBeenDiscovered: $lastSelectedDiscovered)
                         .padding(.bottom, 15)
+                        .padding(.horizontal, 5)
                 }
             }
             
