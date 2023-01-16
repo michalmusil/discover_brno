@@ -21,11 +21,11 @@ enum LandmarkReward: String, CaseIterable, PersistableEnum{
     func getScale() -> SCNVector3{
         switch self{
         case .brnoDragon:
-            return SCNVector3(0.001, 0.001, 0.001)
+            return SCNVector3(0.002, 0.002, 0.002)
         case .astronomicalClock:
-            return SCNVector3(0.008, 0.008, 0.008)
+            return SCNVector3(0.006, 0.006, 0.006)
         case .peterAndPaulCathedral:
-            return SCNVector3(0.03, 0.03, 0.03)
+            return SCNVector3(0.00005, 0.00005, 0.00005)
         case .mahenTheatre:
             return SCNVector3(0.02, 0.02, 0.02)
         case .plagueColumn:
@@ -35,20 +35,20 @@ enum LandmarkReward: String, CaseIterable, PersistableEnum{
         }
     }
     
-    func getTranslation() -> SCNVector3{
+    func getRotation() -> GLKQuaternion{
         switch self{
         case .brnoDragon:
-            return SCNVector3(0,-0.3,-0.3)
+            return GLKQuaternionMakeWithAngleAndAxis(-(.pi/2), 1, 0, 0)
         case .astronomicalClock:
-            return SCNVector3(0,0,-0.3)
+            return GLKQuaternionMakeWithAngleAndAxis(-(.pi/2), 1, 0, 0)
         case .peterAndPaulCathedral:
-            return SCNVector3(0,0,-0.3)
+            return GLKQuaternionMakeWithAngleAndAxis(-(.pi/2), 1, 0, 0)
         case .mahenTheatre:
-            return SCNVector3(0,0,-0.3)
+            return GLKQuaternionMakeWithAngleAndAxis(0, 1, 0, 0)
         case .plagueColumn:
-            return SCNVector3(0,0,-0.3)
+            return GLKQuaternionMakeWithAngleAndAxis(-(.pi/2), 1, 0, 0)
         case .spielbergCastle:
-            return SCNVector3(0,0,-0.3)
+            return GLKQuaternionMakeWithAngleAndAxis(-(.pi/2), 1, 0, 0)
         }
     }
 }
