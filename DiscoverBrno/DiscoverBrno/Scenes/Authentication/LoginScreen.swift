@@ -20,14 +20,16 @@ struct LoginScreen: View {
     }
     
     var body: some View {
-        Group{
-            switch store.state{
-            case .start:
-                loginContent
-            case .idle:
-                loginContent
-            case .loading:
-                ProgressView()
+        ScrollView(.vertical){
+            Group{
+                switch store.state{
+                case .start:
+                    loginContent
+                case .idle:
+                    loginContent
+                case .loading:
+                    ProgressView()
+                }
             }
         }
         .padding()

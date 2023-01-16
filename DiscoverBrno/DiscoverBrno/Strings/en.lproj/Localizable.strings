@@ -45,3 +45,7 @@
 
 "hint" = "Hint";
 
+
+"noDiscoveries" = "You have no discoveries yet";
+"everythingDiscovered" = "You have discovered all available landmarks";
+

@@ -26,11 +26,17 @@ struct DiscoveryListScreen: View {
     var body: some View {
         VStack{
             ScrollView(.vertical){
-                LazyVStack{
-                    switch store.selectedListType {
-                    case .discovered:
+                switch store.selectedListType {
+                case .discovered:
+                    if discoveredLandmarks.isEmpty{
+                        NoDiscoveriesScreen()
+                    } else {
                         discoveredItems
-                    case .undiscovered:
+                    }
+                case .undiscovered:
+                    if undiscoveredLandmarks.isEmpty{
+                        EverythingDiscoveredScreen()
+                    } else {
                         undiscoveredItems
                     }
                 }
@@ -53,15 +59,19 @@ struct DiscoveryListScreen: View {
     
     @ViewBuilder
     var discoveredItems: some View{
-        ForEach(discoveredLandmarks){ discovered in
-            DiscoveredListItem(di: di, discoveredLandmark: discovered)
+        LazyVStack{
+            ForEach(discoveredLandmarks){ discovered in
+                DiscoveredListItem(di: di, discoveredLandmark: discovered)
+            }
         }
     }
     
     @ViewBuilder
     var undiscoveredItems: some View{
-        ForEach(undiscoveredLandmarks){ undiscovered in
-            UndiscoveredListItem(discoverableLandmark: undiscovered)
+        LazyVStack{
+            ForEach(undiscoveredLandmarks){ undiscovered in
+                UndiscoveredListItem(discoverableLandmark: undiscovered)
+            }
         }
     }
     

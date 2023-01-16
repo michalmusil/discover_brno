@@ -19,14 +19,16 @@ struct RegistrationScreen: View {
     }
     
     var body: some View {
-        Group{
-            switch store.state{
-            case .start:
-                registrationContent
-            case .idle:
-                registrationContent
-            case .loading:
-                ProgressView()
+        ScrollView(.vertical){
+            Group{
+                switch store.state{
+                case .start:
+                    registrationContent
+                case .idle:
+                    registrationContent
+                case .loading:
+                    ProgressView()
+                }
             }
         }
         .padding()
