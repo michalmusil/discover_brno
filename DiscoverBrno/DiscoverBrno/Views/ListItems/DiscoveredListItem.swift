@@ -26,11 +26,10 @@ struct DiscoveredListItem: View {
                 VStack(alignment: .leading){
                     HStack{
                         image
-                        Spacer()
                         title
                         Spacer()
                     }
-                    .padding(.horizontal, 10)
+                    
                     if expanded{
                         descriptionLong
                     }
@@ -89,6 +88,7 @@ extension DiscoveredListItem{
                 .fontWeight(.bold)
                 .foregroundColor(.onAccent)
                 .lineLimit(2)
+                .padding(.leading, 10)
         }
     }
     
@@ -99,8 +99,8 @@ extension DiscoveredListItem{
                 .font(.caption)
                 .foregroundColor(.onAccent)
                 .lineLimit(10)
-                .multilineTextAlignment(.center)
-                .padding(.top, 2)
+                .multilineTextAlignment(.leading)
+                
         }
     }
     

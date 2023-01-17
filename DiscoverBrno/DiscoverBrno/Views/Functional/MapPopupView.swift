@@ -50,6 +50,7 @@ struct MapPopupView: View {
                     HStack{
                         image
                         content
+                        Spacer()
                     }
                     if let discovered = discoveredLandmark,
                        hasBeenDiscovered{
@@ -63,7 +64,7 @@ struct MapPopupView: View {
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
-        .background(.background)
+        .background(BackgroundGradient())
         .cornerRadius(20)
         .shadow(color: .shadowColor, radius: 10)
         
@@ -87,6 +88,7 @@ struct MapPopupView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80, height: 80)
+                .foregroundColor(.onAccent)
                 .clipShape(Circle())
                 .padding(.horizontal, 5)
         }
@@ -100,23 +102,27 @@ struct MapPopupView: View {
                     .font(.title3)
                     .fontWeight(.bold)
                     .lineLimit(1)
+                    .foregroundColor(.onAccent)
                     .multilineTextAlignment(.leading)
                 
                 Text(landmark.landmarkDescription)
-                    .font(.body)
+                    .font(.subheadline)
                     .lineLimit(3)
+                    .foregroundColor(.onAccent)
                     .multilineTextAlignment(.leading)
             }
             else{
                 Text(String(localized: "hint"))
                     .font(.title3)
                     .fontWeight(.bold)
+                    .foregroundColor(.onAccent)
                     .multilineTextAlignment(.leading)
                     
                 
                 Text(landmark.hint)
-                    .font(.body)
+                    .font(.subheadline)
                     .lineLimit(4)
+                    .foregroundColor(.onAccent)
                     .multilineTextAlignment(.leading)
             }
         }

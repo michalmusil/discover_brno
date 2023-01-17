@@ -20,28 +20,28 @@ struct LoginScreen: View {
     }
     
     var body: some View {
-        ScrollView(.vertical){
-            Group{
-                switch store.state{
-                case .start:
-                    loginContent
-                case .idle:
-                    loginContent
-                case .loading:
-                    ProgressView()
-                }
+        VStack{
+            switch store.state{
+            case .start:
+                loginContent
+            case .idle:
+                loginContent
+            case .loading:
+                ProgressView()
+                    .frame(maxHeight: .infinity)
             }
         }
         .padding()
-        .navigationBarTitleDisplayMode(.large)
         
     }
     
     @ViewBuilder
     var loginContent: some View{
-        VStack{
-            image
-            loginForm
+        ScrollView(.vertical){
+            VStack{
+                image
+                loginForm
+            }
         }
         .padding(.horizontal, 5)
     }

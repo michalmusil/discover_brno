@@ -51,14 +51,19 @@ struct MapScreen: View {
             NavigationLink{
                 ImageRecognitionScreen(di: di)
             } label: {
-                Image(systemName: "camera.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(.accentColor)
-                    .frame(width: 50, height: 50)
-                    .background(.background)
-                    .clipShape(Circle())
-                    .padding(.trailing, 15)
+                ZStack(alignment: .center){
+                    Circle()
+                        .foregroundColor(.accentColor)
+                        .frame(width: 75, height: 75)
+                    Circle()
+                        .foregroundColor(.onAccent)
+                        .frame(width: 55, height: 55)
+                    Image(systemName: "camera.viewfinder")
+                        .resizable()
+                        .frame(width: 32, height: 32)
+                        .foregroundColor(.accentColor)
+                }
+                .padding(.trailing, 15)
             }
              
         }

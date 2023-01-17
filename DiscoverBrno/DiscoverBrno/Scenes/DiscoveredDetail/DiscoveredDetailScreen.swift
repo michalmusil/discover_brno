@@ -60,25 +60,48 @@ struct DiscoveredDetailScreen: View {
         if let landmark = discoveredLandmark.landmark{
             ZStack{
                 VStack{
-                    Text(landmark.name)
-                        .font(.title)
-                        .padding(.vertical, 10)
-                    
-                    DBNavigationButton(text: "Show reward", destination: RewardARScreen(discoveredLandmark: discoveredLandmark))
-                        .frame(maxWidth: 180)
-                        .padding()
-                    
-                    Text(landmark.landmarkDescription)
-                        .font(.body)
-                        .multilineTextAlignment(.leading)
+                    rewardButton
+                        .zIndex(1)
+                    ZStack(alignment: .top){
+                        VStack{
+                            Text(landmark.name)
+                                .font(.largeTitle)
+                                .padding(.bottom, 10)
+                            
+                            Text(landmark.landmarkDescription)
+                                .font(.body)
+                                .multilineTextAlignment(.leading)
+                        }
+                        .padding(.top, 50)
+                        .padding(.horizontal, 20)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(.background)
+                    .cornerRadius(20)
                 }
-                .padding(.top, 20)
-                .padding(.horizontal, 20)
             }
-            .frame(maxWidth: .infinity)
-            .background(.background)
-            .cornerRadius(20)
-            .offset(y: -50)
+            .offset(y: -150)
+        }
+    }
+    
+    @ViewBuilder
+    var rewardButton: some View{
+        NavigationLink{
+            RewardARScreen(discoveredLandmark: discoveredLandmark)
+        } label: {
+            ZStack(alignment: .center){
+                Circle()
+                    .foregroundColor(.accentColor)
+                    .frame(width: 90, height: 90)
+                Circle()
+                    .foregroundColor(.onAccent)
+                    .frame(width: 70, height: 70)
+                Image(systemName: "cube.fill")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(.accentColor)
+            }
+            .offset(y: 52)
         }
     }
 }

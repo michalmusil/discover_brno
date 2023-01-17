@@ -13,7 +13,7 @@ import Combine
 struct MapView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     
-    private var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 49.194855, longitude: 16.608431), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+    private var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 49.194855, longitude: 16.608431), span: MKCoordinateSpan(latitudeDelta: 0.08, longitudeDelta: 0.08))
     
     let configuration: MKStandardMapConfiguration
     private var locations: [BrnoLocation]

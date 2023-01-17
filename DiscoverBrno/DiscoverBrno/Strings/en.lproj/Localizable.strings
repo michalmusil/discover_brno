@@ -37,6 +37,7 @@
 "newDiscovery" = "New discovery";
 
 "congratulations" = "🎉Congratulations!🎉";
+"showReward" = "Show reward";
 "youHaveDiscovered" = "You have discovered";
 "failedToProcessImage" = "Failed to process image";
 "landmarkNotRecognized" = "Landmark was not recognized";

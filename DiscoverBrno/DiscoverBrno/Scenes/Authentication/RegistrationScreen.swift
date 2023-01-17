@@ -19,28 +19,27 @@ struct RegistrationScreen: View {
     }
     
     var body: some View {
-        ScrollView(.vertical){
-            Group{
-                switch store.state{
-                case .start:
-                    registrationContent
-                case .idle:
-                    registrationContent
-                case .loading:
-                    ProgressView()
-                }
+        VStack{
+            switch store.state{
+            case .start:
+                registrationContent
+            case .idle:
+                registrationContent
+            case .loading:
+                ProgressView()
+                    .frame(maxHeight: .infinity)
             }
         }
         .padding()
-        .navigationBarTitleDisplayMode(.large)
-        
     }
     
     @ViewBuilder
     var registrationContent: some View{
-        VStack{
-            image
-            registrationForm
+        ScrollView(.vertical){
+            VStack{
+                image
+                registrationForm
+            }
         }
         .padding(.horizontal, 5)
     }
