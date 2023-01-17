@@ -7,17 +7,21 @@
 
 import SwiftUI
 
-struct NoDiscoveriesScreen: View {
+struct ErrorScreen: View {
+    
+    let image: UIImage
+    let errorMessage: String
+    
     var body: some View {
         ZStack{
             VStack{
                 Spacer()
-                Image(uiImage: UIImage(named: "sadCroc")!)
+                Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: .infinity)
                 
-                Text(String(localized: "noDiscoveries"))
+                Text(errorMessage)
                     .font(.title3)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
@@ -28,8 +32,8 @@ struct NoDiscoveriesScreen: View {
     }
 }
 
-struct NoDiscoveriesScreen_Previews: PreviewProvider {
+struct ErrorScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NoDiscoveriesScreen()
+        ErrorScreen(image: UIImage(named: "sadCroc")!, errorMessage: "Some particular thing has gone wrong and this is the error screen")
     }
 }

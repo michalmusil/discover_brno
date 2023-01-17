@@ -10,12 +10,6 @@ import SwiftUI
 import Combine
 
 class ContentStore: ObservableObject{
-    enum State: Equatable{
-        case login
-        case registration
-    }
-    
-    
     @Published var state: State = .login
     @Published var realmManager: RealmManager
     @Published var userLoggedIn: Bool = false
@@ -25,6 +19,14 @@ class ContentStore: ObservableObject{
     init(realmManager: RealmManager) {
         self.realmManager = realmManager
         initializeSubs()
+    }
+}
+
+// MARK: State
+extension ContentStore{
+    enum State: Equatable{
+        case login
+        case registration
     }
 }
 
@@ -39,3 +41,5 @@ extension ContentStore{
             .store(in: &subscribtions)
     }
 }
+
+

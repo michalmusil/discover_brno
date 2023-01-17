@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0A307229775B0C000AED11 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0A307129775B0C000AED11 /* HomeStore.swift */; };
+		0C0A307429775C6A000AED11 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0A307329775C6A000AED11 /* ProgressBarView.swift */; };
 		0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45D6296790A900936E52 /* LoginScreen.swift */; };
 		0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45D92967927900936E52 /* RealmManager.swift */; };
 		0C1E45DD296795F200936E52 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0C1E45DC296795F200936E52 /* Realm */; };
@@ -18,7 +20,7 @@
 		0C32439A2974C4F600C9EB99 /* LandmarkReward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3243992974C4F600C9EB99 /* LandmarkReward.swift */; };
 		0C3CB9832975CEE300AD346D /* DiscoveryListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CB9822975CEE300AD346D /* DiscoveryListStore.swift */; };
 		0C3CB9852975D03100AD346D /* UndiscoveredListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CB9842975D03100AD346D /* UndiscoveredListItem.swift */; };
-		0C3CB9882975D8BB00AD346D /* NoDiscoveriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CB9872975D8BB00AD346D /* NoDiscoveriesScreen.swift */; };
+		0C3CB9882975D8BB00AD346D /* ErrorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CB9872975D8BB00AD346D /* ErrorScreen.swift */; };
 		0C3CB98A2975DA9B00AD346D /* EverythingDiscoveredScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CB9892975DA9B00AD346D /* EverythingDiscoveredScreen.swift */; };
 		0C41F494296F548200ED2D83 /* LandmarkMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C41F493296F548200ED2D83 /* LandmarkMarker.swift */; };
 		0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */; };
@@ -81,6 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0A307129775B0C000AED11 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
+		0C0A307329775C6A000AED11 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		0C1E45D6296790A900936E52 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		0C1E45D92967927900936E52 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0C1E45E029679E8000936E52 /* LoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStore.swift; sourceTree = "<group>"; };
@@ -90,7 +94,7 @@
 		0C3243992974C4F600C9EB99 /* LandmarkReward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkReward.swift; sourceTree = "<group>"; };
 		0C3CB9822975CEE300AD346D /* DiscoveryListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryListStore.swift; sourceTree = "<group>"; };
 		0C3CB9842975D03100AD346D /* UndiscoveredListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndiscoveredListItem.swift; sourceTree = "<group>"; };
-		0C3CB9872975D8BB00AD346D /* NoDiscoveriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDiscoveriesScreen.swift; sourceTree = "<group>"; };
+		0C3CB9872975D8BB00AD346D /* ErrorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorScreen.swift; sourceTree = "<group>"; };
 		0C3CB9892975DA9B00AD346D /* EverythingDiscoveredScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverythingDiscoveredScreen.swift; sourceTree = "<group>"; };
 		0C41F493296F548200ED2D83 /* LandmarkMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkMarker.swift; sourceTree = "<group>"; };
 		0C6A71FA2971CC7100755A96 /* CustomMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapAnnotation.swift; sourceTree = "<group>"; };
@@ -197,7 +201,7 @@
 		0C3CB9862975D8A900AD346D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				0C3CB9872975D8BB00AD346D /* NoDiscoveriesScreen.swift */,
+				0C3CB9872975D8BB00AD346D /* ErrorScreen.swift */,
 				0C3CB9892975DA9B00AD346D /* EverythingDiscoveredScreen.swift */,
 			);
 			path = Screens;
@@ -221,6 +225,7 @@
 				0C6A720B297227A000755A96 /* DBTextField.swift */,
 				0C6A720D29722A1600755A96 /* DBSecureField.swift */,
 				0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */,
+				0C0A307329775C6A000AED11 /* ProgressBarView.swift */,
 			);
 			path = Primitives;
 			sourceTree = "<group>";
@@ -448,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				0CB5A662296ED31100D5A6CC /* HomeScreen.swift */,
+				0C0A307129775B0C000AED11 /* HomeStore.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -616,6 +622,7 @@
 				0CF2120629673747001BBC8D /* ContentView.swift in Sources */,
 				0C6A720E29722A1600755A96 /* DBSecureField.swift in Sources */,
 				0CB5A65C296EBE8700D5A6CC /* RegistrationStore.swift in Sources */,
+				0C0A307429775C6A000AED11 /* ProgressBarView.swift in Sources */,
 				0CBA39AD296DD0B00087F023 /* DiContainer.swift in Sources */,
 				0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */,
 				0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */,
@@ -625,6 +632,7 @@
 				0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */,
 				0C6A720429721F6500755A96 /* BackgroundGradient.swift in Sources */,
 				0CB5A66A296ED51D00D5A6CC /* CustomLocationManager.swift in Sources */,
+				0C0A307229775B0C000AED11 /* HomeStore.swift in Sources */,
 				0C6A720C297227A000755A96 /* DBTextField.swift in Sources */,
 				0CB5A665296ED33900D5A6CC /* DiscoveryListScreen.swift in Sources */,
 				0C3CB9852975D03100AD346D /* UndiscoveredListItem.swift in Sources */,
@@ -638,7 +646,7 @@
 				0CB5A667296ED36900D5A6CC /* MapScreen.swift in Sources */,
 				0CB5A663296ED31100D5A6CC /* HomeScreen.swift in Sources */,
 				0C9EF30D29745BE60047C9CF /* ARView.swift in Sources */,
-				0C3CB9882975D8BB00AD346D /* NoDiscoveriesScreen.swift in Sources */,
+				0C3CB9882975D8BB00AD346D /* ErrorScreen.swift in Sources */,
 				0CB3B9FA297054E8000CE1FD /* ImageRecognitionScreen.swift in Sources */,
 				0CB3B9FC2970554C000CE1FD /* ImageRecognitionStore.swift in Sources */,
 				0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */,
