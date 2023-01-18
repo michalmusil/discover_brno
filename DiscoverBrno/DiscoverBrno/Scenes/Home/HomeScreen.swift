@@ -28,6 +28,8 @@ struct HomeScreen: View {
                 ProgressView()
             case .error:
                 ErrorScreen(image: UIImage.getByAssetName(assetName: "sadCroc"), errorMessage: String(localized: "somethingWentWrong"))
+            case .noDiscoveries:
+                welcomeScreen
             case .loaded:
                 content
             }
@@ -41,7 +43,10 @@ struct HomeScreen: View {
     var content: some View{
         ScrollView(.vertical){
             VStack{
-                image
+                ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
+                    image
+                    logoutButton
+                }
                 statCards
                 progressionBar
                 discoveriesList
@@ -49,10 +54,43 @@ struct HomeScreen: View {
         }
         .padding(.horizontal, 10)
     }
+    
+    @ViewBuilder
+    var welcomeScreen: some View{
+        VStack{
+            Image(uiImage: UIImage.getByAssetName(assetName: "welcome1"))
+                .resizable()
+                .scaledToFit()
+            Spacer()
+            Image(uiImage: UIImage.getByAssetName(assetName: "welcome2"))
+                .resizable()
+                .scaledToFit()
+            Spacer()
+        }
+        .padding(.horizontal, 50)
+    }
 }
 
 // MARK: Components
 extension HomeScreen{
+    
+    @ViewBuilder
+    var logoutButton: some View{
+        Button{
+            store.logOut()
+        } label: {
+            ZStack(alignment: .center){
+                Circle()
+                    .foregroundColor(.accentColor)
+                    .frame(width: 35, height: 35)
+                Image(systemName: "rectangle.portrait.and.arrow.right")
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                    .foregroundColor(.onAccent)
+            }
+            .padding(5)
+        }
+    }
     
     @ViewBuilder
     var image: some View{

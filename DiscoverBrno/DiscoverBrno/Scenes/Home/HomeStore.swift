@@ -29,17 +29,34 @@ final class HomeStore: ObservableObject{
     }
     
     @MainActor
+    func logOut(){
+        Task{
+            do{
+                try await realmManager.logOut()
+            } catch{
+                print(error)
+                state = .error
+            }
+        }
+    }
+    
+    @MainActor
     func updateStatistics() {
         do{
             let discoverable = try realmManager.getDiscoverableLandmarks()
             let discovered = try realmManager.getDiscoveredLandmarks()
+            
+            guard discovered.count > 0 else{
+                self.state = .noDiscoveries
+                return
+            }
             
             self.numberOfDiscovered = discovered.count
             self.numberOfRemaining = discoverable.count - discovered.count
             self.mostRecentLandmark = getMostRecentDiscovered(discovered: discovered)
             
             Task{
-                try? await Task.sleep(for: Duration(secondsComponent: 1, attosecondsComponent: 0))
+                try? await Task.sleep(for: Duration(secondsComponent: 0, attosecondsComponent: 500000000000000000)) // half a second delay
                 self.progression = getOverallProgression(discoverable: discoverable, discovered: discovered)
             }
             
@@ -56,6 +73,7 @@ final class HomeStore: ObservableObject{
 extension HomeStore{
     enum State {
         case loading
+        case noDiscoveries
         case loaded
         case error
     }

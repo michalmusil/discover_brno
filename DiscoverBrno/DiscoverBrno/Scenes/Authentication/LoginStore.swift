@@ -32,6 +32,9 @@ final class LoginStore: ObservableObject{
     func loginUser() async throws{
         self.state = .loading
         try await realmManager.loginEmailPassword(email: email, password: password)
+        self.state = .start
+        self.email = ""
+        self.password = ""
     }
 }
 

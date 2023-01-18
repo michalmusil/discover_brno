@@ -37,6 +37,9 @@ final class RegistrationStore: ObservableObject{
     func loginUser(email: String, password: String) async throws{
         self.state = .loading
         try await realmManager.loginEmailPassword(email: email, password: password)
+        self.state = .start
+        self.email = ""
+        self.password = ""
     }
 }
 

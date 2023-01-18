@@ -53,7 +53,7 @@ extension MapStore{
             .store(in: &subscribtions)
     }
     
-    
+    /*
     // METHOD FOR DELETING ALL LANDMARKS (DISCOVERABLE AND DISCOVERED OF SIGNED USER)
     @MainActor
     func deleteAllLandmarks(){
@@ -85,6 +85,6 @@ extension MapStore{
         }
         
     }
-     
+     */
      
 }
