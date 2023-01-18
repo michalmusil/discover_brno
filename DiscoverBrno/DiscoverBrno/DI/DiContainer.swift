@@ -21,15 +21,49 @@ final class DiContainer{
     // Utils
     let emailValidator: EmailValidator
     
+    
+    
     // Stores
-    let contentStore: ContentStore
-    let loginStore: LoginStore
-    let registrationStore: RegistrationStore
-    let mapStore: MapStore
-    let homeStore: HomeStore
-    let imageRecognitionStore: ImageRecognitionStore
-    let discoveredDetailStore: DiscoveredDetailStore
-    let discoveryListStore: DiscoveryListStore
+    var contentStore: ContentStore{
+        get{
+            ContentStore(realmManager: realmManager)
+        }
+    }
+    var loginStore: LoginStore{
+        get{
+            LoginStore(realmManager: realmManager, emailValidator: emailValidator)
+        }
+    }
+    var registrationStore: RegistrationStore{
+        get{
+            RegistrationStore(realmManager: realmManager, emailValidator: emailValidator)
+        }
+    }
+    var mapStore: MapStore {
+        get{
+            MapStore(realmManager: realmManager, locationManager: locationManager)
+        }
+    }
+    var homeStore: HomeStore{
+        get{
+            HomeStore(realmManager: realmManager)
+        }
+    }
+    var imageRecognitionStore: ImageRecognitionStore{
+        get{
+            ImageRecognitionStore(realmManager: realmManager, mlModel: mlModel)
+        }
+    }
+    var discoveredDetailStore: DiscoveredDetailStore{
+        get{
+            DiscoveredDetailStore()
+        }
+    }
+    var discoveryListStore: DiscoveryListStore{
+        get{
+            DiscoveryListStore(realmManager: realmManager)
+        }
+    }
     
     init(){
         self.realmManager = RealmManager.shared
@@ -40,13 +74,5 @@ final class DiContainer{
         
         self.emailValidator = EmailValidator()
         
-        self.contentStore = ContentStore(realmManager: realmManager)
-        self.loginStore = LoginStore(realmManager: realmManager, emailValidator: emailValidator)
-        self.registrationStore = RegistrationStore(realmManager: realmManager, emailValidator: emailValidator)
-        self.mapStore = MapStore(realmManager: realmManager, locationManager: locationManager)
-        self.homeStore = HomeStore(realmManager: realmManager)
-        self.imageRecognitionStore = ImageRecognitionStore(realmManager: realmManager, mlModel: mlModel)
-        self.discoveredDetailStore = DiscoveredDetailStore()
-        self.discoveryListStore = DiscoveryListStore(realmManager: realmManager)
     }
 }

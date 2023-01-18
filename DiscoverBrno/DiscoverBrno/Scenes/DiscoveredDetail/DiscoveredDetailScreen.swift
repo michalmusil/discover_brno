@@ -62,6 +62,8 @@ struct DiscoveredDetailScreen: View {
                         VStack{
                             Text(landmark.name)
                                 .font(.largeTitle)
+                            
+                            discoveredDate()
                                 .padding(.bottom, 10)
                             
                             Text(landmark.landmarkDescription)
@@ -100,6 +102,17 @@ struct DiscoveredDetailScreen: View {
             .offset(y: 52)
         }
     }
+    
+    
+    func discoveredDate() -> some View{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MM/dd/yyyy"
+        let date = dateFormatter.string(from: discoveredLandmark.discovered)
+        
+        return Text("\(String(localized: "discoveredOn")): \(date)")
+            .font(.subheadline)
+    }
+    
 }
 
 struct DiscoveredDetailScreen_Previews: PreviewProvider {

@@ -43,6 +43,7 @@
 "tryAgain" = "Try again";
 "newDiscovery" = "New discovery";
 
+"discoveredOn" = "Discovered on";
 "showReward" = "Show reward";
 "youHaveDiscovered" = "You have discovered";
 "hint" = "Hint";

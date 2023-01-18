@@ -12,9 +12,7 @@ struct MapPopupView: View {
     private let di: DiContainer
     
     var landmark: DiscoverableLandmark
-    
-    @Binding
-    var showPopup: Bool
+
     @Binding
     var hasBeenDiscovered: Bool
     
@@ -23,7 +21,6 @@ struct MapPopupView: View {
     init(di: DiContainer, landmark: DiscoverableLandmark, showPopup: Binding<Bool>, hasBeenDiscovered: Binding<Bool>) {
         self.di = di
         self.landmark = landmark
-        self._showPopup = showPopup
         self._hasBeenDiscovered = hasBeenDiscovered
         
         self.discoveredLandmark = di.realmManager.getDiscoveredLandmarkByName(name: landmark.name)
@@ -32,34 +29,20 @@ struct MapPopupView: View {
     
     
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
-            Button{
-                withAnimation{
-                    showPopup.toggle()
+        ZStack{
+            VStack(alignment: .leading){
+                HStack{
+                    image
+                    content
+                    Spacer()
                 }
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.accentColor)
-                    .padding(6)
-            }
-            ZStack{
-                VStack(alignment: .leading){
-                    HStack{
-                        image
-                        content
-                        Spacer()
-                    }
-                    if let discovered = discoveredLandmark,
-                       hasBeenDiscovered{
-                        DBNavigationButton(text: String(localized: "goToDetail"), destination: DiscoveredDetailScreen(di: di, discoveredLandmark: discovered))
-                            .padding(.top, 3)
-                    }
+                if let discovered = discoveredLandmark,
+                   hasBeenDiscovered{
+                    DBNavigationButton(text: String(localized: "goToDetail"), destination: DiscoveredDetailScreen(di: di, discoveredLandmark: discovered))
+                        .padding(.top, 3)
                 }
             }
-            .padding(.vertical, 30)
+            .padding(.vertical, 25)
             .padding(.horizontal, 10)
             .frame(maxWidth: .infinity)
         }

@@ -13,8 +13,6 @@ import Combine
 struct MapView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     
-    private var coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 49.194855, longitude: 16.608431), span: MKCoordinateSpan(latitudeDelta: 0.08, longitudeDelta: 0.08))
-    
     let configuration: MKStandardMapConfiguration
     private var locations: [BrnoLocation]
     
@@ -36,9 +34,6 @@ struct MapView: UIViewRepresentable {
         mapView.showsUserLocation = true
         mapView.delegate = context.coordinator
         
-        mapView.region.span = coordinateRegion.span
-        mapView.setRegion(coordinateRegion, animated: true)
-        
         return mapView
     }
 
@@ -47,6 +42,81 @@ struct MapView: UIViewRepresentable {
     }
     
     
+    
+    final class MapCoordinator: NSObject, MKMapViewDelegate{
+        
+        var lastSelectedAnnotation: CustomMapAnnotation? = nil
+        
+        private var startingRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 49.194855, longitude: 16.608431), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+        private var startingRegionSet = false
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            if annotation is MKUserLocation {
+                return nil
+            }
+            guard let customAnnotation = annotation as? CustomMapAnnotation else {
+                return nil
+            }
+            if !startingRegionSet{
+                mapView.setRegion(startingRegion, animated: true)
+                startingRegionSet = true
+            }
+            
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: customAnnotation.title ?? "")
+            
+            if annotationView == nil{
+                annotationView = MKAnnotationView(annotation: customAnnotation, reuseIdentifier: customAnnotation.title ?? "")
+            }
+            else {
+                annotationView?.annotation = customAnnotation
+            }
+
+            annotationView?.image = customAnnotation.defaultImage
+            annotationView?.sizeToFit()
+            return annotationView
+        }
+        
+        
+        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+            guard let customAnnotation = view.annotation as? CustomMapAnnotation else {
+                return
+            }
+            
+            // Focusing the selected annotation
+            let focusedRegion = MKCoordinateRegion(center: customAnnotation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+            mapView.setRegion(focusedRegion, animated: true)
+            
+            // Enlarging the annotation size
+            let standardSize = customAnnotation.defaultImage.size
+            view.image = customAnnotation.defaultImage.resize(size: CGSize(width: standardSize.width*1.5, height: standardSize.height*1.5))
+            view.sizeToFit()
+            
+            lastSelectedAnnotation = customAnnotation
+            customAnnotation.onSelected(customAnnotation.landmark)
+        }
+        
+        func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+            guard let customAnnotation = view.annotation as? CustomMapAnnotation else {
+                return
+            }
+            guard let deselectedCustom = lastSelectedAnnotation else {
+                return
+            }
+            
+            // Returning image of the deselected annotation to default size
+            view.image = deselectedCustom.defaultImage
+            view.sizeToFit()
+            
+            lastSelectedAnnotation = nil
+            customAnnotation.onDeselected(customAnnotation.landmark)
+        }
+    }
+}
+
+
+
+// MARK: Helper methods
+extension MapView{
     func refreshLocations(locations: [BrnoLocation], mapView: MKMapView){
         guard determineIfUpdateAnnotations(annotations: mapView.annotations) else {
             return
@@ -58,7 +128,7 @@ struct MapView: UIViewRepresentable {
         var annotations: [CustomMapAnnotation] = []
         for location in locations{
             let defaultImage = location.isDiscovered ? discoveredImage : undiscoveredImage
-            let annotation = CustomMapAnnotation(coordinate: location.coordinate, landmark: location.landmark, defaultImage: defaultImage, isDiscovered: location.isDiscovered, onTap: location.onTap)
+            let annotation = CustomMapAnnotation(coordinate: location.coordinate, landmark: location.landmark, defaultImage: defaultImage, isDiscovered: location.isDiscovered, onSelected: location.onSelected, onDeselected: location.onDeselected)
             annotation.title = location.landmark.name
             annotations.append(annotation)
         }
@@ -90,38 +160,5 @@ struct MapView: UIViewRepresentable {
             }
         }
         return false
-    }
-    
-    
-    final class MapCoordinator: NSObject, MKMapViewDelegate{
-        
-        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            if annotation is MKUserLocation {
-                return nil
-            }
-            guard let customAnnotation = annotation as? CustomMapAnnotation else {
-                return nil
-            }
-            
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: customAnnotation.title ?? "")
-            
-            if annotationView == nil{
-                annotationView = MKAnnotationView(annotation: customAnnotation, reuseIdentifier: customAnnotation.title ?? "")
-            }
-            else {
-                annotationView?.annotation = customAnnotation
-            }
-
-            annotationView?.image = customAnnotation.defaultImage
-            annotationView?.sizeToFit()
-            return annotationView
-        }
-        
-        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-            guard let customAnnotation = view.annotation as? CustomMapAnnotation else {
-                return
-            }
-            customAnnotation.onTap(customAnnotation.landmark)
-        }
     }
 }

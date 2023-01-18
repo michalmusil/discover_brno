@@ -16,14 +16,16 @@ class CustomMapAnnotation: NSObject, MKAnnotation {
     let defaultImage: UIImage
     let isDiscovered: Bool
     
-    var onTap: (DiscoverableLandmark) -> Void
+    var onSelected: (DiscoverableLandmark) -> Void
+    var onDeselected: (DiscoverableLandmark) -> Void
 
-    init(coordinate: CLLocationCoordinate2D, landmark: DiscoverableLandmark, defaultImage: UIImage, isDiscovered: Bool, onTap: @escaping (DiscoverableLandmark) -> Void) {
+    init(coordinate: CLLocationCoordinate2D, landmark: DiscoverableLandmark, defaultImage: UIImage, isDiscovered: Bool, onSelected: @escaping (DiscoverableLandmark) -> Void, onDeselected: @escaping (DiscoverableLandmark) -> Void) {
         self.coordinate = coordinate
         self.landmark = landmark
         self.defaultImage = defaultImage
         self.isDiscovered = isDiscovered
-        self.onTap = onTap
+        self.onSelected = onSelected
+        self.onDeselected = onDeselected
     }
 
 }

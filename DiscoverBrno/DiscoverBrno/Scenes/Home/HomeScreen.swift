@@ -46,6 +46,7 @@ struct HomeScreen: View {
                 ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
                     image
                     logoutButton
+                        .padding(5)
                 }
                 statCards
                 progressionBar
@@ -58,16 +59,19 @@ struct HomeScreen: View {
     @ViewBuilder
     var welcomeScreen: some View{
         VStack{
-            Image(uiImage: UIImage.getByAssetName(assetName: "welcome1"))
-                .resizable()
-                .scaledToFit()
+            ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
+                Image(uiImage: UIImage.getByAssetName(assetName: "welcome1"))
+                    .resizable()
+                    .scaledToFit()
+                logoutButton
+            }
             Spacer()
             Image(uiImage: UIImage.getByAssetName(assetName: "welcome2"))
                 .resizable()
                 .scaledToFit()
             Spacer()
         }
-        .padding(.horizontal, 50)
+        .padding(.horizontal, 40)
     }
 }
 
@@ -88,7 +92,6 @@ extension HomeScreen{
                     .frame(width: 15, height: 15)
                     .foregroundColor(.onAccent)
             }
-            .padding(5)
         }
     }
     

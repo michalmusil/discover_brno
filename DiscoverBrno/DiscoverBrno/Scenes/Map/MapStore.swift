@@ -12,6 +12,7 @@ import Combine
 import SwiftUI
 
 final class MapStore: ObservableObject{
+    @Published var state: State = .idle 
     
     @Published var realmManager: RealmManager
     private var subscribtions = Set<AnyCancellable>()
@@ -21,6 +22,10 @@ final class MapStore: ObservableObject{
     @ObservedObject var locationManager: CustomLocationManager
     @Published var currentLocationString: String = ""
     @Published var coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 45, longitude: 16), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+    
+    @Published var lastSelected: DiscoverableLandmark? = nil
+    @Published var lastSelectedDiscovered: Bool = false
+    @Published var showPopup: Bool = false
     
     
     init(realmManager: RealmManager, locationManager: CustomLocationManager){
@@ -36,6 +41,67 @@ final class MapStore: ObservableObject{
         }
     }
     
+}
+
+//MARK: State
+extension MapStore{
+    enum State{
+        case idle
+        case error
+    }
+}
+
+// MARK: Map related functions
+extension MapStore{
+    
+    private func getDiscoveredIfExists(discovered: [DiscoveredLandmark], discoverable: DiscoverableLandmark) -> DiscoveredLandmark?{
+        return discovered.first(where: { $0.landmark?._id.stringValue == discoverable._id.stringValue })
+    }
+    
+    func updateBrnoLocations(){
+        guard let discoverableLandmarks = try? realmManager.getDiscoverableLandmarks() else {
+            self.state = .error
+            return
+        }
+        guard let discoveredLandmarks = try? realmManager.getDiscoveredLandmarks() else {
+            self.state = .error
+            return
+        }
+        
+        var locationsTemp: [BrnoLocation] = []
+        for landmark in discoverableLandmarks {
+            let isDiscovered = getDiscoveredIfExists(discovered: discoveredLandmarks, discoverable: landmark) != nil
+            
+            let onSelected: (DiscoverableLandmark) -> Void = isDiscovered ?
+            { discoveredLandmark in
+                // NAVIGATE TO LANDMARK DETAIL
+                self.lastSelected = discoveredLandmark
+                self.lastSelectedDiscovered = true
+                withAnimation{
+                    self.showPopup = true
+                }
+            }
+            : { discoverableLandmark in
+                self.lastSelected = discoverableLandmark
+                self.lastSelectedDiscovered = false
+                withAnimation{
+                    self.showPopup = true
+                }
+            }
+            
+            let onDeselected: (DiscoverableLandmark) -> Void = { landmark in
+                self.lastSelected = nil
+                withAnimation{
+                    self.showPopup = false
+                }
+            }
+            
+            locationsTemp.append(BrnoLocation(coordinate: CLLocationCoordinate2D(latitude: landmark.latitude, longitude: landmark.longitude), landmark: landmark, isDiscovered: isDiscovered, onSelected: onSelected, onDeselected: onDeselected))
+        }
+        brnoLocations.removeAll()
+        brnoLocations.append(contentsOf: locationsTemp)
+        self.state = .idle
+    }
 }
 
 // MARK: Subs
