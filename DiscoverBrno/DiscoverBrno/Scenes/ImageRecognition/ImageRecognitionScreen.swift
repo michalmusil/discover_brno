@@ -140,7 +140,7 @@ extension ImageRecognitionScreen{
     
     @ViewBuilder
     var congratulations: some View{
-        Image(uiImage: UIImage(named: "congratulations")!)
+        Image(uiImage: UIImage.getByAssetName(assetName: "congratulations"))
             .resizable()
             .scaledToFit()
             .aspectRatio(1, contentMode: .fill)
@@ -150,7 +150,7 @@ extension ImageRecognitionScreen{
     
     @ViewBuilder
     var notRecognized: some View{
-        Image(uiImage: UIImage(named: "landmarkNotRecognized")!)
+        Image(uiImage: UIImage.getByAssetName(assetName: "landmarkNotRecognized"))
             .resizable()
             .scaledToFit()
             .aspectRatio(1, contentMode: .fill)

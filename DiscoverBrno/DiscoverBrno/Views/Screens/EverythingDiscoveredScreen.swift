@@ -12,7 +12,7 @@ struct EverythingDiscoveredScreen: View {
         ZStack{
             VStack{
                 Spacer()
-                Image(uiImage: UIImage(named: "strongCroc")!)
+                Image(uiImage: UIImage.getByAssetName(assetName: "strongCroc"))
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: .infinity)

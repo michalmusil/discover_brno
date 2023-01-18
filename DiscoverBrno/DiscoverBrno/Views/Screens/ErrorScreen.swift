@@ -34,6 +34,6 @@ struct ErrorScreen: View {
 
 struct ErrorScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorScreen(image: UIImage(named: "sadCroc")!, errorMessage: "Some particular thing has gone wrong and this is the error screen")
+        ErrorScreen(image: UIImage.getByAssetName(assetName: "sadCroc"), errorMessage: "Some particular thing has gone wrong and this is the error screen")
     }
 }

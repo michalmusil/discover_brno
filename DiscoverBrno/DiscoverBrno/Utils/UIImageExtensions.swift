@@ -10,6 +10,15 @@ import UIKit
 
 extension UIImage{
     
+    static func getByAssetName(assetName: String) -> UIImage{
+        guard let image = UIImage(named: assetName) else {
+            return UIImage(systemName: "questionmark.app.fill")!
+        }
+        return image
+    }
+    
+    
+    
     func resize(size: CGSize) -> UIImage?{
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         draw(in: CGRect(origin: CGPoint.zero, size: size))

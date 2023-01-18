@@ -52,13 +52,13 @@ struct MapView: UIViewRepresentable {
             return
         }
         
-        let discoveredImage = UIImage(named: "brnoFlag")?.resize(size: CGSize(width: 72.7, height: 93.1))!
-        let undiscoveredImage = UIImage(named: "flagUndiscovered")?.resize(size: CGSize(width: 72.7, height: 93.1))!
+        let discoveredImage = UIImage.getByAssetName(assetName: "brnoFlag").resize(size: CGSize(width: 72.7, height: 93.1))!
+        let undiscoveredImage = UIImage.getByAssetName(assetName: "flagUndiscovered").resize(size: CGSize(width: 72.7, height: 93.1))!
         
         var annotations: [CustomMapAnnotation] = []
         for location in locations{
             let defaultImage = location.isDiscovered ? discoveredImage : undiscoveredImage
-            let annotation = CustomMapAnnotation(coordinate: location.coordinate, landmark: location.landmark, defaultImage: defaultImage!, isDiscovered: location.isDiscovered, onTap: location.onTap)
+            let annotation = CustomMapAnnotation(coordinate: location.coordinate, landmark: location.landmark, defaultImage: defaultImage, isDiscovered: location.isDiscovered, onTap: location.onTap)
             annotation.title = location.landmark.name
             annotations.append(annotation)
         }

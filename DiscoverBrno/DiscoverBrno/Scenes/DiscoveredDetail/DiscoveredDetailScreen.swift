@@ -32,16 +32,12 @@ struct DiscoveredDetailScreen: View {
     @ViewBuilder
     var image: some View{
         if let landmark = discoveredLandmark.landmark{
-            AsyncImage(url: URL(string: landmark.titleImageUrl), content: { image in
-                image.resizable()
+            Image(uiImage: UIImage.getByAssetName(assetName: landmark.imageAssetName))
+                .resizable()
                 .scaledToFit()
                 .aspectRatio(1, contentMode: .fill)
                 .frame(maxWidth: .infinity)
                 .cornerRadius(20)
-            }, placeholder: {
-                ProgressView()
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-            })
         }
         else {
             Image(systemName: "questionmark")

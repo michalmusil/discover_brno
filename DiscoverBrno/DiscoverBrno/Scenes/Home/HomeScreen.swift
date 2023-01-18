@@ -27,7 +27,7 @@ struct HomeScreen: View {
             case .loading:
                 ProgressView()
             case .error:
-                ErrorScreen(image: UIImage(named: "sadCroc")!, errorMessage: String(localized: "somethingWentWrong"))
+                ErrorScreen(image: UIImage.getByAssetName(assetName: "sadCroc"), errorMessage: String(localized: "somethingWentWrong"))
             case .loaded:
                 content
             }
@@ -56,7 +56,7 @@ extension HomeScreen{
     
     @ViewBuilder
     var image: some View{
-        Image(uiImage: UIImage(named: "discoverBrnoLogo")!)
+        Image(uiImage: UIImage.getByAssetName(assetName: "discoverBrnoLogo"))
             .resizable()
             .scaledToFit()
             .padding(.horizontal, 40)
@@ -85,14 +85,13 @@ extension HomeScreen{
                             NavigationLink{
                                 DiscoveredDetailScreen(di: di, discoveredLandmark: landmark)
                             } label: {
-                                AsyncImage(url: URL(string: discoverable.titleImageUrl),
-                                           content: { image in image.resizable()},
-                                           placeholder: { ProgressView() })
-                                .scaledToFill()
-                                .frame(width: 70, height: 70)
-                                .clipShape(Circle())
-                                .shadow(color: .shadowColor, radius: 2)
-                                .padding(.horizontal, 2)
+                                Image(uiImage: UIImage.getByAssetName(assetName: discoverable.imageAssetName))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 70, height: 70)
+                                    .clipShape(Circle())
+                                    .shadow(color: .shadowColor, radius: 2)
+                                    .padding(.horizontal, 2)
                             }
                         }
                     }

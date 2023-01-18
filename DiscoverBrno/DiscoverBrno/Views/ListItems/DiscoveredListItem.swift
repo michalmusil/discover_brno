@@ -54,16 +54,13 @@ struct DiscoveredListItem: View {
     
     @ViewBuilder
     var image: some View{
-        if let imageUrl = discoveredLandmark.landmark?.titleImageUrl{
-            AsyncImage(url: URL(string: imageUrl), content: { image in
-                image.resizable()
-            }, placeholder: {
-                ProgressView()
-            })
-            .scaledToFill()
-            .frame(width: 75, height: 75)
-            .clipShape(Circle())
-            .padding(.horizontal, 5)
+        if let assetName = discoveredLandmark.landmark?.imageAssetName{
+            Image(uiImage: UIImage.getByAssetName(assetName: assetName))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 75, height: 75)
+                .clipShape(Circle())
+                .padding(.horizontal, 5)
         }
         else{
             Image(systemName: "questionmark.circle")

@@ -46,7 +46,7 @@ struct RegistrationScreen: View {
     
     @ViewBuilder
     var image: some View{
-        Image(uiImage: UIImage(named: "discoverBrnoLogo")!)
+        Image(uiImage: UIImage.getByAssetName(assetName: "discoverBrnoLogo"))
             .resizable()
             .scaledToFit()
             .frame(maxWidth: .infinity)

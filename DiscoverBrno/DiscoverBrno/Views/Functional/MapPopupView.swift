@@ -64,7 +64,7 @@ struct MapPopupView: View {
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
-        .background(BackgroundGradient())
+        .background(hasBeenDiscovered ? BackgroundGradient() : BackgroundGradient(topLeftColor: .disabled, bottomRightColor: .shadowColor))
         .cornerRadius(20)
         .shadow(color: .shadowColor, radius: 10)
         
@@ -73,15 +73,12 @@ struct MapPopupView: View {
     @ViewBuilder
     var image: some View{
         if hasBeenDiscovered{
-            AsyncImage(url: URL(string: landmark.titleImageUrl), content: { image in
-                image.resizable()
-            }, placeholder: {
-                ProgressView()
-            })
-            .scaledToFill()
-            .frame(width: 80, height: 80)
-            .clipShape(Circle())
-            .padding(.horizontal, 5)
+            Image(uiImage: UIImage.getByAssetName(assetName: landmark.imageAssetName))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 80, height: 80)
+                .clipShape(Circle())
+                .padding(.horizontal, 5)
         }
         else{
             Image(systemName: "questionmark.circle")

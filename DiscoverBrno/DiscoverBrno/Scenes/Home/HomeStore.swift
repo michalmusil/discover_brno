@@ -86,6 +86,9 @@ extension HomeStore{
 extension HomeStore{
     
     private func getOverallProgression(discoverable: [DiscoverableLandmark], discovered: [DiscoveredLandmark]) -> Float{
+        guard discoverable.count>0 else {
+            return 0.0
+        }
         let progression = Float(discovered.count)/Float(discoverable.count)
         return progression
     }
