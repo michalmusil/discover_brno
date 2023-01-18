@@ -15,6 +15,7 @@ struct ARView: UIViewRepresentable{
     
     let discoveredLandmark: DiscoveredLandmark
     
+    
     func makeUIView(context: Context) -> ARSCNView {
         arView.delegate = context.coordinator
         
@@ -57,9 +58,13 @@ extension ARView{
 class ARCoordinator: NSObject, ARSCNViewDelegate{
     
     private let planeNodeIdentifier = "Plane"
+    private let rewardNodeIdentifier = "Reward"
+    
     private let parent: ARView
     private let reward: LandmarkReward?
     
+    
+    private var rewardAdded = false
     private var planeDetected = false
     
     init(parent: ARView) {
@@ -109,6 +114,10 @@ extension ARCoordinator{
     }
 
     @objc private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        guard !rewardAdded else {
+            return
+        }
+        
         let sceneView = parent.arView
         
         let location = gesture.location(in: sceneView)
@@ -123,7 +132,23 @@ extension ARCoordinator{
         guard let rewardNode = getRewardNode(startingPosition: result.worldTransform) else {
             return
         }
+        
         parent.arView.scene.rootNode.addChildNode(rewardNode)
+        
+        let animationAction = SCNAction.repeatForever(
+            SCNAction.group([
+                SCNAction.sequence([
+                    SCNAction.move(by: SCNVector3(x: 0, y: 0.05, z: 0), duration: 5),
+                    SCNAction.move(by: SCNVector3(x: 0, y: -0.05, z: 0), duration: 5)
+                ]),
+                SCNAction.rotateBy(x: 0, y: (.pi*2), z: 0, duration: 10)
+            ])
+        )
+        
+        rewardNode.runAction(animationAction)
+        
+        rewardAdded = true
+        stopPlaneDetection()
     }
 }
 
@@ -137,6 +162,7 @@ extension ARCoordinator{
             return nil
         }
         
+        reward.name = rewardNodeIdentifier
         reward.simdWorldTransform = startingPosition
         reward.scale = landmarkReward.getScale()
         reward.simdWorldPosition.y += 0.01
@@ -158,12 +184,31 @@ extension ARCoordinator{
     
     private func getPlaneNode(geometry: ARSCNPlaneGeometry) -> SCNNode{
         let planeNode = SCNNode(geometry: geometry)
-        planeNode.opacity = 0.2
+        planeNode.opacity = 0.4
         planeNode.name = planeNodeIdentifier
 
-        let color: UIColor = .white
+        let color: UIColor = .red
         planeNode.geometry?.firstMaterial?.diffuse.contents = color
         
         return planeNode
+    }
+    
+    private func stopPlaneDetection() {
+        let newConfiguration = ARWorldTrackingConfiguration()
+
+        parent.arView.session.run(newConfiguration)
+        
+        removePlaneNodes()
+
+        let impact = UIImpactFeedbackGenerator(style: .heavy)
+        impact.impactOccurred()
+    }
+    
+    private func removePlaneNodes() {
+        parent.arView.scene.rootNode.enumerateChildNodes{ childNode,_  in
+            if childNode.name == planeNodeIdentifier{
+                childNode.removeFromParentNode()
+            }
+        }
     }
 }
