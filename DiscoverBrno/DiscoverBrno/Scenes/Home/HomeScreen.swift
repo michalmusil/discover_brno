@@ -41,16 +41,27 @@ struct HomeScreen: View {
     var content: some View{
         ScrollView(.vertical){
             VStack{
+                image
                 statCards
+                progressionBar
                 discoveriesList
             }
         }
-        .padding(.horizontal, 5)
+        .padding(.horizontal, 10)
     }
 }
 
 // MARK: Components
 extension HomeScreen{
+    
+    @ViewBuilder
+    var image: some View{
+        Image(uiImage: UIImage(named: "discoverBrnoLogo")!)
+            .resizable()
+            .scaledToFit()
+            .padding(.horizontal, 40)
+            .padding(.bottom, 30)
+    }
     
     @ViewBuilder
     var statCards: some View{
@@ -71,18 +82,34 @@ extension HomeScreen{
                 LazyHStack{
                     ForEach(discovered){ landmark in
                         if let discoverable = landmark.landmark{
-                            AsyncImage(url: URL(string: discoverable.titleImageUrl),
-                                       content: { image in image.resizable()},
-                                       placeholder: { ProgressView() })
-                            .scaledToFill()
-                            .frame(width: 70, height: 70)
-                            .clipShape(Circle())
-                            .shadow(color: .shadowColor, radius: 2)
-                            .padding(.horizontal, 2)
+                            NavigationLink{
+                                DiscoveredDetailScreen(di: di, discoveredLandmark: landmark)
+                            } label: {
+                                AsyncImage(url: URL(string: discoverable.titleImageUrl),
+                                           content: { image in image.resizable()},
+                                           placeholder: { ProgressView() })
+                                .scaledToFill()
+                                .frame(width: 70, height: 70)
+                                .clipShape(Circle())
+                                .shadow(color: .shadowColor, radius: 2)
+                                .padding(.horizontal, 2)
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    var progressionBar: some View{
+        VStack(alignment: .leading){
+            Text(String(localized: "overallProgress"))
+                .font(.title3)
+                .fontWeight(.bold)
+                .padding(.bottom, 5)
+            ProgressBarView(progressValue: $store.progression)
+                .frame(minHeight: 30)
         }
     }
 }

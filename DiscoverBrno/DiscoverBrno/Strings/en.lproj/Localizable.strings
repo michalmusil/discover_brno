@@ -52,4 +52,4 @@
 
 "numberOfDiscovered" = "Number of discovered landmarks";
 "numberOfRemaining" = "Number of landmarks remaining";
-
+"overallProgress" = "Overall progress";

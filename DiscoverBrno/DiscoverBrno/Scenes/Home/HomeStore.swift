@@ -28,6 +28,7 @@ final class HomeStore: ObservableObject{
         setUpSubscriptions()
     }
     
+    @MainActor
     func updateStatistics() {
         do{
             let discoverable = try realmManager.getDiscoverableLandmarks()
@@ -35,8 +36,12 @@ final class HomeStore: ObservableObject{
             
             self.numberOfDiscovered = discovered.count
             self.numberOfRemaining = discoverable.count - discovered.count
-            self.progression = getOverallProgression(discoverable: discoverable, discovered: discovered)
             self.mostRecentLandmark = getMostRecentDiscovered(discovered: discovered)
+            
+            Task{
+                try? await Task.sleep(for: Duration(secondsComponent: 1, attosecondsComponent: 0))
+                self.progression = getOverallProgression(discoverable: discoverable, discovered: discovered)
+            }
             
             self.state = .loaded
         } catch{

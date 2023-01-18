@@ -26,14 +26,19 @@ struct ProgressBarView: View {
                     .foregroundColor(barColor)
                     .opacity(0.3)
                     .clipShape(Capsule())
-                Rectangle()
-                    .frame(height: parentFrame.size.height)
-                    .frame(width: (parentFrame.size.width * CGFloat(progressValue)))
-                    .foregroundColor(barColor)
-                    .clipShape(Capsule())
-                    .animation(.linear, value: progressValue)
+                ZStack(alignment: .trailing){
+                    Rectangle()
+                        .frame(height: parentFrame.size.height)
+                        .frame(width: (parentFrame.size.width * CGFloat(progressValue)))
+                        .foregroundColor(barColor)
+                        .clipShape(Capsule())
+                        .animation(.linear, value: progressValue)
+                    Text("\(String(Int(progressValue*100)))%")
+                        .foregroundColor(.onAccent)
+                        .font(.subheadline)
+                        .padding(.trailing, 5)
+                }
             }
-            
         }
     }
 }
