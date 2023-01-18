@@ -6,6 +6,21 @@
   
 */
 
+// Errors
+"somethingWentWrong" = "Something went wrong";
+"invalidEmail" = "Not a valid email address";
+"passwordTooShort" = "Password must be at least 6 characters";
+"loggingInFailed" = "Logging in failed";
+"registrationFailed" = "Registration failed";
+"registrationSuccessButLoginFailed" = "Registration was successful, but logging you in failed";
+"failedToProcessImage" = "Failed to process image";
+"landmarkNotRecognized" = "Landmark was not recognized";
+"failedToSaveLandmark" = "Failed to save newly discovered landmark";
+"landmarkAlreadyDiscovered" = "Landmark already discovered";
+
+
+
+"discoverBrno" = "Discover Brno";
 "home" = "Home";
 "map" = "Map";
 "discoveries" = "Discoveries";
@@ -13,23 +28,15 @@
 "login" = "Log in";
 "registerNewUser" = "Register new user";
 
+
 "discovered" = "Discovered";
 "discoverable" = "Discoverable";
 "undiscovered" = "Undiscovered";
 
-"invalidEmail" = "Not a valid email address";
-"passwordTooShort" = "Password must be at least 6 characters";
-"loggingInFailed" = "Logging in failed";
-
 "register" = "Register";
-"registrationFailed" = "Registration failed";
-"registrationSuccessButLoginFailed" = "Registration was successful, but logging you in failed";
-
 "email" = "Email";
 "password" = "Password";
-
 "discover" = "Discover";
-
 
 "goToDetail" = "Go to detail";
 "openCamera" = "Open camera";
@@ -38,14 +45,11 @@
 
 "showReward" = "Show reward";
 "youHaveDiscovered" = "You have discovered";
-"failedToProcessImage" = "Failed to process image";
-"landmarkNotRecognized" = "Landmark was not recognized";
-"failedToSaveLandmark" = "Failed to save newly discovered landmark";
-"landmarkAlreadyDiscovered" = "Landmark already discovered";
-
 "hint" = "Hint";
-
 
 "noDiscoveries" = "You have no discoveries yet";
 "everythingDiscovered" = "You have discovered all available landmarks";
+
+"numberOfDiscovered" = "Number of discovered landmarks";
+"numberOfRemaining" = "Number of landmarks remaining";
 

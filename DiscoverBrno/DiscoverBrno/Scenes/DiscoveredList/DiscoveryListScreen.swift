@@ -29,7 +29,7 @@ struct DiscoveryListScreen: View {
                 switch store.selectedListType {
                 case .discovered:
                     if discoveredLandmarks.isEmpty{
-                        ErrorScreen(image: UIImage(named: "sadCroc")!, errorMessage: String(localized: "landmarkNotRecognized"))
+                        ErrorScreen(image: UIImage(named: "sadCroc")!, errorMessage: String(localized: "noDiscoveries"))
                     } else {
                         discoveredItems
                     }

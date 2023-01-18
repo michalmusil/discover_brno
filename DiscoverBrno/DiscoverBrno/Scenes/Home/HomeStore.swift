@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class HomeStore: ObservableObject{
     @Published var state: State = .loading
@@ -17,18 +18,31 @@ final class HomeStore: ObservableObject{
     @Published var progression: Float = 0.0 // from 0.0 to 1.0
     @Published var mostRecentLandmark: DiscoveredLandmark?
     
+    @Published var numberOfDiscoveredString = ""
+    @Published var numberOfRemainingString = ""
+    
+    private var subscribtions = Set<AnyCancellable>()
+    
     init(realmManager: RealmManager){
         self.realmManager = realmManager
+        setUpSubscriptions()
     }
     
-    func updateStatistics() throws {
-        let discoverable = try realmManager.getDiscoverableLandmarks()
-        let discovered = try realmManager.getDiscoveredLandmarks()
-        
-        self.numberOfDiscovered = discovered.count
-        self.numberOfRemaining = discoverable.count - discovered.count
-        self.progression = getOverallProgression(discoverable: discoverable, discovered: discovered)
-        self.mostRecentLandmark = getMostRecentDiscovered(discovered: discovered)
+    func updateStatistics() {
+        do{
+            let discoverable = try realmManager.getDiscoverableLandmarks()
+            let discovered = try realmManager.getDiscoveredLandmarks()
+            
+            self.numberOfDiscovered = discovered.count
+            self.numberOfRemaining = discoverable.count - discovered.count
+            self.progression = getOverallProgression(discoverable: discoverable, discovered: discovered)
+            self.mostRecentLandmark = getMostRecentDiscovered(discovered: discovered)
+            
+            self.state = .loaded
+        } catch{
+            print(error)
+            self.state = .error
+        }        
     }
     
 }
@@ -41,6 +55,27 @@ extension HomeStore{
         case error
     }
 }
+
+// MARK: Combine
+extension HomeStore{
+    
+    private func setUpSubscriptions(){
+        $numberOfDiscovered
+            .receive(on: DispatchQueue.main)
+            .sink{ [weak self] value in
+                self?.numberOfDiscoveredString = String(value)
+            }
+            .store(in: &subscribtions)
+        
+        $numberOfRemaining
+            .receive(on: DispatchQueue.main)
+            .sink{ [weak self] value in
+                self?.numberOfRemainingString = String(value)
+            }
+            .store(in: &subscribtions)
+    }
+}
+
 
 // MARK: Statistics helper methods
 extension HomeStore{

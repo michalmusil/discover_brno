@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C0A307229775B0C000AED11 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0A307129775B0C000AED11 /* HomeStore.swift */; };
 		0C0A307429775C6A000AED11 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0A307329775C6A000AED11 /* ProgressBarView.swift */; };
+		0C0A307629776E6E000AED11 /* StatCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0A307529776E6E000AED11 /* StatCardView.swift */; };
 		0C1E45D7296790A900936E52 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45D6296790A900936E52 /* LoginScreen.swift */; };
 		0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1E45D92967927900936E52 /* RealmManager.swift */; };
 		0C1E45DD296795F200936E52 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0C1E45DC296795F200936E52 /* Realm */; };
@@ -85,6 +86,7 @@
 /* Begin PBXFileReference section */
 		0C0A307129775B0C000AED11 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
 		0C0A307329775C6A000AED11 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		0C0A307529776E6E000AED11 /* StatCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCardView.swift; sourceTree = "<group>"; };
 		0C1E45D6296790A900936E52 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		0C1E45D92967927900936E52 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		0C1E45E029679E8000936E52 /* LoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStore.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				0C6A720D29722A1600755A96 /* DBSecureField.swift */,
 				0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */,
 				0C0A307329775C6A000AED11 /* ProgressBarView.swift */,
+				0C0A307529776E6E000AED11 /* StatCardView.swift */,
 			);
 			path = Primitives;
 			sourceTree = "<group>";
@@ -406,7 +409,6 @@
 				0CF212352967417B001BBC8D /* DiscoveredList */,
 				0CB3B9F8297054C0000CE1FD /* ImageRecognition */,
 				0CDE2458297196EB00E4E2D3 /* DiscoveredDetail */,
-				0CF2123829674219001BBC8D /* Rewards */,
 				0C3243922974A53100C9EB99 /* RewardAR */,
 				0CF212392967422A001BBC8D /* Settings */,
 			);
@@ -456,13 +458,6 @@
 				0C0A307129775B0C000AED11 /* HomeStore.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		0CF2123829674219001BBC8D /* Rewards */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Rewards;
 			sourceTree = "<group>";
 		};
 		0CF212392967422A001BBC8D /* Settings */ = {
@@ -625,6 +620,7 @@
 				0C0A307429775C6A000AED11 /* ProgressBarView.swift in Sources */,
 				0CBA39AD296DD0B00087F023 /* DiContainer.swift in Sources */,
 				0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */,
+				0C0A307629776E6E000AED11 /* StatCardView.swift in Sources */,
 				0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */,
 				0C6A720229721F1D00755A96 /* ColorExtensions.swift in Sources */,
 				0CB5A65F296EC22900D5A6CC /* EmailValidator.swift in Sources */,
