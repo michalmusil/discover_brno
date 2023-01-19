@@ -42,36 +42,40 @@ struct HomeScreen: View {
     @ViewBuilder
     var content: some View{
         ScrollView(.vertical){
-            VStack{
-                ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
+            ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
+                logoutButton
+                    .padding(15)
+                VStack{
                     image
-                    logoutButton
-                        .padding(5)
+                    statCards
+                    progressionBar
+                    discoveriesList
                 }
-                statCards
-                progressionBar
-                discoveriesList
+                .padding(.horizontal, 10)
             }
         }
-        .padding(.horizontal, 10)
+        
     }
     
     @ViewBuilder
     var welcomeScreen: some View{
-        VStack{
+        ScrollView(.vertical){
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
-                Image(uiImage: UIImage.getByAssetName(assetName: "welcome1"))
-                    .resizable()
-                    .scaledToFit()
                 logoutButton
+                    .padding(15)
+                VStack{
+                    Image(uiImage: UIImage.getByAssetName(assetName: "welcome1"))
+                        .resizable()
+                        .scaledToFit()
+                    
+                    Image(uiImage: UIImage.getByAssetName(assetName: "welcome2"))
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.top, 100)
+                }
+                .padding(.horizontal, 40)
             }
-            Spacer()
-            Image(uiImage: UIImage.getByAssetName(assetName: "welcome2"))
-                .resizable()
-                .scaledToFit()
-            Spacer()
         }
-        .padding(.horizontal, 40)
     }
 }
 
@@ -100,8 +104,7 @@ extension HomeScreen{
         Image(uiImage: UIImage.getByAssetName(assetName: "discoverBrnoLogo"))
             .resizable()
             .scaledToFit()
-            .padding(.horizontal, 40)
-            .padding(.bottom, 30)
+            .padding(.vertical, 30)
     }
     
     @ViewBuilder
@@ -138,6 +141,7 @@ extension HomeScreen{
                     }
                 }
             }
+            .frame(maxHeight: 100)
         }
     }
     
@@ -149,7 +153,7 @@ extension HomeScreen{
                 .fontWeight(.bold)
                 .padding(.bottom, 5)
             ProgressBarView(progressValue: $store.progression)
-                .frame(minHeight: 30)
+                .frame(height: 30)
         }
     }
 }
