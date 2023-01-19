@@ -12,6 +12,7 @@ final class HomeStore: ObservableObject{
     @Published var state: State = .loading
     
     @Published var realmManager: RealmManager
+    private let defaults: DiscoverBrnoDefaults
     
     @Published var numberOfDiscovered: Int = 0
     @Published var numberOfRemaining: Int = 0
@@ -23,8 +24,9 @@ final class HomeStore: ObservableObject{
     
     private var subscribtions = Set<AnyCancellable>()
     
-    init(realmManager: RealmManager){
+    init(realmManager: RealmManager, defaults: DiscoverBrnoDefaults){
         self.realmManager = realmManager
+        self.defaults = defaults
         setUpSubscriptions()
     }
     
@@ -32,6 +34,7 @@ final class HomeStore: ObservableObject{
     func logOut(){
         Task{
             do{
+                defaults.clearEmailAndPassword()
                 try await realmManager.logOut()
             } catch{
                 print(error)

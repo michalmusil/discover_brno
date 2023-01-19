@@ -32,6 +32,9 @@ struct LoginScreen: View {
             }
         }
         .padding()
+        .onAppear{
+            store.tryToLogInFromMemory()
+        }
         
     }
     
@@ -75,7 +78,7 @@ struct LoginScreen: View {
             DBButton(text: String(localized: "login")){
                 Task{
                     do{
-                        try await store.loginUser()
+                        try await store.loginUser(email: store.email, password: store.password)
                     }
                     catch AuthenticationError.loginFailed {
                         store.errorMessage = String(localized: "loggingInFailed")

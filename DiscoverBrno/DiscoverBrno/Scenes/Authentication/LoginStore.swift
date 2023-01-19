@@ -17,24 +17,39 @@ final class LoginStore: ObservableObject{
     @Published var credentialsValid: Bool = false
     
     @Published var realmManager: RealmManager
-    private let emailValidator: EmailValidator
+    private let credentialsValidator: CredentialsValidator
+    private let defaults: DiscoverBrnoDefaults
     private var subscribtions = Set<AnyCancellable>()
     
     
-    init(realmManager: RealmManager, emailValidator: EmailValidator){
+    init(realmManager: RealmManager, credentialsValidator: CredentialsValidator, defaults: DiscoverBrnoDefaults){
         self.realmManager = realmManager
-        self.emailValidator = emailValidator
+        self.credentialsValidator = credentialsValidator
+        self.defaults = defaults
         initializeSubs()
     }
     
     
     @MainActor
-    func loginUser() async throws{
+    func loginUser(email: String, password: String) async throws{
         self.state = .loading
         try await realmManager.loginEmailPassword(email: email, password: password)
         self.state = .start
-        self.email = ""
-        self.password = ""
+        
+        try? saveCredentialsToDefaults(email: email, password: password)
+    }
+    
+    func tryToLogInFromMemory(){
+        guard let credentials = defaults.getSavedEmailAndPassword() else {
+            return
+        }
+        Task{
+            try? await loginUser(email: credentials.email, password: credentials.password)
+        }
+    }
+    
+    private func saveCredentialsToDefaults(email: String, password: String) throws {
+        try defaults.saveEmailAndPassword(email: email, password: password)
     }
 }
 
@@ -53,13 +68,15 @@ extension LoginStore{
         $email
             .receive(on: DispatchQueue.main)
             .combineLatest($password){ [weak self] email, password in
-                let emailValid = self?.emailValidator.validateEmailAddress(email: email)
+                let emailValid = self?.credentialsValidator.validateEmailAddress(email: email)
                 if let valid = emailValid,
                    valid == false {
                     self?.credentialsValid = false
                     return String(localized: "invalidEmail")
                 }
-                if password.count < 6{
+                let passwordValid = self?.credentialsValidator.validatePassword(password: password)
+                if let passValid = passwordValid,
+                    passValid == false{
                     self?.credentialsValid = false
                     return String(localized: "passwordTooShort")
                 }

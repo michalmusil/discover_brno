@@ -33,6 +33,7 @@
 		0C8B8A322975AEBE00BE53E0 /* DiscoveredListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B8A312975AEBE00BE53E0 /* DiscoveredListItem.swift */; };
 		0C9EF30B2974550E0047C9CF /* DBNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */; };
 		0C9EF30D29745BE60047C9CF /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF30C29745BE60047C9CF /* ARView.swift */; };
+		0CAD9A29297959450027F6C7 /* DiscoverBrnoDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD9A28297959450027F6C7 /* DiscoverBrnoDefaults.swift */; };
 		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
 		0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F029701252000CE1FD /* MapPopupView.swift */; };
 		0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F429703AF1000CE1FD /* MapView.swift */; };
@@ -42,7 +43,7 @@
 		0CB3B9FE29706411000CE1FD /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9FD29706411000CE1FD /* UIImageExtensions.swift */; };
 		0CB5A65A296EBE7F00D5A6CC /* RegistrationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A659296EBE7F00D5A6CC /* RegistrationScreen.swift */; };
 		0CB5A65C296EBE8700D5A6CC /* RegistrationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A65B296EBE8700D5A6CC /* RegistrationStore.swift */; };
-		0CB5A65F296EC22900D5A6CC /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */; };
+		0CB5A65F296EC22900D5A6CC /* CredentialsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A65E296EC22900D5A6CC /* CredentialsValidator.swift */; };
 		0CB5A661296EC6B800D5A6CC /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A660296EC6B800D5A6CC /* AuthenticationError.swift */; };
 		0CB5A663296ED31100D5A6CC /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A662296ED31100D5A6CC /* HomeScreen.swift */; };
 		0CB5A665296ED33900D5A6CC /* DiscoveryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB5A664296ED33900D5A6CC /* DiscoveryListScreen.swift */; };
@@ -107,6 +108,7 @@
 		0C8B8A312975AEBE00BE53E0 /* DiscoveredListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredListItem.swift; sourceTree = "<group>"; };
 		0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBNavigationButton.swift; sourceTree = "<group>"; };
 		0C9EF30C29745BE60047C9CF /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
+		0CAD9A28297959450027F6C7 /* DiscoverBrnoDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverBrnoDefaults.swift; sourceTree = "<group>"; };
 		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
 		0CB3B9F029701252000CE1FD /* MapPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPopupView.swift; sourceTree = "<group>"; };
 		0CB3B9F429703AF1000CE1FD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -116,7 +118,7 @@
 		0CB3B9FD29706411000CE1FD /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		0CB5A659296EBE7F00D5A6CC /* RegistrationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreen.swift; sourceTree = "<group>"; };
 		0CB5A65B296EBE8700D5A6CC /* RegistrationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStore.swift; sourceTree = "<group>"; };
-		0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		0CB5A65E296EC22900D5A6CC /* CredentialsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsValidator.swift; sourceTree = "<group>"; };
 		0CB5A660296EC6B800D5A6CC /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
 		0CB5A662296ED31100D5A6CC /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		0CB5A664296ED33900D5A6CC /* DiscoveryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryListScreen.swift; sourceTree = "<group>"; };
@@ -267,10 +269,11 @@
 		0CB5A65D296EC20E00D5A6CC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				0CB5A65E296EC22900D5A6CC /* EmailValidator.swift */,
+				0CB5A65E296EC22900D5A6CC /* CredentialsValidator.swift */,
 				0CB3B9F629705220000CE1FD /* ImagePicker.swift */,
 				0CB3B9FD29706411000CE1FD /* UIImageExtensions.swift */,
 				0C6A720129721F1D00755A96 /* ColorExtensions.swift */,
+				0CAD9A28297959450027F6C7 /* DiscoverBrnoDefaults.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -620,7 +623,7 @@
 				0C0A307629776E6E000AED11 /* StatCardView.swift in Sources */,
 				0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */,
 				0C6A720229721F1D00755A96 /* ColorExtensions.swift in Sources */,
-				0CB5A65F296EC22900D5A6CC /* EmailValidator.swift in Sources */,
+				0CB5A65F296EC22900D5A6CC /* CredentialsValidator.swift in Sources */,
 				0CBA39A7296DC3300087F023 /* DiscoverableLandmark.swift in Sources */,
 				0CBA39AB296DC4A70087F023 /* DiscoveredLandmark.swift in Sources */,
 				0C6A720429721F6500755A96 /* BackgroundGradient.swift in Sources */,
@@ -632,6 +635,7 @@
 				0CB5A65A296EBE7F00D5A6CC /* RegistrationScreen.swift in Sources */,
 				0C1E45E32967A1C300936E52 /* ContentStore.swift in Sources */,
 				0CDE245729715F1F00E4E2D3 /* DataError.swift in Sources */,
+				0CAD9A29297959450027F6C7 /* DiscoverBrnoDefaults.swift in Sources */,
 				0C8B8A322975AEBE00BE53E0 /* DiscoveredListItem.swift in Sources */,
 				0CDE245A2971970600E4E2D3 /* DiscoveredDetailScreen.swift in Sources */,
 				0CB3B9FE29706411000CE1FD /* UIImageExtensions.swift in Sources */,

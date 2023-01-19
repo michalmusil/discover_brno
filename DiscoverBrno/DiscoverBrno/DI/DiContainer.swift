@@ -19,7 +19,8 @@ final class DiContainer{
     let mlModel: DiscoverBrno
     
     // Utils
-    let emailValidator: EmailValidator
+    let credentialsValidator: CredentialsValidator
+    let discoverBrnoDefaults: DiscoverBrnoDefaults
     
     
     
@@ -31,12 +32,12 @@ final class DiContainer{
     }
     var loginStore: LoginStore{
         get{
-            LoginStore(realmManager: realmManager, emailValidator: emailValidator)
+            LoginStore(realmManager: realmManager, credentialsValidator: credentialsValidator, defaults: discoverBrnoDefaults)
         }
     }
     var registrationStore: RegistrationStore{
         get{
-            RegistrationStore(realmManager: realmManager, emailValidator: emailValidator)
+            RegistrationStore(realmManager: realmManager, credentialsValidator: credentialsValidator, defaults: discoverBrnoDefaults)
         }
     }
     var mapStore: MapStore {
@@ -46,7 +47,7 @@ final class DiContainer{
     }
     var homeStore: HomeStore{
         get{
-            HomeStore(realmManager: realmManager)
+            HomeStore(realmManager: realmManager, defaults: discoverBrnoDefaults)
         }
     }
     var imageRecognitionStore: ImageRecognitionStore{
@@ -72,7 +73,8 @@ final class DiContainer{
         
         self.mlModel = (try? DiscoverBrno(configuration: MLModelConfiguration())) ?? DiscoverBrno()
         
-        self.emailValidator = EmailValidator()
+        self.credentialsValidator = CredentialsValidator()
+        self.discoverBrnoDefaults = DiscoverBrnoDefaults(credentialsValidator: credentialsValidator)
         
     }
 }
