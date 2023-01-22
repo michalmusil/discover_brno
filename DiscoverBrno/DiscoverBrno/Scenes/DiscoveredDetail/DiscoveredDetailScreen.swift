@@ -11,22 +11,32 @@ struct DiscoveredDetailScreen: View {
     private let di: DiContainer
     
     private var discoveredLandmark: DiscoveredLandmark
-    @StateObject var store: DiscoveredDetailStore
+    
+    @State var contentYOffset: CGFloat = 500
+    @State var contentOpacity: Double = 0.0
     
     init(di: DiContainer, discoveredLandmark: DiscoveredLandmark) {
         self.di = di
         self.discoveredLandmark = discoveredLandmark
-        self._store = StateObject(wrappedValue: di.discoveredDetailStore)
     }
     
     
     var body: some View {
         ScrollView(.vertical){
             image
+                .opacity(contentOpacity)
+                .animation(.linear(duration: 0.5), value: contentOpacity)
             content
+                .offset(y: contentYOffset)
+                .opacity(contentOpacity)
+                .animation(.easeInOut(duration: 0.5), value: contentYOffset)
+                .animation(.linear(duration: 0.5), value: contentOpacity)
         }
         .navigationTitle(discoveredLandmark.landmark?.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear{
+            startContentAnimation()
+        }
     }
     
     @ViewBuilder
@@ -82,6 +92,12 @@ struct DiscoveredDetailScreen: View {
         }
     }
     
+    
+    
+}
+
+// MARK: Components
+extension DiscoveredDetailScreen{
     @ViewBuilder
     var rewardButton: some View{
         NavigationLink{
@@ -103,7 +119,6 @@ struct DiscoveredDetailScreen: View {
         }
     }
     
-    
     func discoveredDate() -> some View{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MM/dd/yyyy"
@@ -113,6 +128,12 @@ struct DiscoveredDetailScreen: View {
             .font(.subheadline)
     }
     
+    func startContentAnimation(){
+        withAnimation{
+            contentYOffset = 0
+            contentOpacity = 1.0
+        }
+    }
 }
 
 struct DiscoveredDetailScreen_Previews: PreviewProvider {

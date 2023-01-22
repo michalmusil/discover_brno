@@ -55,11 +55,6 @@ final class DiContainer{
             ImageRecognitionStore(realmManager: realmManager, mlModel: mlModel)
         }
     }
-    var discoveredDetailStore: DiscoveredDetailStore{
-        get{
-            DiscoveredDetailStore()
-        }
-    }
     var discoveryListStore: DiscoveryListStore{
         get{
             DiscoveryListStore(realmManager: realmManager)

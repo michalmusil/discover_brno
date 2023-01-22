@@ -15,6 +15,7 @@ struct MapView: UIViewRepresentable {
     
     let configuration: MKStandardMapConfiguration
     private var locations: [BrnoLocation]
+    private var startingRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 49.194855, longitude: 16.608431), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
     
     
     func makeCoordinator() -> MapCoordinator {
@@ -47,9 +48,6 @@ struct MapView: UIViewRepresentable {
         
         var lastSelectedAnnotation: CustomMapAnnotation? = nil
         
-        private var startingRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 49.194855, longitude: 16.608431), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
-        private var startingRegionSet = false
-        
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             if annotation is MKUserLocation {
                 return nil
@@ -57,12 +55,8 @@ struct MapView: UIViewRepresentable {
             guard let customAnnotation = annotation as? CustomMapAnnotation else {
                 return nil
             }
-            if !startingRegionSet{
-                mapView.setRegion(startingRegion, animated: true)
-                startingRegionSet = true
-            }
             
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: customAnnotation.title ?? "")
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: customAnnotation.title!)
             
             if annotationView == nil{
                 annotationView = MKAnnotationView(annotation: customAnnotation, reuseIdentifier: customAnnotation.title ?? "")
@@ -129,12 +123,12 @@ extension MapView{
         for location in locations{
             let defaultImage = location.isDiscovered ? discoveredImage : undiscoveredImage
             let annotation = CustomMapAnnotation(coordinate: location.coordinate, landmark: location.landmark, defaultImage: defaultImage, isDiscovered: location.isDiscovered, onSelected: location.onSelected, onDeselected: location.onDeselected)
-            annotation.title = location.landmark.name
             annotations.append(annotation)
         }
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotations(annotations)
-        mapView.showAnnotations(mapView.annotations, animated: true)
+        
+        mapView.setRegion(startingRegion, animated: true)
     }
     
     private func determineIfUpdateAnnotations(annotations: [MKAnnotation]) -> Bool{

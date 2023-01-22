@@ -20,6 +20,7 @@ class CustomMapAnnotation: NSObject, MKAnnotation {
     var onDeselected: (DiscoverableLandmark) -> Void
 
     init(coordinate: CLLocationCoordinate2D, landmark: DiscoverableLandmark, defaultImage: UIImage, isDiscovered: Bool, onSelected: @escaping (DiscoverableLandmark) -> Void, onDeselected: @escaping (DiscoverableLandmark) -> Void) {
+        self.title = landmark.name
         self.coordinate = coordinate
         self.landmark = landmark
         self.defaultImage = defaultImage

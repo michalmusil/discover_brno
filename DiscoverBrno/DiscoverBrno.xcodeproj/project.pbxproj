@@ -56,7 +56,6 @@
 		0CBA39AD296DD0B00087F023 /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA39AC296DD0B00087F023 /* DiContainer.swift */; };
 		0CDE245729715F1F00E4E2D3 /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE245629715F1F00E4E2D3 /* DataError.swift */; };
 		0CDE245A2971970600E4E2D3 /* DiscoveredDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE24592971970600E4E2D3 /* DiscoveredDetailScreen.swift */; };
-		0CDE245C2971973400E4E2D3 /* DiscoveredDetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE245B2971973400E4E2D3 /* DiscoveredDetailStore.swift */; };
 		0CF2120429673747001BBC8D /* DiscoverBrnoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */; };
 		0CF2120629673747001BBC8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF2120529673747001BBC8D /* ContentView.swift */; };
 		0CF2120829673748001BBC8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CF2120729673748001BBC8D /* Assets.xcassets */; };
@@ -131,7 +130,6 @@
 		0CBA39AC296DD0B00087F023 /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
 		0CDE245629715F1F00E4E2D3 /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
 		0CDE24592971970600E4E2D3 /* DiscoveredDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredDetailScreen.swift; sourceTree = "<group>"; };
-		0CDE245B2971973400E4E2D3 /* DiscoveredDetailStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredDetailStore.swift; sourceTree = "<group>"; };
 		0CF2120029673747001BBC8D /* DiscoverBrno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscoverBrno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CF2120329673747001BBC8D /* DiscoverBrnoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverBrnoApp.swift; sourceTree = "<group>"; };
 		0CF2120529673747001BBC8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 			isa = PBXGroup;
 			children = (
 				0CDE24592971970600E4E2D3 /* DiscoveredDetailScreen.swift */,
-				0CDE245B2971973400E4E2D3 /* DiscoveredDetailStore.swift */,
 			);
 			path = DiscoveredDetail;
 			sourceTree = "<group>";
@@ -612,7 +609,6 @@
 				0C1E45E129679E8000936E52 /* LoginStore.swift in Sources */,
 				0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */,
 				0CB5A670296F180400D5A6CC /* BrnoLocation.swift in Sources */,
-				0CDE245C2971973400E4E2D3 /* DiscoveredDetailStore.swift in Sources */,
 				0CB5A66C296ED5A100D5A6CC /* MapStore.swift in Sources */,
 				0CF2120629673747001BBC8D /* ContentView.swift in Sources */,
 				0C6A720E29722A1600755A96 /* DBSecureField.swift in Sources */,

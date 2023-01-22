@@ -29,11 +29,23 @@ struct ImageRecognitionScreen: View {
         if cameraPresented{
             ImagePicker(isPresented: $cameraPresented, image: $store.image)
                 .ignoresSafeArea(.all)
+                .onAppear{
+                    store.resetResultAnimation()
+                }
         }
         else {
             ScrollView(.vertical){
                 image
+                    .opacity(store.contentOpacity)
+                    .animation(.linear(duration: 0.3), value: store.contentOpacity)
                 content
+                    .offset(y: store.contentYOffset)
+                    .opacity(store.contentOpacity)
+                    .animation(.easeOut(duration: 0.3), value: store.contentYOffset)
+                    .animation(.linear(duration: 0.3), value: store.contentOpacity)
+            }
+            .onAppear{
+                store.startResultAnimation()
             }
             .navigationTitle(String(localized: "discover"))
             .navigationBarTitleDisplayMode(.inline)
@@ -67,15 +79,19 @@ struct ImageRecognitionScreen: View {
     var content: some View{
         ZStack{
             VStack{
-                rewardButton
+                cameraButton
                     .zIndex(1)
                 ZStack(alignment: .top){
                     VStack{
-                        if !store.errorMessage.isEmpty{
-                            errorContent
-                        }
-                        else if let discovered = store.discoveredLandmark{
-                            successContent(discovered: discovered)
+                        switch store.state{
+                        case .failedToSave, .landmarkAlreadyDiscovered, .failedToProcessImage:
+                            errorMessage
+                        case .imageNotRecognized:
+                            notRecognized
+                        case .newLandmarkDiscovered:
+                            successContent(discovered: store.discoveredLandmark!)
+                        default:
+                            EmptyView()
                         }
                     }
                     .padding(.top, 50)
@@ -87,16 +103,6 @@ struct ImageRecognitionScreen: View {
             }
         }
         .offset(y: -150)
-    }
-    
-    @ViewBuilder
-    var errorContent: some View{
-        switch store.errorMessage {
-        case String(localized: "landmarkNotRecognized"):
-            notRecognized
-        default:
-            errorMessage
-        }
     }
     
     func successContent(discovered: DiscoveredLandmark) -> some View{
@@ -160,7 +166,7 @@ extension ImageRecognitionScreen{
     }
     
     @ViewBuilder
-    var rewardButton: some View{
+    var cameraButton: some View{
         Button{
             cameraPresented.toggle()
         } label: {

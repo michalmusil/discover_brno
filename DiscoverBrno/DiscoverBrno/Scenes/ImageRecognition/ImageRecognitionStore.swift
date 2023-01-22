@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 
 final class ImageRecognitionStore: ObservableObject{
+    @Published var state: State = .idle
     
     @Published var realmManager: RealmManager
     private let mlModel: DiscoverBrno
@@ -18,6 +19,8 @@ final class ImageRecognitionStore: ObservableObject{
     @Published var errorMessage: String = ""
     @Published var discoveredLandmark: DiscoveredLandmark?
     
+    @Published var contentYOffset: CGFloat = 0.0
+    @Published var contentOpacity: Double = 0.0
     
     private var subscribtions = Set<AnyCancellable>()
     
@@ -25,6 +28,18 @@ final class ImageRecognitionStore: ObservableObject{
         self.realmManager = realmManager
         self.mlModel = mlModel
         initializeSubs()
+    }
+}
+
+// MARK: State
+extension ImageRecognitionStore{
+    enum State{
+        case idle
+        case failedToProcessImage
+        case imageNotRecognized
+        case landmarkAlreadyDiscovered
+        case failedToSave
+        case newLandmarkDiscovered
     }
 }
 
@@ -79,6 +94,18 @@ extension ImageRecognitionStore{
         
         return discovered
     }
+    
+    func startResultAnimation(){
+        withAnimation{
+            self.contentYOffset = 0
+            self.contentOpacity = 1.0
+        }
+    }
+    
+    func resetResultAnimation(){
+        self.contentYOffset = 500
+        self.contentOpacity = 0.0
+    }
 }
 
 
@@ -91,28 +118,35 @@ extension ImageRecognitionStore{
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink{ [weak self] image in
-                if self?.image == nil && image == nil { return }
-                self?.errorMessage = ""
-                self?.discoveredLandmark = nil
+                guard let self = self else { return }
+                
+                if self.image == nil && image == nil { return }
+                self.errorMessage = ""
+                self.discoveredLandmark = nil
                 
                 guard let img = image else {
-                    self?.errorMessage = String(localized: "failedToProcessImage")
+                    self.errorMessage = String(localized: "failedToProcessImage")
+                    self.state = .failedToProcessImage
                     return
                 }
-                guard let recognized = self?.tryRecognizeImage(image: img) else {
-                    self?.errorMessage = String(localized: "landmarkNotRecognized")
+                guard let recognized = self.tryRecognizeImage(image: img) else {
+                    self.errorMessage = String(localized: "landmarkNotRecognized")
+                    self.state = .imageNotRecognized
                     return
                 }
-                if let alreadyDisovered = self?.checkIfUserAlreadyDiscovered(landmarkName: recognized.name) {
-                    self?.errorMessage = "\(String(localized: "landmarkAlreadyDiscovered")): \(alreadyDisovered.landmark?.name ?? "")"
+                if let alreadyDisovered = self.checkIfUserAlreadyDiscovered(landmarkName: recognized.name) {
+                    self.errorMessage = "\(String(localized: "landmarkAlreadyDiscovered")): \(alreadyDisovered.landmark?.name ?? "")"
+                    self.state = .landmarkAlreadyDiscovered
                     return
                 }
                 do{
-                    let saved = try self?.saveNewDiscoveredLandmark(landmarkName: recognized.name)
-                    self?.discoveredLandmark = saved
+                    let saved = try self.saveNewDiscoveredLandmark(landmarkName: recognized.name)
+                    self.discoveredLandmark = saved
+                    self.state = .newLandmarkDiscovered
                 }
                 catch{
-                    self?.errorMessage = String(localized: "failedToSaveLandmark")
+                    self.errorMessage = String(localized: "failedToSaveLandmark")
+                    self.state = .failedToSave
                 }
             }
             .store(in: &subscribtions)
