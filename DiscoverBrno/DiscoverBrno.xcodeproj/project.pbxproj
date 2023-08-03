@@ -31,10 +31,10 @@
 		0C6A720C297227A000755A96 /* DBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720B297227A000755A96 /* DBTextField.swift */; };
 		0C6A720E29722A1600755A96 /* DBSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6A720D29722A1600755A96 /* DBSecureField.swift */; };
 		0C8B8A322975AEBE00BE53E0 /* DiscoveredListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8B8A312975AEBE00BE53E0 /* DiscoveredListItem.swift */; };
+		0C9033582A7BCA4800190DF4 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0C9033572A7BCA4800190DF4 /* DiscoverBrno.mlmodel */; };
 		0C9EF30B2974550E0047C9CF /* DBNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */; };
 		0C9EF30D29745BE60047C9CF /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9EF30C29745BE60047C9CF /* ARView.swift */; };
 		0CAD9A29297959450027F6C7 /* DiscoverBrnoDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD9A28297959450027F6C7 /* DiscoverBrnoDefaults.swift */; };
-		0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */; };
 		0CB3B9F129701252000CE1FD /* MapPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F029701252000CE1FD /* MapPopupView.swift */; };
 		0CB3B9F529703AF1000CE1FD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F429703AF1000CE1FD /* MapView.swift */; };
 		0CB3B9F729705220000CE1FD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3B9F629705220000CE1FD /* ImagePicker.swift */; };
@@ -105,10 +105,10 @@
 		0C6A720B297227A000755A96 /* DBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTextField.swift; sourceTree = "<group>"; };
 		0C6A720D29722A1600755A96 /* DBSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSecureField.swift; sourceTree = "<group>"; };
 		0C8B8A312975AEBE00BE53E0 /* DiscoveredListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredListItem.swift; sourceTree = "<group>"; };
+		0C9033572A7BCA4800190DF4 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DiscoverBrno.mlmodel; sourceTree = "<group>"; };
 		0C9EF30A2974550E0047C9CF /* DBNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBNavigationButton.swift; sourceTree = "<group>"; };
 		0C9EF30C29745BE60047C9CF /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
 		0CAD9A28297959450027F6C7 /* DiscoverBrnoDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverBrnoDefaults.swift; sourceTree = "<group>"; };
-		0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DiscoverBrno.mlmodel; path = ../../../../DiscoverBrno.mlmodel; sourceTree = "<group>"; };
 		0CB3B9F029701252000CE1FD /* MapPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPopupView.swift; sourceTree = "<group>"; };
 		0CB3B9F429703AF1000CE1FD /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		0CB3B9F629705220000CE1FD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -415,8 +415,8 @@
 		0CF2122F29673DC6001BBC8D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0C9033572A7BCA4800190DF4 /* DiscoverBrno.mlmodel */,
 				0C9EF30E29745D3A0047C9CF /* AR */,
-				0CB2FB6329683DBC002EE069 /* DiscoverBrno.mlmodel */,
 				0CF2120729673748001BBC8D /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -645,9 +645,9 @@
 				0CB3B9F729705220000CE1FD /* ImagePicker.swift in Sources */,
 				0C3CB98A2975DA9B00AD346D /* EverythingDiscoveredScreen.swift in Sources */,
 				0C3CB9832975CEE300AD346D /* DiscoveryListStore.swift in Sources */,
+				0C9033582A7BCA4800190DF4 /* DiscoverBrno.mlmodel in Sources */,
 				0C6A71FB2971CC7100755A96 /* CustomMapAnnotation.swift in Sources */,
 				0C1E45DA2967927900936E52 /* RealmManager.swift in Sources */,
-				0CB2FB6429683DBC002EE069 /* DiscoverBrno.mlmodel in Sources */,
 				0C32439A2974C4F600C9EB99 /* LandmarkReward.swift in Sources */,
 				0C6A720029721AB600755A96 /* DBButton.swift in Sources */,
 			);
